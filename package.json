@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "core-js": "^3.17.2",
+    "echarts": "^5.2.0",
     "element-ui": "^2.15.6",
     "sass": "^1.39.0",
     "vue": "^2.6.11",
@@ -33,6 +34,6 @@
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }  
+    }
   }
 }

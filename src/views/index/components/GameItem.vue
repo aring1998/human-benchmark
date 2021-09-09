@@ -1,5 +1,5 @@
 <template>
-  <div class="game-item">
+  <div class="game-item" @click="$router.push(path)">
     <i :class="icon"></i>
     <h4>{{ title }}</h4>
     <span>{{ intro }}</span>
@@ -11,7 +11,14 @@ export default {
   props: {
     icon: String,
     title: String,
-    intro: String
+    intro: {
+      type:String,
+      default: ''
+    },
+    path: {
+      type: String,
+      default: '/index'
+    }
   }
 }
 </script>
@@ -27,7 +34,7 @@ export default {
   height: 260px;
   color: #333;
   background-color: #fff;
-  box-shadow: rgba(0, 0, 0, .1) 0px 2px 5px;
+  box-shadow: $shadow;
   border-radius: 10px;
   margin: 20px auto 0 auto;
   cursor: pointer;

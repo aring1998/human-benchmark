@@ -13,6 +13,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 Vue.use(ElementUI);
 
+// 引入echarts
+import * as echarts from 'echarts';
+Vue.prototype.$echarts = echarts
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
