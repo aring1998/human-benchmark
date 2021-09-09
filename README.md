@@ -14,6 +14,7 @@
 
 #### 注意事项
 1. git提交日志请务必遵守[commitlint.config](/commitlint.config.js)内约定
+2. 仿写站点[HumanBenchmark](https://humanbenchmark.com/)
 
 #### 参与贡献
 1. Fork 本仓库
