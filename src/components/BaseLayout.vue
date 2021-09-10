@@ -3,13 +3,13 @@
     <slot name="wrap"></slot>
     <div class="card">
       <el-row :gutter="10">
-        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
           <div class="item">
             <h4>统计数据</h4>
             <div id="myChart" style="height: 300px; width: 100%; border-radius: 10px"></div>
           </div>
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
           <div class="item">
             <h4>关于</h4>
             <slot name="about"></slot>
@@ -64,6 +64,7 @@ export default {
 .base-layout {
   .card {
     display: flex;
+    width: 100%;
     max-width: $max-width;
     margin: 50px auto 0 auto;
     .item {
@@ -73,10 +74,7 @@ export default {
       flex: 1;
       border-radius: 5px;
       padding: 20px;
-      &:nth-child(1) {
-        margin-right: 30px;
-        flex-shrink: 0;
-      }
+      margin: 0 auto;
       h4 {
         font-size: 27px;
         font-weight: 500;
@@ -90,6 +88,20 @@ export default {
   }
   .el-row {
     width: 100%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .base-layout {
+    .card {
+      .item {
+        margin: 0;
+        box-sizing: border-box;
+        width: 100vw;
+        margin-bottom: 20px;
+        border-radius: unset;
+      }
+    }
   }
 }
 </style>

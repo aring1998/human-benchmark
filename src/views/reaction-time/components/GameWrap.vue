@@ -1,8 +1,9 @@
 <template>
-  <div class="reaction-time-game-wrap" :style="{'background-color': bgColor}">
+  <div class="reaction-time-game-wrap" :style="{'background-color': bgColor,'cursor': cursor}">
     <i :class="icon"></i>
     <h2>{{ text }}</h2>
     <span v-if="tips.length > 0">{{ tips }}</span>
+    <slot></slot>
   </div>
 </template>
 
@@ -18,6 +19,10 @@ export default {
     tips: {
       type: String,
       default: ''
+    },
+    cursor: {
+      type: String,
+      default: 'pointer'
     }
   }
 }
@@ -34,7 +39,6 @@ export default {
   background-color: $main-color;
   text-align: center;
   padding: 0 20px;
-  cursor: pointer;
   i {
     font-size: 120px;
   }

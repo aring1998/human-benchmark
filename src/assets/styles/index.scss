@@ -16,6 +16,12 @@ button:focus {
   &:hover {
     background-color: #fff;
   }
+  &.secondary {
+    background-color: rgba(255, 255, 255, .5);
+    &:hover {
+      background-color: #fff;
+    }
+  }
 }
 
 .pages {

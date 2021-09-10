@@ -1,5 +1,5 @@
 <template>
-  <div class="game-intro" :class="{hide: isStart}">
+  <div class="game-intro">
     <i :class="icon"></i>
     <h2>{{ title }}</h2>
     <span>{{ intro }}</span>
@@ -9,11 +9,6 @@
 
 <script>
 export default {
-  data() {
-    return {
-      isStart: false
-    }
-  },
   props: {
     title: String,
     intro: String,
@@ -21,7 +16,6 @@ export default {
   },
   methods: {
     start() {
-      this.isStart = true
       this.$emit('start')
     }
   }

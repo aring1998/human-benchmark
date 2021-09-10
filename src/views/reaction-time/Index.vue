@@ -6,7 +6,9 @@
         icon="el-icon-magic-stick"
         title="反应时间"
         intro="当背景变为绿色时，立刻点击"
-        @start="startGame"
+        v-show="componentName === ''"
+        :key="1"
+        @start="componentName = 'Wait'"
       />
       <component
         slot="wrap"
@@ -21,13 +23,16 @@ import BaseLayout from '@/components/BaseLayout.vue'
 import GameIntro from '@/components/GameIntro.vue'
 import Again from './game/Again.vue'
 import Click from './game/Click.vue'
+import Result from './game/Result.vue'
 import TooFast from './game/TooFast.vue'
 import Wait from './game/Wait.vue'
 export default {
   data() {
     return {
       componentName: '',
-      reactionTime: 0
+      reactionTime: 0,
+      count: 0,
+      reactionTimeArr: []
     }
   },
   components: {
@@ -35,13 +40,9 @@ export default {
     GameIntro,
     Again,
     Click,
+    Result,
     TooFast,
     Wait
-  },
-  methods: {
-    startGame() {
-      this.componentName = 'Wait'
-    }
   }
 }
 </script>
