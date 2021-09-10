@@ -26,14 +26,12 @@ export default {
   methods: {
     click() {
       let reactionTime = new Date().getTime()
-      reactionTime -= this.beginTime + 30
+      reactionTime -= this.beginTime + 50
       this.$parent.$parent.reactionTime = reactionTime
       this.$parent.$parent.reactionTimeArr.push(reactionTime)
       this.$parent.$parent.count++
-      if (this.$parent.$parent.count === 1) 
-        this.$parent.$parent.componentName = 'Again'
-      else
-        this.$parent.$parent.componentName = 'Result'
+      if (this.$parent.$parent.count === 5) this.$parent.$parent.componentName = 'Again'
+      else this.$parent.$parent.componentName = 'Result'
     }
   }
 }

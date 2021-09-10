@@ -27,10 +27,11 @@ export default {
   },
   mounted() {
     let res = 0
-    for (let i of this.$parent.$parent.reactionTimeArr) {
+    const reactionTimeArr = this.$parent.$parent.reactionTimeArr
+    for (let i of reactionTimeArr) {
       res += i
     }
-    this.text = `${res / 5}ms`
+    this.text = `${res / reactionTimeArr.length}ms`
   },
   methods: {
     saveScore() {

@@ -31,9 +31,9 @@ instance.interceptors.response.use(res => {
 
 // 封装get/post方法
 export const api = {
-  async get(url, data) {
+  async get(url, params) {
     try {
-      let res = await instance.get(url, { params: data })
+      let res = await instance.get(url, {params})
       return new Promise(resolve => {
         if (res.code === 0) {
           resolve(res)
