@@ -17,7 +17,7 @@ export default {
   methods: {
     countinue() {
       if (this.$parent.$parent.isSuc === true) {
-        if (this.$parent.$parent.level === 4) {
+        if (this.$parent.$parent.level === 39) {
           this.$message.error('您是否作弊了呢？')
           return this.$parent.$parent.tryCount = 3
         }

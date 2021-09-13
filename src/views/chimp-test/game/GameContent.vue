@@ -27,6 +27,7 @@ export default {
   watch: {
     clickCount: {
       handler(val) {
+        // 第一次点击且不为第一关时，隐藏单元格
         if (this.$parent.$parent.level > 4 && val > 1) this.isHide = true
       }
     }
@@ -52,7 +53,7 @@ export default {
     clickCell(item, index) {
       if (item === this.clickCount) {
         this.$set(this.gameData, index, 0)
-        // 如果点击次数达到等技数
+        // 如果点击次数达到等级数
         if (this.clickCount === this.$parent.$parent.level) {
           this.$parent.$parent.isSuc = true
           this.$parent.$parent.tryCount = 0
