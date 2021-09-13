@@ -9,12 +9,12 @@ import { api } from './utils/api'
 Vue.prototype.$api = api
 
 // 全局注册elementUi
-import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
-Vue.use(ElementUI);
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+Vue.use(ElementUI)
 
 // 引入echarts
-import * as echarts from 'echarts';
+import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 
 /* eslint-disable no-new */

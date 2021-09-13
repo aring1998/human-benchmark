@@ -1,6 +1,6 @@
 <template>
   <div class="reaction-time pages">
-    <base-layout>
+    <base-layout :chartOptions="chartOptions" :aboutText="aboutText" ref="baseLayout">
       <game-intro 
         slot="wrap"
         icon="el-icon-magic-stick"
@@ -26,13 +26,16 @@ import Click from './game/Click.vue'
 import Result from './game/Result.vue'
 import TooFast from './game/TooFast.vue'
 import Wait from './game/Wait.vue'
+import { chartOptions, aboutText } from './config/data'
 export default {
   data() {
     return {
       componentName: '',
       reactionTime: 0,
       count: 0,
-      reactionTimeArr: []
+      reactionTimeArr: [],
+      aboutText,
+      chartOptions
     }
   },
   components: {
@@ -43,6 +46,9 @@ export default {
     Result,
     TooFast,
     Wait
+  },
+  mounted() {
+
   }
 }
 </script>
