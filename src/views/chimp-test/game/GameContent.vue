@@ -80,7 +80,6 @@ export default {
   color: #fff;
   background-color: $main-color;
   text-align: center;
-  padding: 0 20px;
   .chimp-test-table {
     max-width: $max-width;
     margin: 0 auto;
@@ -121,12 +120,13 @@ export default {
 
 @media screen and (max-width: 480px) {
   .chimp-test-game-wrap {
+    padding: 0 30px;
     .chimp-test-table {
       justify-content: space-around;
       .cell {
         width: 40px;
         height: 40px;
-        line-height: 40px;
+        font-size: 18px;
       }
     }
   }
