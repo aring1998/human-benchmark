@@ -29,12 +29,12 @@ import { chartOptions, aboutText } from './config/data'
 export default {
   data() {
     return {
+      aboutText,
+      chartOptions,
       componentName: '',
       reactionTime: 0,
       count: 0,
-      reactionTimeArr: [],
-      aboutText,
-      chartOptions
+      reactionTimeArr: []
     }
   },
   components: {

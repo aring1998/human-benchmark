@@ -47,9 +47,5 @@ export default {
 </script>
 
 <style>
-.btn-wrap {
-  width: 250px;
-  display: flex;
-  justify-content: space-around;
-}
+
 </style>
