@@ -3,7 +3,7 @@
     <i :class="icon"></i>
     <h2>{{ title }}</h2>
     <span>{{ intro }}</span>
-    <button class="common-btn" @click="start">开始</button>
+    <button class="common-btn" @click="$emit('start')">开始</button>
   </div>
 </template>
 
@@ -13,11 +13,6 @@ export default {
     title: String,
     intro: String,
     icon: String
-  },
-  methods: {
-    start() {
-      this.$emit('start')
-    }
   }
 }
 </script>
@@ -35,6 +30,7 @@ export default {
   padding: 0 20px;
   i {
     font-size: 120px;
+    animation: shine 3s infinite linear;
   }
   h2 {
     font-size: 40px;
@@ -42,6 +38,17 @@ export default {
   span {
     font-size: 25px;
     margin-bottom: 30px;
+  }
+}
+@keyframes shine {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
   }
 }
 </style>

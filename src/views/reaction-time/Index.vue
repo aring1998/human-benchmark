@@ -7,7 +7,6 @@
         title="反应时间"
         intro="当背景变为绿色时，立刻点击"
         v-show="componentName === ''"
-        :key="1"
         @start="componentName = 'Wait'"
       />
       <component
@@ -46,9 +45,6 @@ export default {
     Result,
     TooFast,
     Wait
-  },
-  mounted() {
-
   }
 }
 </script>
