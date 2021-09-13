@@ -6,16 +6,14 @@
       tips="本次测试的平均反应时间"
       cursor="unset"
     >
-      <div class="btn-wrap">
-        <button class="common-btn" @click="saveScore">保存分数</button>
-        <button class="common-btn secondary" @click="again">再试一次</button>
-      </div>
+      <game-btn @saveScore="saveScore" @again="again"/>
     </game-wrap>
   </div>
 </template>
 
 <script>
 import GameWrap from '../components/GameWrap.vue'
+import GameBtn from '@/components/GameBtn.vue'
 export default {
   data() {
     return {
@@ -23,7 +21,8 @@ export default {
     }
   },
   components: {
-    GameWrap
+    GameWrap,
+    GameBtn
   },
   mounted() {
     let res = 0

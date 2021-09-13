@@ -48,6 +48,7 @@ export default {
         }
         span.active {
           background-color: #e8eaed;
+          pointer-events: none;
         }
         span:hover {
           background-color: #e8eaed;

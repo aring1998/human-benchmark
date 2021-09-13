@@ -5,15 +5,16 @@
     <h4>尝试次数</h4>
     <span>{{ `${$parent.$parent.tryCount} / 3` }}</span>
     <button class="common-btn" v-if="$parent.$parent.tryCount < 3" @click="countinue">继续</button>
-    <div class="btn-wrap" v-else>
-      <button class="common-btn">保存分数</button>
-      <button class="common-btn secondary" @click="again">再试一次</button>
-    </div>
+    <game-btn @saveScore="saveScore" @again="again" v-else/>
   </div>
 </template>
 
 <script>
+import GameBtn from '@/components/GameBtn.vue'
 export default {
+  components: {
+    GameBtn
+  },
   methods: {
     countinue() {
       if (this.$parent.$parent.isSuc === true) {
@@ -24,6 +25,9 @@ export default {
         this.$parent.$parent.level++
       }
       this.$parent.$parent.componentName = 'GameContent'
+    },
+    saveScore() {
+      this.again()
     },
     again() {
       this.$parent.$parent.level = 4
