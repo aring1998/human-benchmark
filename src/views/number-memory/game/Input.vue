@@ -42,7 +42,6 @@ export default {
     outline-style: none;
     box-shadow: none;
     border-color: transparent;
-    appearance: none;
     margin-bottom: 30px;
     padding: 10px;
     color: #fff;

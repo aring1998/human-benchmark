@@ -12,7 +12,7 @@
           'right': text.substring(index, index + 1) === userTyping[index],
           'wrong': text.substring(index, index + 1) !== userTyping[index] && index < userTyping.length
         }"
-      >{{ text.substring(index, index + 1) }}</span>
+        >{{ text.substring(index, index + 1) }}</span>
     </div>
     <div class="timer">
       <p v-if="timer !== null">{{ `${minute} : ${second}` }}</p>
@@ -37,10 +37,13 @@ export default {
     }
   },
   mounted() {
-    document.onkeydown = (e) => {
+    let flag = true // 防长按标识符
+    document.onkeydown = e => {
+      if (!flag) return
+      flag = false
       if (e.key === 'Backspace') this.userTyping.pop()
       // 判断是否输入指定字符
-      if (!/^[a-zA-Z0-9]{1}$/.test(e.key)
+      if (!/^[a-zA-Z0-9]{1}$/.test(e.key) 
         && !/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g.test(e.key)) return
       this.userTyping.push(e.key)
       if (this.isFirst) {
@@ -49,14 +52,18 @@ export default {
         this.wordTimer = setInterval(() => {
           const rightCount = document.getElementsByClassName('right').length
           const currentSecond = +this.second + +this.minute * 60
-          this.$parent.$parent.wordEveryMin = Math.ceil(rightCount / currentSecond * 60)
-        }, 1000);
+          this.$parent.$parent.wordEveryMin = Math.round((rightCount / currentSecond) * 60)
+        }, 1000)
       }
       if (this.userTyping.length === this.text.length) {
         this.$nextTick(() => {
           this.$parent.$parent.componentName = 'Result'
         })
       }
+    }
+    // 屏蔽长按键盘持续输入的默认事件
+    document.onkeyup = () => {
+      flag = true
     }
   },
   methods: {
@@ -68,7 +75,7 @@ export default {
           this.second = 0
           this.minute = this.zero(+this.minute + 1)
         }
-      }, 1000);
+      }, 1000)
     },
     // 补零
     zero(val) {
@@ -104,8 +111,6 @@ export default {
     cursor: text;
     color: #333;
     span {
-      border-left: 1px #00000000 solid;
-      text-align: center;
       &.current {
         position: relative;
         &::after {
@@ -120,13 +125,12 @@ export default {
         }
       }
       &.right {
-        background-color: #67C23A;
+        background-color: #67c23a;
       }
       &.wrong {
-        background-color: #F56C6C;
+        background-color: #f56c6c;
       }
     }
-    
   }
 }
 
