@@ -21,11 +21,7 @@ export default {
   mounted() {
     // 设定延迟以防止继承切换组件前的Enter操作
     setTimeout(() => {
-      document.onkeydown = (e) => {
-        if (e.code === 'Enter') {
-          if (this.$parent.$parent.numberText === this.$parent.$parent.userAnswer) this.continues()
-        }
-      }
+      document.addEventListener('keydown', this.enter)
     }, 100)
   },
   methods: {
@@ -45,7 +41,15 @@ export default {
     resetText() {
       this.$parent.$parent.numberText = ''
       this.$parent.$parent.userAnswer = ''
+    },
+    enter(e) {
+      if (e.code === 'Enter') {
+        if (this.$parent.$parent.numberText === this.$parent.$parent.userAnswer) this.continues()
+      }
     }
+  },
+  beforeDestroy() {
+    document.removeEventListener('keydown', this.enter, false)
   }
 }
 </script>

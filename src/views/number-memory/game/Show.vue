@@ -23,11 +23,11 @@ export default {
     // 进度条开始滚动
     setTimeout(() => {
       this.percentage = 0
-    }, 10)
+    }, 50)
     // 进度条结束滚动
     setTimeout(() => {
       this.$parent.$parent.componentName = 'Input'
-    }, 5000);
+    }, 5050);
   }
 }
 </script>

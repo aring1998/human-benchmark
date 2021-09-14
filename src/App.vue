@@ -11,13 +11,6 @@ export default {
   name: 'App',
   components: {
     TopBar
-  },
-  mounted() {
-    document.body.onkeydown = function (event) {
-      const e = window.event || event;
-      if(e.preventDefault) e.preventDefault()
-      else window.event.returnValue = false;
-    }
   }
 }
 </script>

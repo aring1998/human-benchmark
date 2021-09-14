@@ -33,40 +33,47 @@ export default {
       second: '00',
       minute: '00',
       timer: null,
-      wordTimer: null
+      wordTimer: null,
+      flag: true
     }
   },
   mounted() {
-    let flag = true // 防长按标识符
-    document.onkeydown = e => {
-      if (!flag) return
-      flag = false
-      if (e.key === 'Backspace') this.userTyping.pop()
+    document.addEventListener('keydown', this.typing)
+    document.addEventListener('keyup', this.stopPress)
+  },
+  methods: {
+    // 打字
+    typing(e) {
+      e.preventDefault()
+      if (!this.flag) return
+      this.flag = false
+      if (e.key === 'Backspace') return this.userTyping.pop()
       // 判断是否输入指定字符
       if (!/^[a-zA-Z0-9]{1}$/.test(e.key) 
         && !/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g.test(e.key)) return
       this.userTyping.push(e.key)
-      if (this.isFirst) {
-        this.run()
-        this.isFirst = false
-        this.wordTimer = setInterval(() => {
-          const rightCount = document.getElementsByClassName('right').length
-          const currentSecond = +this.second + +this.minute * 60
-          this.$parent.$parent.wordEveryMin = Math.round((rightCount / currentSecond) * 60)
-        }, 1000)
-      }
+      if (this.isFirst) this.firstKeyDown()
       if (this.userTyping.length === this.text.length) {
         this.$nextTick(() => {
           this.$parent.$parent.componentName = 'Result'
         })
       }
-    }
-    // 屏蔽长按键盘持续输入的默认事件
-    document.onkeyup = () => {
-      flag = true
-    }
-  },
-  methods: {
+    },
+    // 阻止长按键盘持续输入
+    stopPress() {
+      this.flag = true
+    },
+    // 第一次按下键盘
+    firstKeyDown() {
+      this.run()
+      this.isFirst = false
+      // 计算每分钟打字数
+      this.wordTimer = setInterval(() => {
+        const rightCount = document.getElementsByClassName('right').length
+        const currentSecond = +this.second + +this.minute * 60
+        this.$parent.$parent.wordEveryMin = Math.round((rightCount / currentSecond) * 60)
+      }, 1000)
+    },
     // 开始计时
     run() {
       this.timer = setInterval(() => {
@@ -86,6 +93,9 @@ export default {
   beforeDestroy() {
     clearInterval(this.timer)
     clearInterval(this.wordTimer)
+    // 清除document监听事件以防影响其他组件
+    document.removeEventListener('keydown', this.typing, false)
+    document.removeEventListener('keyup', this.stopPress, false)
   }
 }
 </script>
