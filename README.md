@@ -1,5 +1,7 @@
 # 人类基准测试
 
+#### [在线试玩](http://aring.3vfree.net/game/human-benchmark/index.html)
+
 #### 介绍
 基于**Vue**框架开发的Web项目，通过一些小游戏来测试您的反应力、记忆力等
 
