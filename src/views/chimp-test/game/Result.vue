@@ -1,10 +1,10 @@
 <template>
-  <div class="chimp-test-result">
+  <div class="chimp-test-result common-wrap">
     <h4>等级</h4>
     <span class="level">{{ $parent.$parent.level }}</span>
     <h4>尝试次数</h4>
     <span>{{ `${$parent.$parent.tryCount} / 3` }}</span>
-    <button class="common-btn" v-if="$parent.$parent.tryCount < 3" @click="countinue">继续</button>
+    <button class="common-btn" v-if="$parent.$parent.tryCount < 3" @click="continues">继续</button>
     <game-btn @saveScore="saveScore" @again="again" v-else/>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
     GameBtn
   },
   methods: {
-    countinue() {
+    continues() {
       if (this.$parent.$parent.isSuc === true) {
         if (this.$parent.$parent.level === 39) {
           this.$message.error('您是否作弊了呢？')
@@ -40,14 +40,6 @@ export default {
 
 <style lang="scss">
 .chimp-test-result {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  height: 480px;
-  color: #fff;
-  background-color: $main-color;
-  text-align: center;
   font-weight: 600;
   h4 {
     font-size: 24px;

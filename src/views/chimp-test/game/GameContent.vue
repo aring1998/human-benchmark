@@ -1,5 +1,5 @@
 <template>
-  <div class="chimp-test-game-wrap">
+  <div class="chimp-test-game-wrap common-wrap">
     <div class="chimp-test-table">
       <div 
         v-for="(item, index) of gameData"
@@ -72,14 +72,6 @@ export default {
 
 <style lang="scss">
 .chimp-test-game-wrap {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  height: 480px;
-  color: #fff;
-  background-color: $main-color;
-  text-align: center;
   .chimp-test-table {
     max-width: $max-width;
     margin: 0 auto;

@@ -1,9 +1,9 @@
 <template>
   <div class="reaction-time pages">
-    <base-layout :chartOptions="chartOptions" :aboutText="aboutText" ref="baseLayout">
+    <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
       <game-intro 
         slot="wrap"
-        icon="el-icon-magic-stick"
+        :icon="iconName.reactionTime"
         title="反应时间"
         intro="当背景变为绿色时，立刻点击"
         v-show="componentName === ''"
@@ -25,12 +25,14 @@ import Click from './game/Click.vue'
 import Result from './game/Result.vue'
 import TooFast from './game/TooFast.vue'
 import Wait from './game/Wait.vue'
+import { iconName } from '@/assets/js/iconName'
 import { chartOptions, aboutText } from './config/data'
 export default {
   data() {
     return {
       aboutText,
       chartOptions,
+      iconName,
       componentName: '',
       reactionTime: 0,
       count: 0,

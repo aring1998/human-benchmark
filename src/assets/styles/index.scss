@@ -24,6 +24,24 @@ button:focus {
   }
 }
 
+.common-wrap {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 480px;
+  color: #fff;
+  background-color: $main-color;
+  text-align: center;
+}
+
+/* 去除数字输入框小箭头 */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type=number] {-moz-appearance: textfield;}
+
 .pages {
   background-color: #e6e8f4;
   padding: 48px 0;
