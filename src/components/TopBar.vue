@@ -23,7 +23,7 @@ export default {
   .top-bar-wrap {
     width: 100%;
     box-shadow: rgba(0,0,0,.2) 0px 0px 10px 0px;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     background-color: #fff;
