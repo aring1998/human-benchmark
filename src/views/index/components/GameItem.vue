@@ -39,6 +39,7 @@ export default {
   margin: 20px auto 0 auto;
   cursor: pointer;
   top: 0;
+  transition: top .5s;
   &:hover {
     position: relative;
     top: -10px;

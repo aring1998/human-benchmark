@@ -7,7 +7,7 @@
       @start="$router.push('/reaction-time')"
      />
     <div class="game-list">
-      <el-row :gutter="10" justify="space-evenly">
+      <el-row justify="space-evenly">
         <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" v-for="(item, index) of gameList" :key="index">
           <game-item :icon="item.icon" :title="item.title" :intro="item.intro" :path="item.path"></game-item>
         </el-col>
