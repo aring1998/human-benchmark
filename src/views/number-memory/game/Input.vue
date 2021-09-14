@@ -22,7 +22,6 @@ export default {
 
 <style lang="scss">
 .number-memory-input-wrap {
-  padding: 0 30px;
   h4 {
     font-size: 24px;
     margin: 0;
@@ -49,6 +48,15 @@ export default {
     color: #fff;
     &:focus {
       border: 1px solid rgb(204, 204, 204);
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .number-memory-input-wrap {
+    padding: 0 30px;
+    input {
+      font-size: 24px;
+      width: 100%;
     }
   }
 }

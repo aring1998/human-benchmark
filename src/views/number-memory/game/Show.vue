@@ -34,10 +34,15 @@ export default {
 
 <style lang="scss">
 .number-memory-show-wrap {
+  padding: 0 30px;
   span {
-    font-size: 90px;
+    font-size: 80px;
     font-weight: 600;
     margin-bottom: 30px;
+    width: 100%;
+    display: block;
+    word-wrap:break-word;
+    white-space:normal;
   }
   .progress-wrap {
     width: 20%;
@@ -51,5 +56,14 @@ export default {
     }
   }
 }
-
+@media screen and (max-width: 480px) {
+  .number-memory-show-wrap {
+    span {
+      font-size: 40px;
+    }
+    .progress-wrap {
+      width: 30%;
+    }
+  }
+}
 </style>
