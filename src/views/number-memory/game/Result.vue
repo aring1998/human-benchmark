@@ -39,7 +39,7 @@ export default {
     },
     again() {
       this.resetText()
-      this.$parent.$parent.level = 0
+      this.$parent.$parent.level = 1
       this.$parent.$parent.componentName = ''
     },
     resetText() {
@@ -61,7 +61,7 @@ export default {
   }
   span {
     font-size: 40px;
-    font-weight: 600; 
+    font-weight: bold; 
     &:nth-child(1) {
       margin-bottom: 30px;
     }
@@ -72,14 +72,14 @@ export default {
   }
   h2 {
     font-size: 60px;
-    font-weight: 600;
+    font-weight: bold;
   }
   input {
     background: rgba(0, 0, 100, 0.2);
     border-radius: 3px;
     text-align: center;
     font-size: 48px;
-    font-weight: 600;
+    font-weight: bold;
     width: 50%;
     outline-style: none;
     box-shadow: none;

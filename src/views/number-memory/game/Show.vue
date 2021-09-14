@@ -37,7 +37,7 @@ export default {
   padding: 0 30px;
   span {
     font-size: 80px;
-    font-weight: 600;
+    font-weight: bold;
     margin-bottom: 30px;
     width: 100%;
     display: block;

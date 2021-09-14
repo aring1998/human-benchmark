@@ -37,7 +37,7 @@ export default {
     border-radius: 3px;
     text-align: center;
     font-size: 48px;
-    font-weight: 600;
+    font-weight: bold;
     width: 50%;
     outline-style: none;
     box-shadow: none;

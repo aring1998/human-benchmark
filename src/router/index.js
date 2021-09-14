@@ -27,8 +27,8 @@ export default new Router({
       component: () => import('@/views/chimp-test/Index.vue')
     },
     {
-      path: '/typing',
-      component: () => import('@/views/typing/Index.vue')
+      path: '/typing-test',
+      component: () => import('@/views/typing-test/Index.vue')
     }
   ],
   // 切换路由滚动到页面顶部

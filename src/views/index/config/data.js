@@ -19,9 +19,9 @@ export const gameList = [
     path: '/chimp-test'
   },
   {
-    icon: iconName.typing,
+    icon: iconName.typingTest,
     title: '打字测试',
     intro: '您每分钟可以打多少字？',
-    path: '/typing'
+    path: '/typing-test'
   }
 ]

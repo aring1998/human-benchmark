@@ -1,6 +1,7 @@
 {
   "name": "humanbenchmark",
   "version": "0.1.0",
+  "author": "aring <1303340995@qq.com>",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",

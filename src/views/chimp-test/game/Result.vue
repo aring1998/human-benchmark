@@ -40,7 +40,7 @@ export default {
 
 <style lang="scss">
 .chimp-test-result {
-  font-weight: 600;
+  font-weight: bold;
   h4 {
     font-size: 24px;
   }

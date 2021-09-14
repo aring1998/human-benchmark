@@ -11,11 +11,18 @@ export default {
   name: 'App',
   components: {
     TopBar
+  },
+  mounted() {
+    document.body.onkeydown = function (event) {
+      const e = window.event || event;
+      if(e.preventDefault) e.preventDefault()
+      else window.event.returnValue = false;
+    }
   }
 }
 </script>
 
 <style lang="scss">
-@import url('./assets/styles/normalize.css');
+@import './assets/styles/normalize.css';
 @import './assets/styles/index.scss';
 </style>
