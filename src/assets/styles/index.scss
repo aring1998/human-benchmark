@@ -50,3 +50,15 @@ input[type=number] {-moz-appearance: textfield;}
 .hide {
   display: none !important;
 }
+
+@media screen and (max-width: 480px) {
+  .hide-on-mob {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .hide-on-pc {
+    display: none !important;
+  }
+}

@@ -2,26 +2,28 @@
   <div class="typing-test-game-wrap common-wrap">
     <h2>{{ $parent.$parent.wordEveryMin || '打字测试' }}</h2>
     <h4>您每分钟能打多少字？</h4>
-    <div class="typing-wrap">
+    <div class="typing-wrap hide-on-mob">
       <span
         v-for="(item, index) in text.length"
         :key="index"
         :class="{
           'current': index === userTyping.length,
-          // 将单字转码并对比
+          // 将文本内容与用户输入进行比对
           'right': text.substring(index, index + 1) === userTyping[index],
           'wrong': text.substring(index, index + 1) !== userTyping[index] && index < userTyping.length
         }"
         >{{ text.substring(index, index + 1) }}</span>
     </div>
-    <div class="timer">
+    <div class="timer hide-on-mob">
       <p v-if="timer !== null">{{ `${minute} : ${second}` }}</p>
       <p v-else>按下键盘后开始游戏</p>
     </div>
+    <only-p-c />
   </div>
 </template>
 
 <script>
+import OnlyPC from '@/components/OnlyPC.vue'
 export default {
   data() {
     return {
@@ -36,6 +38,9 @@ export default {
       wordTimer: null,
       flag: true
     }
+  },
+  components: {
+    OnlyPC
   },
   mounted() {
     document.addEventListener('keydown', this.typing)
@@ -120,6 +125,7 @@ export default {
     line-height: 1.6;
     cursor: text;
     color: #333;
+    user-select: none;
     span {
       &.current {
         position: relative;
