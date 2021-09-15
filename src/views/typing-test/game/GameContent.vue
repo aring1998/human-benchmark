@@ -27,7 +27,7 @@ import OnlyPC from '@/components/OnlyPC.vue'
 export default {
   data() {
     return {
-      text: `If you've never met a moose, it's hard to picture the sheer size of these animals.They're taller than ahorse, even without their giant antlers. They can weigh over 1000 lbs, and can run as fast as 35 miles per
+      text: `If you've never met a moose, it's hard to picture the sheer size of these animals.They're taller than a horse, even without their giant antlers. They can weigh over 1000 lbs, and can run as fast as 35 miles per
         hour.Fortunately, they're not interested in humans!. Leave them alone and they'll leave you alone,munching on weeds, branches,and any plant they can find in ponds and rivers. They're excellent
         swimmers,and can even eat underwater without any difficulty.`,
       userTyping: [],
@@ -45,6 +45,9 @@ export default {
   mounted() {
     document.addEventListener('keydown', this.typing)
     document.addEventListener('keyup', this.stopPress)
+    // 在销毁前钩子清除document监听事件以防影响其他组件
+    this.$once('hook:beforeDestroy', () => { document.removeEventListener('keydown', this.typing, false) })
+    this.$once('hook:beforeDestroy', () => { document.removeEventListener('keyup', this.stopPress, false) })
   },
   methods: {
     // 打字
@@ -98,9 +101,6 @@ export default {
   beforeDestroy() {
     clearInterval(this.timer)
     clearInterval(this.wordTimer)
-    // 清除document监听事件以防影响其他组件
-    document.removeEventListener('keydown', this.typing, false)
-    document.removeEventListener('keyup', this.stopPress, false)
   }
 }
 </script>
@@ -116,7 +116,7 @@ export default {
     margin: 0 0 30px 0;
   }
   .typing-wrap {
-    width: 60%;
+    max-width: $max-width;
     word-wrap: break-word;
     font-size: 18px;
     background: rgba(255, 255, 255, 0.8);

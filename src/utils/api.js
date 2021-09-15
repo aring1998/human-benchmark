@@ -1,7 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
 import { Message } from 'element-ui'
-// const qs = require('qs')
 
 // 创建axios实例
 const instance = axios.create({
