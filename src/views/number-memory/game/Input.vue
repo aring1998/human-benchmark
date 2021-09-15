@@ -2,7 +2,13 @@
   <div class="number-memory-input-wrap common-wrap">
     <h4>请输入</h4>
     <span>可按Enter提交</span>
-    <input type="number" v-model="$parent.$parent.userAnswer" ref="userAnswer" @keydown.enter="submit">
+    <input
+      type="number"
+      v-model="$parent.$parent.userAnswer"
+      ref="userAnswer"
+      @keydown.enter="submit"
+      @paste="(e) => { return e.preventDefault() }"
+    >
     <button class="common-btn" @click="submit">提交</button>
   </div>
 </template>

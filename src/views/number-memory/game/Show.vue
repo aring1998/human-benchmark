@@ -41,8 +41,10 @@ export default {
     margin-bottom: 30px;
     width: 100%;
     display: block;
-    word-wrap:break-word;
-    white-space:normal;
+    word-wrap: break-word;
+    white-space: normal;
+    user-select: none;
+    cursor: unset;
   }
   .progress-wrap {
     width: 20%;
