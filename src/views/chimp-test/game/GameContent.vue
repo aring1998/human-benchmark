@@ -109,8 +109,8 @@ export default {
     .chimp-test-table {
       justify-content: space-around;
       .cell {
-        width: 40px;
-        height: 40px;
+        width: 46px;
+        height: 46px;
         font-size: 18px;
       }
     }
