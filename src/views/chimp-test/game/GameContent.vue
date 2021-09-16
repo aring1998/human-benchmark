@@ -7,6 +7,7 @@
         class="cell"
         :class="{ 'cell-border': item !== 0, 'cell-shade': isHide }"
         @click="clickCell(item, index)"
+        @click.once="() => { if ($parent.$parent.level > 4) isHide = true }"
       >
         {{ item }}
       </div>
@@ -22,14 +23,6 @@ export default {
       gameData: [...gameData], // 深拷贝数组
       clickCount: 1,
       isHide: false
-    }
-  },
-  watch: {
-    clickCount: {
-      handler(val) {
-        // 第一次点击且不为第一关时，隐藏单元格
-        if (this.$parent.$parent.level > 4 && val > 1) this.isHide = true
-      }
     }
   },
   mounted() {

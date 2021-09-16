@@ -7,7 +7,12 @@ import actions from '@/store/actions'
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
-  state: {},
+  state: {
+    userInfo: {
+      username: '',
+      token: ''
+    }
+  },
   mutations,
   getters,
   actions,

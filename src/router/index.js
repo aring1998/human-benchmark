@@ -15,6 +15,28 @@ export default new Router({
       component: () => import('@/views/index/Index.vue')
     },
     {
+      path: '/account',
+      component: () => import('@/views/account/Index.vue'),
+      children: [
+        {
+          path: '',
+          redirect: 'login'
+        },
+        {
+          path: 'login',
+          component: () => import('@/views/account/login/Index.vue')
+        },
+        {
+          path: 'register',
+          component: () => import('@/views/account/register/Index.vue')
+        },
+        {
+          path: 'forget',
+          component: () => import('@/views/account/forget/Index.vue')
+        }
+      ]
+    },
+    {
       path: '/reaction-time',
       component: () => import('@/views/reaction-time/Index.vue')
     },
