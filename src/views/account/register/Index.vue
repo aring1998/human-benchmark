@@ -29,6 +29,7 @@ export default {
     AccountForm
   },
   mounted() {
+    // 补充确认密码校验规则
     this.rules.checkPassword.push({
       validator: (rule, value, callback) => {
         if (value != this.form.password) { callback(new Error('与密码不一致')) }

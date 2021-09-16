@@ -36,6 +36,7 @@ export default {
   color: #333;
   text-align: center;
   font-size: 18px;
+  box-sizing: border-box;
   h2 {
     font-size: 48px;
     margin: 10px 0;
