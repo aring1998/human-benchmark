@@ -59,6 +59,10 @@ export default new Router({
     {
       path: '/aim-test',
       component: () => import('@/views/aim-test/Index.vue')
+    },
+    {
+      path: '/color-vision-test',
+      component: () => import('@/views/color-vision-test/Index.vue')
     }
   ],
   // 切换路由滚动到页面顶部

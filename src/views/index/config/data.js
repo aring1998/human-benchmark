@@ -35,5 +35,11 @@ export const gameList = [
     title: '瞄准测试',
     intro: '您能多快击中目标？',
     path: '/aim-test'
+  },
+  {
+    icon: iconName.colorVisionTest,
+    title: '色觉测试',
+    intro: '快速找出不同的颜色。',
+    path: '/color-vision-test'
   }
 ]

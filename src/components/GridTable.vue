@@ -6,7 +6,8 @@
       :key="index"
       :style="{
         'height': `calc(100% / ${gridData[gridIndex].grid} - 10px )`,
-        'width': `calc(100% / ${gridData[gridIndex].grid} - 10px )`
+        'width': `calc(100% / ${gridData[gridIndex].grid} - 10px )`,
+        'background-color': randerbgColor(item)
       }"
       :class="randerClass(item)"
       @click="clickCell(item, index)"
@@ -34,12 +35,25 @@ export default {
      * }
      * 对象中 key 对应 v-for 中 item === key , 对象中 vlaue 对应 item === key 的返回值
      */
-    classRule: Object
+    classRule: {
+      type: Object,
+      default: null
+    },
+    // 背景颜色规则，概念同 clssRule
+    bgColorRule: {
+      type: Object,
+      default: null
+    },
   },
   computed: {
+    randerbgColor() {
+      return function(item) {
+        if (this.bgColorRule) return this.bgColorRule[item]
+      }
+    },
     randerClass() {
       return function(item) {
-        return this.classRule[item]
+        if (this.classRule) return this.classRule[item]
       }
     }
   },

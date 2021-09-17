@@ -4,5 +4,6 @@ export const iconName = {
   chimpTest: 'el-icon-menu',
   typingTest: 'el-icon-s-platform',
   visualMemory: 'el-icon-view',
-  aimTest: 'el-icon-aim'
+  aimTest: 'el-icon-aim',
+  colorVisionTest: 'el-icon-picture-outline-round'
 }
