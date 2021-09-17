@@ -3,11 +3,11 @@
     <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
       <game-intro 
         slot="wrap"
-        :icon="iconName.numberMemory"
-        title="数字记忆"
-        intro="一般人一次可以记住7位数字，您可以做到更多吗？"
+        :icon="iconName.visualMemory"
+        title="视觉记忆"
+        intro="记住您看见的白色方块"
         v-show="componentName === ''"
-        @start="componentName = 'Show'"
+        @start="componentName = 'GameContent'"
       />
       <component
         slot="wrap"
@@ -20,8 +20,7 @@
 <script>
 import BaseLayout from '@/components/BaseLayout.vue'
 import GameIntro from '@/components/GameIntro.vue'
-import Show from './game/Show.vue'
-import Input from './game/Input.vue'
+import GameContent from './game/GameContent.vue'
 import Result from './game/Result.vue'
 import { iconName } from '@/assets/js/iconName'
 import { chartOptions, aboutText } from './config/data'
@@ -32,16 +31,13 @@ export default {
       chartOptions,
       iconName,
       componentName: '',
-      level: 3,
-      numberText: '',
-      userAnswer: ''
+      level: 1
     }
   },
   components: {
     BaseLayout,
     GameIntro,
-    Show,
-    Input,
+    GameContent,
     Result
   }
 }

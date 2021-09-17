@@ -1,9 +1,9 @@
 <template>
   <div>
     <game-wrap
-      :icon="iconName.typingTest"
-      :text="`${$parent.$parent.wordEveryMin}`"
-      tips="本次测试的您每分钟打字字数"
+      :icon="iconName.visualMemory"
+      :text="`Level ${$parent.$parent.level}`"
+      tips="本次测试您达到的等级"
       cursor="unset"
     >
       <game-btn @saveScore="saveScore" @again="again"/>
@@ -30,8 +30,8 @@ export default {
       this.again()
     },
     again() {
-      this.$parent.$parent.componentName = 'GameContent'
-      this.$parent.$parent.wordEveryMin = 0
+      this.$parent.$parent.componentName = ''
+      this.$parent.$parent.level = 1
     }
   }
 }

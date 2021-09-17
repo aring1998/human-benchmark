@@ -51,6 +51,10 @@ export default new Router({
     {
       path: '/typing-test',
       component: () => import('@/views/typing-test/Index.vue')
+    },
+    {
+      path: '/visual-memory',
+      component: () => import('@/views/visual-memory/Index.vue')
     }
   ],
   // 切换路由滚动到页面顶部

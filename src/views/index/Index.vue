@@ -28,10 +28,7 @@ export default {
   },
   mounted() {
     // 滚动到原先滚动到的位置
-    document.documentElement.scrollTo({
-      top: window.sessionStorage.getItem('indexScroll'),
-      behavior: 'smooth'
-    })
+    document.documentElement.scrollTo({ top: window.sessionStorage.getItem('indexScroll'), behavior: 'smooth' })
   },
   components: {
     GameIntro,
@@ -39,7 +36,7 @@ export default {
   },
   beforeDestroy() {
     // 首页记录滚动位置
-    window.sessionStorage.setItem('indexScroll', document.documentElement.scrollTop)
+    window.sessionStorage.setItem('indexScroll', document.documentElement.scrollTop + 48)
   }
 }
 </script>

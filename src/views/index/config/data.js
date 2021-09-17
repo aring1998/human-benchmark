@@ -23,5 +23,11 @@ export const gameList = [
     title: '打字测试',
     intro: '您每分钟可以打多少字？',
     path: '/typing-test'
+  },
+  {
+    icon: iconName.visualMemory,
+    title: '视觉记忆',
+    intro: '记住越来越多的方块。',
+    path: '/visual-memory'
   }
 ]
