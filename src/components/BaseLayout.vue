@@ -56,7 +56,7 @@ export default {
     max-width: $max-width;
     margin: 50px auto 0 auto;
     .item {
-      height: 630px;
+      height: 460px;
       background-color: #fff;
       box-shadow: $shadow;
       flex: 1;

@@ -1,17 +1,16 @@
 <template>
   <div class="aim-test-game-wrap common-wrap">
-    <div class="title">
+    <div class="info">
       <span class="opaacity">剩余</span>
       <span>{{ surplus }}</span>
     </div>
     <div class="game-content" ref="gameContent">
-      <div class="icon-wrap" :style="{ 'top': `${top}px`, 'left': `${left}px`} ">
+      <div class="icon-wrap" :style="{ 'top': `${top}px`, 'left': `${left}px`} " ref="target">
         <i
           class="el-icon-aim"
           :class="{ 'anim': animAgain}"
           @click="targetChange"
           @click.once="firstClick"
-          ref="target"
         ></i>
       </div>
     </div>
@@ -58,10 +57,13 @@ export default {
 
 <style lang="scss">
 .aim-test-game-wrap {
-  .title {
+  .info {
     color: #fff;
     font-size: 28px;
     margin-bottom: 30px;
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
     .opaacity {
       opacity: .7;
     }
