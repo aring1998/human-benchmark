@@ -44,17 +44,13 @@ export default {
   },
   mounted() {
     document.addEventListener('keydown', this.typing)
-    document.addEventListener('keyup', this.stopPress)
     // 在销毁前钩子清除document监听事件以防影响其他组件
     this.$once('hook:beforeDestroy', () => { document.removeEventListener('keydown', this.typing, false) })
-    this.$once('hook:beforeDestroy', () => { document.removeEventListener('keyup', this.stopPress, false) })
   },
   methods: {
     // 打字
     typing(e) {
       e.preventDefault()
-      if (!this.flag) return
-      this.flag = false
       if (e.key === 'Backspace') return this.userTyping.pop()
       // 判断是否输入指定字符
       if (!/^[a-zA-Z0-9]{1}$/.test(e.key) 
@@ -66,10 +62,6 @@ export default {
           this.$parent.$parent.componentName = 'Result'
         })
       }
-    },
-    // 阻止长按键盘持续输入
-    stopPress() {
-      this.flag = true
     },
     // 第一次按下键盘
     firstKeyDown() {
