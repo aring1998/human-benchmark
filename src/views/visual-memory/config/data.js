@@ -23,43 +23,20 @@ export const aboutText = [
   '您有三条生命，尽可能做到最好吧！'
 ]
 
-export const gameData = [
-  {
-    gird: 3,
-    data: [0, 0, 0, 0, 0, 0, 0, 0, 0]
-  },
-  {
-    gird: 4,
-    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  },
-  {
-    gird: 5,
-    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  },
-  {
-    gird: 6,
-    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  },
-  {
-    gird: 7,
-    data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  }
-]
-
 export const choiceCellIndex = (level) => {
   if (level <= 3) {
-    return 0
-  }
-  else if (level > 3 && level <= 7) {
     return 1
   }
-  else if (level > 7 && level <= 12) {
+  else if (level > 3 && level <= 7) {
     return 2
   }
-  else if (level > 12 && level <= 18) {
+  else if (level > 7 && level <= 12) {
     return 3
   }
-  else if (level > 18) {
+  else if (level > 12 && level <= 18) {
     return 4
+  }
+  else if (level > 18) {
+    return 5
   }
 }

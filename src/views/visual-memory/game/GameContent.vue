@@ -10,37 +10,35 @@
         <span class="icon" v-for="item in 3" :key="item" :class="{'opacity': item > life}">♥</span>
       </div>
     </div>
-    <div class="visual-memory-table">
-      <div
-        class="cell"
-        v-for="(item, index) of cellData"
-        :key="index"
-        :class="{
-          'show': item === 1,
-          'wrong-click': item === 2,
-          'right-click': item === 3,
-        }"
-        :style="{
-          'height': `calc(100% / ${gameData[cellIndex].gird} - 10px )`,
-          'width': `calc(100% / ${gameData[cellIndex].gird} - 10px )`
-        }"
-        @click="clickCell(item, index)"
-      ></div>
-    </div>
+    <grid-table
+      :cellData="cellData"
+      :gridIndex="cellIndex"
+      :classRule="{
+        1: 'show',
+        2: 'wrong-click',
+        3: 'right-click'
+      }"
+      @clickCell="clickCell"
+    ></grid-table>
   </div>
 </template>
 
 <script>
-import { gameData, choiceCellIndex } from '../config/data'
+import { gridData } from '@/assets/js/gridData'
+import { choiceCellIndex } from '../config/data'
+import GridTable from '@/components/GridTable.vue'
 export default {
   data() {
     return {
       life: 3,
-      gameData,
+      gridData,
       cellIndex: null,
       cellData: [],
       canBeClick: false
     }
+  },
+  components: {
+    GridTable
   },
   mounted() {
     this.randerCell()
@@ -50,8 +48,8 @@ export default {
     randerCell() {
       this.canBeClick = false
       this.cellIndex = choiceCellIndex(this.$parent.$parent.level)
-      // 根据等级深拷贝gameData中数据
-      this.cellData = [...gameData[this.cellIndex].data]
+      // 根据等级深拷贝gridData中数据
+      this.cellData = [...gridData[this.cellIndex].data]
       // 游戏单元格个数
       const cellNum = this.cellData.length
       setTimeout(() => { // 再次执行动画需要设定延迟
@@ -123,17 +121,7 @@ export default {
       }
     }
   }
-  .visual-memory-table {
-    width: 350px;
-    height: 350px;
-    display: flex;
-    flex-flow: row wrap;
-    .cell {
-      margin: 5px;
-      background-color: rgba($color: #000066, $alpha: .15);
-      border-radius: 5px;
-      cursor: pointer;
-    }
+  .grid-table {
     .show {
       animation: showCell 2s linear;
     }
@@ -156,14 +144,6 @@ export default {
           font-size: 28px;
         }
       }
-    }
-  }
-}
-@media screen and (max-width: 350px) {
-  .visual-memory-game-wrap {
-    .visual-memory-table {
-      width: 300px;
-      height: 300px;
     }
   }
 }
