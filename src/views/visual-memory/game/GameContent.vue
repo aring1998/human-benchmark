@@ -52,16 +52,19 @@ export default {
       this.cellIndex = choiceCellIndex(this.$parent.$parent.level)
       // 根据等级深拷贝gameData中数据
       this.cellData = [...gameData[this.cellIndex].data]
-      // 被平方值取游戏表格个数
-      const squareVal = this.cellData.length
-      for (let i = -2; i < this.$parent.$parent.level; i++) {
-        let randomNo = Math.floor(Math.random() * squareVal)
-        // 防止赋值到已经存在值的单元格
-        for (let j = 0; this.cellData[randomNo] === 1; j++) {
-          randomNo = Math.floor(Math.random() * squareVal)
+      // 游戏单元格个数
+      const cellNum = this.cellData.length
+      setTimeout(() => { // 再次执行动画需要设定延迟
+        for (let i = -2; i < this.$parent.$parent.level; i++) {
+          let randomNo = Math.floor(Math.random() * cellNum)
+          // 防止赋值到已经存在值的单元格
+          for (let j = 0; this.cellData[randomNo] === 1; j++) {
+            randomNo = Math.floor(Math.random() * cellNum)
+          }
+          this.$set(this.cellData, randomNo, 1)
         }
-        this.$set(this.cellData, randomNo, 1)
-      }
+      }, 10)
+      // 等待动画播放完毕才可点击
       setTimeout(() => {
         this.canBeClick = true
       }, 2000);
@@ -144,6 +147,26 @@ export default {
     }
   }
 }
+@media screen and (max-width: 480px) {
+  .visual-memory-game-wrap {
+    .info {
+      font-size: 24px;
+      .item {
+        .icon {
+          font-size: 28px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 350px) {
+  .visual-memory-game-wrap {
+    .visual-memory-table {
+      width: 300px;
+      height: 300px;
+    }
+  }
+}
 @keyframes showCell {
   0% {
     background-color: rgba($color: #006, $alpha: .15);
@@ -156,7 +179,6 @@ export default {
     background-color: rgba($color: #006, $alpha: .15);
   }
 }
-
 @keyframes rotateCell {
   0% {
     transform: rotateX(0deg);
@@ -165,7 +187,6 @@ export default {
     transform: rotateX(180deg);
   }
 }
-
 @keyframes shakeCell {
   0% {
     position: relative;
