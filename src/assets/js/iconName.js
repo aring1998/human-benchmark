@@ -3,5 +3,6 @@ export const iconName = {
   numberMemory: 'el-icon-tickets',
   chimpTest: 'el-icon-menu',
   typingTest: 'el-icon-s-platform',
-  visualMemory: 'el-icon-view'
+  visualMemory: 'el-icon-view',
+  aimTest: 'el-icon-aim'
 }

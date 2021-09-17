@@ -4,17 +4,17 @@
     <div class="card">
       <el-row :gutter="10">
         <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-          <div class="item">
-            <h4>统计数据</h4>
-            <div id="myChart" style="height: 300px; width: 100%;"></div>
-          </div>
-        </el-col>
-        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
           <div class="item about">
-            <h4>关于</h4>
+            <h4>关于测试</h4>
             <p v-for="(item, index) of aboutText" :key="index">
               {{ item }}
             </p>
+          </div>
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+          <div class="item">
+            <h4>统计数据</h4>
+            <div id="myChart" style="height: 300px; width: 100%;"></div>
           </div>
         </el-col>
       </el-row>

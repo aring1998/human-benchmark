@@ -8,7 +8,7 @@
      />
     <div class="game-list">
       <el-row justify="space-evenly">
-        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" v-for="(item, index) of gameList" :key="index">
+        <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8" v-for="(item, index) of gameList" :key="index">
           <game-item :icon="item.icon" :title="item.title" :intro="item.intro" :path="item.path"></game-item>
         </el-col>
       </el-row>
@@ -36,7 +36,7 @@ export default {
   },
   beforeDestroy() {
     // 首页记录滚动位置
-    window.sessionStorage.setItem('indexScroll', document.documentElement.scrollTop + 48)
+    window.sessionStorage.setItem('indexScroll', document.documentElement.scrollTop)
   }
 }
 </script>

@@ -55,6 +55,10 @@ export default new Router({
     {
       path: '/visual-memory',
       component: () => import('@/views/visual-memory/Index.vue')
+    },
+    {
+      path: '/aim-test',
+      component: () => import('@/views/aim-test/Index.vue')
     }
   ],
   // 切换路由滚动到页面顶部

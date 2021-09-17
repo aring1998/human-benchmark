@@ -29,5 +29,11 @@ export const gameList = [
     title: '视觉记忆',
     intro: '记住越来越多的方块。',
     path: '/visual-memory'
+  },
+  {
+    icon: iconName.aimTest,
+    title: '瞄准测试',
+    intro: '您能多快击中目标？',
+    path: '/aim-test'
   }
 ]
