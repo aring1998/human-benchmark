@@ -21,7 +21,9 @@ export default {
     GameWrap
   },
   mounted() {
-    this.beginTime = new Date().getTime() // 开始时间
+    this.$nextTick(() => {
+      this.beginTime = new Date().getTime() // 开始时间
+    })
   },
   methods: {
     click() {
