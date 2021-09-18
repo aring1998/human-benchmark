@@ -3,7 +3,7 @@
     <div class="top-bar">
       <div class="top-bar-item">
         <span :class="{ active: $route.path === '/index' }" @click="$router.push('/index')">人类基准测试</span>
-        <span>仪表盘</span>
+        <span :class="{ active: $route.path === '/dashboard' }" @click="$router.push('/dashboard')">仪表盘</span>
       </div>
       <div class="top-bar-item" v-if="$store.username !== ''">
         <span :class="{ active: $route.path === '/account/register' }" @click="$router.push('/account/register')">注册</span>

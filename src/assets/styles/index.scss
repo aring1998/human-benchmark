@@ -1,5 +1,12 @@
 @import './normalize.scss';
 
+a {
+  color: #2B87D1CC;
+  &:hover {
+    color: #2B87D1;
+  }
+}
+
 button:focus {
   outline: 0;
 }
@@ -82,6 +89,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {-moz-appearance: textfield;}
 
 .pages {
+  min-height: 100vh;
   background-color: #e6e8f4;
   padding-bottom: 30px;
 } 

@@ -2,7 +2,7 @@
   <div class="account-card">
     <h2>{{ title }}</h2>
     <span>{{ tips }}</span>
-    <router-link :to="path" v-if="path !== ''">{{ linkName }}</router-link>
+    <router-link :to="path" replace v-if="path !== ''">{{ linkName }}</router-link>
     <slot></slot>
     <div class="forget" v-if="$route.path === '/account/login'">
       <span>忘记密码？</span>

@@ -15,6 +15,48 @@ export default new Router({
       component: () => import('@/views/index/Index.vue')
     },
     {
+      path: '/dashboard',
+      component: () => import('@/views/dashboard/Index.vue'),
+      children: [
+        {
+          path: '',
+          component: () => import('@/views/dashboard/detail/Index.vue')
+        },
+        {
+          path: 'reaction-time',
+          component: () => import('@/views/dashboard/detail/game-record/ReactionTime.vue')
+        },
+        {
+          path: 'number-memory',
+          component: () => import('@/views/dashboard/detail/game-record/NumberMemory.vue')
+        },
+        {
+          path: 'chimp-test',
+          component: () => import('@/views/dashboard/detail/game-record/ChimpTest.vue')
+        },
+        {
+          path: 'typing-test',
+          component: () => import('@/views/dashboard/detail/game-record/TypingTest.vue')
+        },
+        {
+          path: 'visual-memory',
+          component: () => import('@/views/dashboard/detail/game-record/VisualMemory.vue')
+        },
+        {
+          path: 'aim-test',
+          component: () => import('@/views/dashboard/detail/game-record/AimTest.vue')
+        },
+        {
+          path: 'color-vision-test',
+          component: () => import('@/views/dashboard/detail/game-record/ColorVisionTest.vue')
+        },
+        {
+          path: 'stroop',
+          component: () => import('@/views/dashboard/detail/game-record/Stroop.vue')
+        }
+      ]
+    },
+    {
       path: '/account',
       component: () => import('@/views/account/Index.vue'),
       children: [
