@@ -63,7 +63,7 @@ export default {
       const randomIndex = Math.floor(Math.random() * (this.cellData.length - 1))
       this.$set(this.cellData, randomIndex, 1)
       for (let key in this.color) {
-        this.color[key] = Math.floor(Math.random() * 256)
+        this.color[key] = Math.floor(Math.random() * 255)
       }
       // 选其中一种颜色变化
       const keys = ['red', 'green', 'blue']
@@ -98,6 +98,9 @@ export default {
         this.$parent.$parent.componentName = 'Result'
       }
     }
+  },
+  beforeDestroy() {
+    clearInterval(this.timer)
   }
 }
 </script>
@@ -105,31 +108,6 @@ export default {
 <style lang="scss">
 .color-vision-test-game-wrap {
   padding: 0 30px;
-  .info {
-    width: 240px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 28px;
-    margin-bottom: 20px;
-    .item {
-      display: flex;
-      height: 40px;
-      align-items: center;
-      span {
-        cursor: default;
-      }
-      .opacity {
-        opacity: .7;
-      }
-      .keys {
-        margin: 0 10px;
-      }
-      .icon {
-        font-size: 32px;
-        vertical-align: bottom;
-      }
-    }
-  }
   .grid-table {
     .show {
       animation: showCell 2s linear;

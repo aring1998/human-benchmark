@@ -41,5 +41,11 @@ export const gameList = [
     title: '色觉测试',
     intro: '快速找出不同的颜色。',
     path: '/color-vision-test'
+  },
+  {
+    icon: iconName.stroop,
+    title: '斯特鲁普',
+    intro: '判断颜色是否正确。',
+    path: '/stroop'
   }
 ]

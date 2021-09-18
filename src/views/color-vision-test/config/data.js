@@ -43,6 +43,7 @@ export const choiceCellIndex = (level) => {
   }
 }
 
+// 选择色差值
 export const choiceChangeValue = (level) => {
   if (level <= 3) {
     return 40

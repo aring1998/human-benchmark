@@ -5,5 +5,6 @@ export const iconName = {
   typingTest: 'el-icon-s-platform',
   visualMemory: 'el-icon-view',
   aimTest: 'el-icon-aim',
-  colorVisionTest: 'el-icon-picture-outline-round'
+  colorVisionTest: 'el-icon-picture-outline-round',
+  stroop: 'el-icon-help'
 }

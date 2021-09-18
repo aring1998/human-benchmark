@@ -96,31 +96,6 @@ export default {
 <style lang="scss">
 .visual-memory-game-wrap {
   padding: 0 30px;
-  .info {
-    width: 240px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 28px;
-    margin-bottom: 20px;
-    .item {
-      display: flex;
-      height: 40px;
-      align-items: center;
-      span {
-        cursor: default;
-      }
-      .opacity {
-        opacity: .7;
-      }
-      .keys {
-        margin: 0 10px;
-      }
-      .icon {
-        font-size: 32px;
-        vertical-align: bottom;
-      }
-    }
-  }
   .grid-table {
     .show {
       animation: showCell 2s linear;
@@ -132,18 +107,6 @@ export default {
     .wrong-click {
       animation: shakeCell .3s linear;
       background-color: #00000080;
-    }
-  }
-}
-@media screen and (max-width: 480px) {
-  .visual-memory-game-wrap {
-    .info {
-      font-size: 24px;
-      .item {
-        .icon {
-          font-size: 28px;
-        }
-      }
     }
   }
 }

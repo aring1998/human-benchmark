@@ -35,6 +35,43 @@ button:focus {
   color: #fff;
   background-color: $main-color;
   text-align: center;
+  .info {
+    width: 240px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 28px;
+    margin-bottom: 20px;
+    .item {
+      display: flex;
+      height: 40px;
+      align-items: center;
+      span {
+        cursor: default;
+      }
+      .opacity {
+        opacity: .7;
+      }
+      .keys {
+        margin: 0 10px;
+      }
+      .icon {
+        font-size: 32px;
+        vertical-align: bottom;
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .commmon-wrap {
+    .info {
+      font-size: 24px;
+      .item {
+        .icon {
+          font-size: 28px;
+        }
+      }
+    }
+  }
 }
 
 /* 去除数字输入框小箭头 */

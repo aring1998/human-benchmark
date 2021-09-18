@@ -63,6 +63,10 @@ export default new Router({
     {
       path: '/color-vision-test',
       component: () => import('@/views/color-vision-test/Index.vue')
+    },
+    {
+      path: '/stroop',
+      component: () => import('@/views/stroop/Index.vue')
     }
   ],
   // 切换路由滚动到页面顶部
