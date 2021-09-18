@@ -25,23 +25,23 @@ export const aboutText = [
 
 export const colorArr = [
   {
-    color: '#FF0000',
+    color: '#F56C6C',
     name: '红色'
   },
   {
-    color: '#00FF00',
+    color: '#67C23A',
     name: '绿色'
   },
   {
-    color: '#0000FF',
-    name: '蓝色'
+    color: '#8E44AD',
+    name: '紫色'
   },
   {
-    color: '#FFFF00',
+    color: '#FFCC33',
     name: '黄色'
   },
   {
-    color: '#C0C0C0',
+    color: '#909399',
     name: '灰色'
   }
 ]
