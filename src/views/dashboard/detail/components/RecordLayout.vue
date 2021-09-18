@@ -6,7 +6,7 @@
         <span> > </span>
         <span>{{ title }}</span>
       </div>
-      <div class="item" v-if="!$store.state.userInfo.username">
+      <div class="item" v-if="$store.state.userInfo.username === '访客'">
         <span>
         <router-link to="/account/login">登录</router-link>
         或
