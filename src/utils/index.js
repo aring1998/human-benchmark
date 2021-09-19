@@ -22,7 +22,7 @@ export const bigHumpNaming = data => {
   return data.replace(/(^|-)(\w)/g, (all, symbol, letter) => letter.toUpperCase())
 }
 
-// 获取表单键值
+// 获取表单键值，引用可根据表单配置初始化组件中的表单数据
 export const getFormKeys = formOptions => {
   const res = {}
   formOptions.forEach(item => {

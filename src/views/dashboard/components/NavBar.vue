@@ -46,7 +46,7 @@ export default {
     align-items: center;
     &.active {
       i {
-        color: $sub-color;
+        color: $hover-color;
         cursor: initial;
         pointer-events: none;
       }
