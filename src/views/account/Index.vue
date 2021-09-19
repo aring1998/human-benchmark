@@ -19,6 +19,5 @@ export default {
 <style>
 .account {
   padding: 20px 0;
-  min-height: calc(100vh - 88px);
 }
 </style>

@@ -1,13 +1,13 @@
 <template>
-  <div class="auth-info-wrap">
-    <div class="auth-info">
+  <div class="footer-bar-wrap">
+    <div class="footer-bar">
       <div class="line"></div>
       <p>该站点为开源项目，欢迎开发者访问参考学习</p>
       <p>请尊重知识产权，切勿进行商业用途</p>
       <a href="https://gitee.com/aring1998/human-benchmark" target="_blank">访问项目源码</a>
       <router-link to="/account/opinion">意见反馈</router-link>
       <a class="hide-on-mob" href="http://wpa.qq.com/msgrd?v=3&uin=1303340995&site=qq&menu=yes" target="_blank">联系作者</a>
-      <a class="hide-on-pc" href="mqqwpa://im/chat?chat_type=wpa&uin=1303340995&version=1&src_type=web&web_src=oicqzone.com">联系作者</a>
+      <a class="hide-on-pc" href="mqqwpa://im/chat?chat_type=wpa&uin=1303340995&version=1&src_type=web&web_src=http:://wpa.b.qq.com">联系作者</a>
     </div>
   </div>
 </template>
@@ -19,11 +19,11 @@ export default {
 </script>
 
 <style lang="scss">
-.auth-info-wrap {
+.footer-bar-wrap {
   background-color: #e6e8f4;
   font-size: 12px;
   padding-bottom: 30px;
-  .auth-info {
+  .footer-bar {
     display: flex;
     flex-flow: column nowrap;
     max-width: $max-width;
@@ -54,8 +54,8 @@ export default {
 }
 
 @media screen and (max-width: 480px) {
-  .auth-info-wrap {
-    .auth-info {
+  .footer-bar-wrap {
+    .footer-bar {
       padding: 0 10px;
     }
   }
