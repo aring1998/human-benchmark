@@ -24,3 +24,10 @@ new Vue({
   store,
   render: h => h(App)
 })
+
+// 全局导航守卫
+router.beforeEach((to, from, next) => {
+  if (to.meta !== undefined) document.title = to.meta.title  // 调用router中的数据更改title
+  else document.title = '人类基准测试'
+  next()
+});

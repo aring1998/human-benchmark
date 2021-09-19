@@ -1,11 +1,10 @@
 <template>
-  <account-card title="登录" tips="还未注册？" path="/account/register" linkName="注册">
+  <account-card title="意见反馈" tips="为了更好的用户体验，请您提出宝贵意见">
     <account-form
       :formOptions="formOptions"
       :form="form"
       :rules="rules"
-      submitName="登录"
-      @submit="login"
+      @submit="submit"
       ref="form"
     />
   </account-card>
@@ -13,8 +12,8 @@
 
 <script>
 import { getFormKeys } from '@/utils/index'
-import AccountCard from '../components/AccountCard.vue'
-import AccountForm from '../components/AccountForm.vue'
+import AccountCard from '../../components/AccountCard.vue'
+import AccountForm from '../../components/AccountForm.vue'
 import { formOptions, rules } from './config/data'
 export default {
   data() {
@@ -29,7 +28,7 @@ export default {
     AccountForm
   },
   methods: {
-    login() {
+    submit() {
       console.log(this.form);
     }
   }

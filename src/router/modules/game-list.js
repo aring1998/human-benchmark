@@ -6,16 +6,23 @@ import { gameList } from "@/views/index/config/data"
 const gameRoutes = gameList.map(item => {
   return {
     path: item.path,
-    component: () => import(`@/views${item.path}/Index.vue`)
+    component: () => import(`@/views${item.path}/Index.vue`),
+    meta: {
+      title: `人类基准测试 - ${item.title}`
+    }
   }
 })
 // 仪表盘对应游戏路由
 const dashboardRoutes = gameList.map(item => {
   if (!item.path) return
-  const componentName = bigHumpNaming(item.path.replace('/', ''))
+  const path = item.path.replace('/', '')
+  const componentName = bigHumpNaming(path)
   return {
-    path: item.path.replace('/', ''),
-    component: () => import(`@/views/dashboard/detail/game-record/${componentName}.vue`)
+    path,
+    component: () => import(`@/views/dashboard/detail/game-record/${componentName}.vue`),
+    meta: {
+      title: `人类基准测试 - 仪表盘 - ${item.title}`
+    }
   }
 })
 export { gameRoutes, dashboardRoutes }

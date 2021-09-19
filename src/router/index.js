@@ -3,6 +3,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import { dashboardRoutes, gameRoutes } from './modules/game-list'
+import { accountRoutes } from './modules/account'
 export default new Router({
   routes: [
     {
@@ -13,7 +14,10 @@ export default new Router({
     },
     {
       path: '/index',
-      component: () => import('@/views/index/Index.vue')
+      component: () => import('@/views/index/Index.vue'),
+      meta: {
+        title: '人类基准测试'
+      }
     },
     {
       path: '/dashboard',
@@ -21,7 +25,10 @@ export default new Router({
       children: [
         {
           path: '',
-          component: () => import('@/views/dashboard/detail/Index.vue')
+          component: () => import('@/views/dashboard/detail/Index.vue'),
+          meta: {
+            title: '人类基准测试 - 仪表盘'
+          }
         },
         ...dashboardRoutes
       ]
@@ -34,22 +41,7 @@ export default new Router({
           path: '',
           redirect: 'login'
         },
-        {
-          path: 'login',
-          component: () => import('@/views/account/login/Index.vue')
-        },
-        {
-          path: 'register',
-          component: () => import('@/views/account/register/Index.vue')
-        },
-        {
-          path: 'forget',
-          component: () => import('@/views/account/forget/Index.vue')
-        },
-        {
-          path: 'opinion',
-          component: () => import('@/views/account/opinion/Index.vue')
-        }
+        ...accountRoutes
       ]
     },
     ...gameRoutes
@@ -60,3 +52,10 @@ export default new Router({
     return { x: 0, y: 0 }
   }
 })
+
+// 处理路由的奇妙报错
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) return originalPush.call(this, location, onResolve, onReject)
+  return originalPush.call(this, location).catch(err => err)
+}

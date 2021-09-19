@@ -43,6 +43,7 @@ export default {
   font-size: 18px;
   .opacity {
     opacity: .6;
+    margin-bottom: 4px;
   }
   .keys {
     font-size: 36px;

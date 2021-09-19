@@ -13,8 +13,8 @@
 
 <script>
 import { getFormKeys } from '@/utils/index'
-import AccountCard from '../components/AccountCard.vue'
-import AccountForm from '../components/AccountForm.vue'
+import AccountCard from '../../components/AccountCard.vue'
+import AccountForm from '../../components/AccountForm.vue'
 import { formOptions, rules } from './config/data'
 export default {
   data() {
