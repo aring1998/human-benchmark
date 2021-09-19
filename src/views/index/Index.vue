@@ -2,7 +2,7 @@
   <div class="index pages">
     <game-intro
       title="人类基准"
-      intro="通过脑力游戏和认知测试来衡量您的能力"
+      intro="通过脑力游戏和认知测试来衡量您的才能"
       @start="$router.push('/reaction-time')"
      />
     <div class="game-list">
