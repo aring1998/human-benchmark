@@ -58,7 +58,7 @@ export const gameList = [
   {
     icon: iconName.sequentialMemory,
     title: '序列记忆',
-    intro: '记住越来越长的序列',
+    intro: '记住越来越长的序列。',
     path: '/sequential-memory'
   }
 ]

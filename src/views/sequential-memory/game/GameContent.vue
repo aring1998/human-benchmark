@@ -80,12 +80,11 @@ export default {
       this.userSequential.push(index)
       // 比对游戏序列和用户点击序列
       if (this.gameSequential[this.clickCount] === this.userSequential[this.clickCount]) {
-        // 点击动画
+        // 点击改变背景颜色
         this.$set(this.cellData, index, 2)
-        this.gameSequential.push(index)
-        setTimeout(() => {  // 动画结束后清理该单元格动画
+        setTimeout(() => {  // 短暂延迟后恢复
           this.$set(this.cellData, index, 0)
-        }, 500);
+        }, 150);
         this.clickCount++
         if (this.clickCount === this.$parent.$parent.level) {
           this.isSuc = true
@@ -130,7 +129,7 @@ export default {
       animation: showCell 1s linear;
     }
     .click-show {
-      animation: showCell .2s linear;
+      background-color: #fff;
     }
   }
 }
