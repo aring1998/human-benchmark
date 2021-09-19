@@ -1,5 +1,9 @@
 @import './normalize.scss';
 
+html {
+  color: #333;
+}
+
 a {
   color: #2B87D1CC;
   &:hover {

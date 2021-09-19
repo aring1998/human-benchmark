@@ -44,7 +44,7 @@ export default {
     position: relative;
     top: -10px;
     i {
-      color: $sub-color;
+      color: $hover-color;
     }
   }
   i {

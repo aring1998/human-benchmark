@@ -56,7 +56,7 @@ export default {
       font-size: 60px;
       cursor: pointer;
       &:hover {
-        color: $sub-color;
+        color: $hover-color;
       }
     }
     &:nth-last-child(1) {

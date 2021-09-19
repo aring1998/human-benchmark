@@ -1,5 +1,5 @@
 <template>
-  <div class="reaction-time-game-wrap" :style="{ 'background-color': bgColor, 'cursor': cursor }">
+  <div class="game-wrap" :style="{ 'background-color': bgColor, 'cursor': cursor }">
     <i :class="getIconName()"></i>
     <h2>{{ text }}</h2>
     <span v-if="tips.length > 0">{{ tips }}</span>
@@ -36,7 +36,7 @@ export default {
 </script>
 
 <style lang="scss">
-.reaction-time-game-wrap {
+.game-wrap {
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
