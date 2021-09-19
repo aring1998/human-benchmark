@@ -28,7 +28,7 @@ export default {
       aboutText,
       chartOptions,
       componentName: '',
-      level: 2
+      level: 1
     }
   },
   components: {

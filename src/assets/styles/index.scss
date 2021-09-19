@@ -4,6 +4,10 @@ html {
   color: #333;
 }
 
+[v-clock] {
+  display: none !important;
+}
+
 a {
   color: #2B87D1CC;
   &:hover {
