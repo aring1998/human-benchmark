@@ -18,11 +18,9 @@
 </template>
 
 <script>
-import { iconName } from '@/assets/js/iconName'
 export default {
   data() {
     return {
-      iconName,
       surplus: 31,
       top: 0,
       left: 0,

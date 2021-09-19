@@ -37,7 +37,8 @@
 export default {
   data() {
     return {
-      score: ''
+      score: '',
+      percentile: ''
     }
   },
   props: {
@@ -54,11 +55,11 @@ export default {
       // 初始化echarts实例
       let allDataChart = this.$echarts.init(document.getElementById('allDataChart'))
       window.onresize = allDataChart.resize
-      allDataChart.setOption(this.allDataOptions)
+      // allDataChart.setOption(this.allDataOptions)
 
       let userDataChart = this.$echarts.init(document.getElementById('allDataChart'))
       window.onresize = userDataChart.resize
-      userDataChart.setOption(this.userDataOptions)
+      // userDataChart.setOption(this.userDataOptions)
     }
   }
 }

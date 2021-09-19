@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import GameWrap from '../components/GameWrap.vue'
+import GameWrap from '@/components/GameWrap.vue'
 import GameBtn from '@/components/GameBtn.vue'
 export default {
   data() {

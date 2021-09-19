@@ -1,7 +1,6 @@
 <template>
   <div>
     <game-wrap
-      :icon="iconName.typingTest"
       :text="`${$parent.$parent.wordEveryMin}`"
       tips="本次测试的您每分钟打字字数"
       cursor="unset"
@@ -12,15 +11,9 @@
 </template>
 
 <script>
-import GameWrap from '@/views/reaction-time/components/GameWrap.vue'
+import GameWrap from '@/components/GameWrap.vue'
 import GameBtn from '@/components/GameBtn.vue'
-import { iconName } from '@/assets/js/iconName'
 export default {
-  data() {
-    return {
-      iconName
-    }
-  },
   components: {
     GameWrap,
     GameBtn

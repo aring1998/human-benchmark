@@ -48,5 +48,11 @@ export const gameList = [
     title: '斯特鲁普',
     intro: '判断颜色是否正确。',
     path: '/stroop'
+  },
+  {
+    icon: iconName.verbalMemory,
+    title: '词语记忆',
+    intro: '尽可能记住更多的词汇。',
+    path: '/verbal-memory'
   }
 ]

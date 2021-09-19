@@ -1,6 +1,6 @@
 <template>
   <div class="reaction-time-game-wrap" :style="{ 'background-color': bgColor, 'cursor': cursor }">
-    <i :class="icon"></i>
+    <i :class="getIconName()"></i>
     <h2>{{ text }}</h2>
     <span v-if="tips.length > 0">{{ tips }}</span>
     <slot></slot>
@@ -8,13 +8,14 @@
 </template>
 
 <script>
+import { smallHumpNaming } from '@/utils/index'
+import { iconName } from '@/assets/js/iconName'
 export default {
   props: {
     bgColor: {
       type: String,
       default: '$main-color'
     },
-    icon: String,
     text: String,
     tips: {
       type: String,
@@ -23,6 +24,12 @@ export default {
     cursor: {
       type: String,
       default: 'pointer'
+    }
+  },
+  methods: {
+    // 通过路由获取icon名称
+    getIconName() {
+      return iconName[smallHumpNaming(this.$route.path.replace('/', ''))]
     }
   }
 }

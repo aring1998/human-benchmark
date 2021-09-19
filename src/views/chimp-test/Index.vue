@@ -3,7 +3,6 @@
     <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
       <game-intro 
         slot="wrap"
-        :icon="iconName.chimpTest"
         title="黑猩猩测试"
         intro="根据方块的编号，依次单击方块，测试会越来越难"
         v-show="componentName === ''"
@@ -22,14 +21,12 @@ import BaseLayout from '@/components/BaseLayout.vue'
 import GameIntro from '@/components/GameIntro.vue'
 import GameContent from './game/GameContent.vue'
 import Result from './game/Result.vue'
-import { iconName } from '@/assets/js/iconName'
 import { chartOptions, aboutText } from './config/data'
 export default {
   data() {
     return {
       aboutText,
       chartOptions,
-      iconName,
       componentName: '',
       level: 4,
       isSuc: true,

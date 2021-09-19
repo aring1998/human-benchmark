@@ -12,8 +12,13 @@ export const deepCloneObjArr = data => {
   return res;
 }
 
+// 下划线命名转换小驼峰命名
+export const smallHumpNaming = data => {
+  return data.replace(/\-(\w)/g, (all, letter) => letter.toUpperCase())
+}
+
 // 下划线命名转换大驼峰命名
-export const humpNaming = data => {
+export const bigHumpNaming = data => {
   return data.replace(/(^|-)(\w)/g, (all, symbol, letter) => letter.toUpperCase())
 }
 

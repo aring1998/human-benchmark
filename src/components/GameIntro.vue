@@ -1,6 +1,6 @@
 <template>
   <div class="game-intro">
-    <i :class="icon"></i>
+    <i :class="getIconName()"></i>
     <h2>{{ title }}</h2>
     <span>{{ intro }}</span>
     <button class="common-btn" @click="$emit('start')">开始</button>
@@ -8,11 +8,18 @@
 </template>
 
 <script>
+import { smallHumpNaming } from '@/utils/index'
+import { iconName } from '@/assets/js/iconName'
 export default {
   props: {
     title: String,
-    intro: String,
-    icon: String
+    intro: String
+  },
+  methods: {
+    // 通过路由获取icon名称
+    getIconName() {
+      return iconName[smallHumpNaming(this.$route.path.replace('/', ''))]
+    }
   }
 }
 </script>

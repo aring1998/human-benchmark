@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import GameWrap from '../components/GameWrap.vue'
+import GameWrap from '@/components/GameWrap.vue'
 export default {
   data() {
     return {

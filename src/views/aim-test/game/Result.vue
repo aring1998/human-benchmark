@@ -1,7 +1,6 @@
 <template>
   <div>
     <game-wrap
-      :icon="iconName.aimTest"
       :text="`${Math.floor($parent.$parent.time / 30)}ms`"
       tips="每个目标平均用时"
       cursor="unset"
@@ -12,15 +11,9 @@
 </template>
 
 <script>
-import GameWrap from '@/views/reaction-time/components/GameWrap.vue'
+import GameWrap from '@/components/GameWrap.vue'
 import GameBtn from '@/components/GameBtn.vue'
-import { iconName } from '@/assets/js/iconName'
 export default {
-  data() {
-    return {
-      iconName
-    }
-  },
   components: {
     GameWrap,
     GameBtn
