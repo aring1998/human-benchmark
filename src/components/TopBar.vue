@@ -23,6 +23,7 @@ export default {
       for (let i in this.$store.userInfo) {
         this.$store.state.userInfo[i] = ''
       }
+      this.$store.state.userInfo.username = '访客'
       window.localStorage.removeItem('token')
       this.$message.success('已退出登录')
     }

@@ -34,8 +34,8 @@ export const accountRoutes = accountList.map(item => {
           Message.error('请先退出登录')
           next('/index')
         }
-        next()
       }
+      next()
     }
   }
 })
