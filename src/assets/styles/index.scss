@@ -16,12 +16,14 @@ button:focus {
   color: #333;
   width: 95px;
   height: 50px;
+  line-height: 50px;
   border: none;
   border-radius: 5px;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color .5s;
+  user-select: none;
   &:hover {
     background-color: #fff;
   }

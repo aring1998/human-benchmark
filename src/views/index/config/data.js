@@ -51,7 +51,7 @@ export const gameList = [
   },
   {
     icon: iconName.verbalMemory,
-    title: '词语记忆',
+    title: '词汇记忆',
     intro: '尽可能记住更多的词汇。',
     path: '/verbal-memory'
   }

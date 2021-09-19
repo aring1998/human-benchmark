@@ -6,5 +6,6 @@ export const iconName = {
   visualMemory: 'el-icon-view',
   aimTest: 'el-icon-aim',
   colorVisionTest: 'el-icon-picture-outline-round',
-  stroop: 'el-icon-help'
+  stroop: 'el-icon-help',
+  verbalMemory: 'el-icon-collection'
 }
