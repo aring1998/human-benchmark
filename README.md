@@ -1,6 +1,6 @@
 # 人类基准测试
 
-## [在线试玩](http://aring.3vfree.net/game/human-benchmark/index.html)
+## [在线试玩](http://aring1998.gitee.io/human-benchmark-online)
 
 ### 介绍
 基于**Vue**框架开发的Web项目，通过脑力游戏和认知测试来衡量您的才能
