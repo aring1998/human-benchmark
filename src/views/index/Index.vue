@@ -1,7 +1,6 @@
 <template>
   <div class="index pages">
     <game-intro
-      icon="el-icon-s-promotion"
       title="人类基准"
       intro="通过脑力游戏和认知测试来衡量您的能力"
       @start="$router.push('/reaction-time')"

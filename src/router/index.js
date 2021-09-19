@@ -45,6 +45,10 @@ export default new Router({
         {
           path: 'forget',
           component: () => import('@/views/account/forget/Index.vue')
+        },
+        {
+          path: 'opinion',
+          component: () => import('@/views/account/opinion/Index.vue')
         }
       ]
     },

@@ -1,12 +1,12 @@
 <template>
   <div class="account-form">
     <el-form :model="form" :rules="rules" ref="form">
-      <el-form-item 
+      <el-form-item
         v-for="(item, index) of formOptions" :key="index"
         :label="item.label"
         :prop="item.prop"
       >
-        <el-input v-model="form[item.prop]" :show-password="item.showPassword" :placeholder="item.placeholder"></el-input>
+        <el-input v-model="form[item.prop]" :type="item.type" :show-password="item.showPassword" :placeholder="item.placeholder"></el-input>
       </el-form-item>
       <el-form-item>
         <button @click="checkForm">{{ submitName }}</button>
@@ -48,6 +48,9 @@ export default {
     font-size: 20px;
   }
   .el-input__inner {
+    font-size: 16px;
+  }
+  .el-textarea__inner {
     font-size: 16px;
   }
   button {

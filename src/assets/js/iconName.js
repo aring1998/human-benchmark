@@ -1,4 +1,5 @@
 export const iconName = {
+  index: 'el-icon-s-promotion',
   reactionTime: 'el-icon-magic-stick',
   numberMemory: 'el-icon-tickets',
   chimpTest: 'el-icon-menu',
