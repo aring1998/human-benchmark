@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <game-wrap
-      :text="`${Math.floor($parent.$parent.time / 30)}ms`"
-      tips="每个目标平均用时"
-      cursor="unset"
-    >
-      <game-btn @saveScore="saveScore" @again="again"/>
-    </game-wrap>
-  </div>
+  <game-wrap
+    :text="`${Math.floor($parent.$parent.time / 30)}ms`"
+    tips="每个目标平均用时"
+    cursor="unset"
+  >
+    <game-btn @saveScore="saveScore" @again="again"/>
+  </game-wrap>
 </template>
 
 <script>

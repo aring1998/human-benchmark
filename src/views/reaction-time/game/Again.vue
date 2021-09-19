@@ -1,14 +1,12 @@
 <template>
-  <div>
-    <game-wrap
-      icon="el-icon-magic-stick"
-      :text="text"
-      tips="本次测试的平均反应时间"
-      cursor="unset"
-    >
-      <game-btn @saveScore="saveScore" @again="again"/>
-    </game-wrap>
-  </div>
+  <game-wrap
+    icon="el-icon-magic-stick"
+    :text="text"
+    tips="本次测试的平均反应时间"
+    cursor="unset"
+  >
+    <game-btn @saveScore="saveScore" @again="again"/>
+  </game-wrap>
 </template>
 
 <script>

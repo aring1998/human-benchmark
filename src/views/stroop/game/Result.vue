@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <game-wrap
-      :text="`${$parent.$parent.score}`"
-      tips="本次测试您的得分"
-      cursor="unset"
-    >
-      <game-btn @saveScore="saveScore" @again="again"/>
-    </game-wrap>
-  </div>
+  <game-wrap
+    :text="`${$parent.$parent.score}`"
+    tips="本次测试您的得分"
+    cursor="unset"
+  >
+    <game-btn @saveScore="saveScore" @again="again"/>
+  </game-wrap>
 </template>
 
 <script>

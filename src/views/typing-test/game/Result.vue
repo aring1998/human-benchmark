@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <game-wrap
-      :text="`${$parent.$parent.wordEveryMin}`"
-      tips="本次测试的您每分钟打字字数"
-      cursor="unset"
-    >
-      <game-btn @saveScore="saveScore" @again="again"/>
-    </game-wrap>
-  </div>
+  <game-wrap
+    :text="`${$parent.$parent.wordEveryMin}`"
+    tips="本次测试的您每分钟打字字数"
+    cursor="unset"
+  >
+    <game-btn @saveScore="saveScore" @again="again"/>
+  </game-wrap>
 </template>
 
 <script>
