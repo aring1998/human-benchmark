@@ -32,6 +32,7 @@ button:focus {
   cursor: pointer;
   transition: background-color .5s;
   user-select: none;
+  animation: textFadeIn .5s linear;
   &:hover {
     background-color: #fff;
   }
@@ -118,5 +119,18 @@ input[type=number] {-moz-appearance: textfield;}
 @media screen and (min-width: 480px) {
   .hide-on-pc {
     display: none !important;
+  }
+}
+
+@keyframes textFadeIn {
+  0% {
+    opacity: .1;
+    position: relative;
+    top: 10px;
+  }
+  100% {
+    opacity: 1;
+    position: relative;
+    top: 0;
   }
 }

@@ -62,10 +62,12 @@ export default {
     margin: 0;
     color: rgba($color: #fff, $alpha: .6);
     margin-bottom: 5px;
+    animation: textFadeIn .5s linear;
   }
   span {
     font-size: 40px;
     font-weight: bold; 
+    animation: textFadeIn .5s linear;
     &:nth-child(1) {
       margin-bottom: 30px;
     }
@@ -77,6 +79,7 @@ export default {
   h2 {
     font-size: 60px;
     font-weight: bold;
+    animation: textFadeIn .5s linear;
   }
   input {
     background: rgba(0, 0, 100, 0.2);

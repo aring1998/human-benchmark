@@ -37,14 +37,16 @@ export default {
   padding: 0 20px;
   i {
     font-size: 120px;
-    animation: shine 3s infinite linear;
+    animation: shine 3s infinite linear, textFadeIn .5s linear;
   }
   h2 {
     font-size: 40px;
+    animation: textFadeIn .5s linear;
   }
   span {
     font-size: 25px;
     margin-bottom: 30px;
+    animation: textFadeIn .5s linear;
   }
 }
 @keyframes shine {
