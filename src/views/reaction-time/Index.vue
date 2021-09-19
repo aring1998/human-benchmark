@@ -48,6 +48,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss">
+.reaction-time {
+  .game-wrap {
+    i,
+    span,
+    h2 {
+      animation: unset;
+    }
+  }
+}
 </style>

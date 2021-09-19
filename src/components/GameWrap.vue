@@ -1,6 +1,6 @@
 <template>
   <div class="game-wrap" :style="{ 'background-color': bgColor, 'cursor': cursor }">
-    <i :class="getIconName()"></i>
+    <i :class="icon ? icon : getIconName()"></i>
     <h2>{{ text }}</h2>
     <span v-if="tips.length > 0">{{ tips }}</span>
     <slot></slot>
@@ -16,6 +16,7 @@ export default {
       type: String,
       default: '$main-color'
     },
+    icon: String,
     text: String,
     tips: {
       type: String,
