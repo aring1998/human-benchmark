@@ -1,3 +1,4 @@
+// 在此写标准的路径可不用在路由中配置
 import { iconName } from "@/assets/js/iconName"
 export const gameList = [
   {

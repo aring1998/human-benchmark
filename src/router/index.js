@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
+import { dashboardRoutes, gameRoutes } from './modules/game-list'
 export default new Router({
   routes: [
     {
@@ -22,38 +23,7 @@ export default new Router({
           path: '',
           component: () => import('@/views/dashboard/detail/Index.vue')
         },
-        {
-          path: 'reaction-time',
-          component: () => import('@/views/dashboard/detail/game-record/ReactionTime.vue')
-        },
-        {
-          path: 'number-memory',
-          component: () => import('@/views/dashboard/detail/game-record/NumberMemory.vue')
-        },
-        {
-          path: 'chimp-test',
-          component: () => import('@/views/dashboard/detail/game-record/ChimpTest.vue')
-        },
-        {
-          path: 'typing-test',
-          component: () => import('@/views/dashboard/detail/game-record/TypingTest.vue')
-        },
-        {
-          path: 'visual-memory',
-          component: () => import('@/views/dashboard/detail/game-record/VisualMemory.vue')
-        },
-        {
-          path: 'aim-test',
-          component: () => import('@/views/dashboard/detail/game-record/AimTest.vue')
-        },
-        {
-          path: 'color-vision-test',
-          component: () => import('@/views/dashboard/detail/game-record/ColorVisionTest.vue')
-        },
-        {
-          path: 'stroop',
-          component: () => import('@/views/dashboard/detail/game-record/Stroop.vue')
-        }
+        ...dashboardRoutes
       ]
     },
     {
@@ -78,38 +48,7 @@ export default new Router({
         }
       ]
     },
-    {
-      path: '/reaction-time',
-      component: () => import('@/views/reaction-time/Index.vue')
-    },
-    {
-      path: '/number-memory',
-      component: () => import('@/views/number-memory/Index.vue')
-    },
-    {
-      path: '/chimp-test',
-      component: () => import('@/views/chimp-test/Index.vue')
-    },
-    {
-      path: '/typing-test',
-      component: () => import('@/views/typing-test/Index.vue')
-    },
-    {
-      path: '/visual-memory',
-      component: () => import('@/views/visual-memory/Index.vue')
-    },
-    {
-      path: '/aim-test',
-      component: () => import('@/views/aim-test/Index.vue')
-    },
-    {
-      path: '/color-vision-test',
-      component: () => import('@/views/color-vision-test/Index.vue')
-    },
-    {
-      path: '/stroop',
-      component: () => import('@/views/stroop/Index.vue')
-    }
+    ...gameRoutes
   ],
   // 切换路由滚动到页面顶部
   scrollBehavior() {

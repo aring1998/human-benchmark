@@ -12,14 +12,9 @@ export const deepCloneObjArr = data => {
   return res;
 }
 
-// 命名下划线格式换小驼峰命名
+// 下划线命名转换大驼峰命名
 export const humpNaming = data => {
-  const res = {}
-  for (let key in data) {
-    let newKey = key.replace(/_([a-z])/g, (p, m) => m.toUpperCase())
-    res[newKey] = humpNaming(data[key])
-  }
-  return res
+  return data.replace(/(^|-)(\w)/g, (all, symbol, letter) => letter.toUpperCase())
 }
 
 // 获取表单键值
