@@ -18,9 +18,9 @@ button:focus {
 .common-btn {
   background-color: $sub-color;
   color: #333;
-  width: 95px;
+  min-width: 110px;
+  padding: 0;
   height: 50px;
-  line-height: 50px;
   border: none;
   border-radius: 5px;
   font-size: 18px;

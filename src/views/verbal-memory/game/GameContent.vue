@@ -14,8 +14,8 @@
       <span>{{ text }}</span>
     </div>
     <div class="btn-wrap">
-      <div class="common-btn" @click="seen">见过</div>
-      <div class="common-btn" @click="isNew">新的</div>
+      <button class="common-btn" @click="seen">见过</button>
+      <button class="common-btn" @click="isNew">新的</button>
     </div>
   </div>
 </template>

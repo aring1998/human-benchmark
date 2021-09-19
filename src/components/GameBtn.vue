@@ -13,7 +13,7 @@ export default {
 
 <style>
 .btn-wrap {
-  width: 250px;
+  width: 300px;
   display: flex;
   justify-content: space-around;
 }
