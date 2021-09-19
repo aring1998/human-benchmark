@@ -8,5 +8,6 @@ export const iconName = {
   aimTest: 'el-icon-aim',
   colorVisionTest: 'el-icon-picture-outline-round',
   stroop: 'el-icon-help',
-  verbalMemory: 'el-icon-collection'
+  verbalMemory: 'el-icon-collection',
+  sequentialMemory: 'el-icon-s-grid'
 }

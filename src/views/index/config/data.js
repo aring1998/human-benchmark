@@ -54,5 +54,11 @@ export const gameList = [
     title: '词汇记忆',
     intro: '尽可能记住更多的词汇。',
     path: '/verbal-memory'
+  },
+  {
+    icon: iconName.sequentialMemory,
+    title: '序列记忆',
+    intro: '记住越来越长的序列',
+    path: '/sequential-memory'
   }
 ]

@@ -1,5 +1,5 @@
 <template>
-  <div class="chimp-test pages">
+  <div class="pages">
     <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
       <game-intro 
         slot="wrap"

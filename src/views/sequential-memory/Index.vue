@@ -3,8 +3,8 @@
     <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
       <game-intro 
         slot="wrap"
-        title="斯特鲁普"
-        intro="正确回答颜色"
+        title="序列记忆"
+        intro="记住方块闪烁的顺序"
         v-show="componentName === ''"
         @start="componentName = 'GameContent'"
       />
@@ -28,7 +28,7 @@ export default {
       aboutText,
       chartOptions,
       componentName: '',
-      score: 1
+      level: 2
     }
   },
   components: {
