@@ -1,6 +1,6 @@
 <template>
   <game-wrap
-    :text="`${Math.floor($parent.$parent.time / 30)}ms`"
+    :text="`${Math.round($parent.$parent.time / 29)}ms`"
     tips="每个目标平均用时"
     cursor="unset"
   >
