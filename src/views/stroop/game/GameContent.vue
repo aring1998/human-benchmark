@@ -6,7 +6,7 @@
         <span>{{ $parent.$parent.score }}</span>
       </div>
       <div class="item">
-        <span>{{ time.toFixed(1) }}</span>
+        <span>{{ time.toFixed(1) }}s</span>
       </div>
     </div>
     <div class="game-table">
@@ -62,7 +62,6 @@ export default {
       this.randerText()
     },
     wrongClick() {
-      this.$message.error('答错啦！')
       this.$parent.$parent.componentName = 'Result'
     }
   },

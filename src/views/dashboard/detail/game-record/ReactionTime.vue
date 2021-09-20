@@ -1,6 +1,6 @@
 <template>
   <record-layout
-    title="反应时间测试"
+    title="反应时间"
     unit="ms"
   />
 </template>

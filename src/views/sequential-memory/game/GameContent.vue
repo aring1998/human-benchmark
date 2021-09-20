@@ -112,14 +112,14 @@ export default {
   }
   &.suc::after {
     content: '';
-    height: 100%;
+    height: 480px;
     width: 100%;
     position: absolute;
     animation: sucTip .5s linear;
   }
   &.fail::after {
     content: '';
-    height: 100%;
+    height: 480px;
     width: 100%;
     position: absolute;
     animation: failTip .5s linear;
