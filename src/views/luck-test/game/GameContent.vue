@@ -84,6 +84,7 @@ export default {
     max-width: $max-width;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     .card {
       display: flex;
       justify-content: center;
@@ -110,6 +111,17 @@ export default {
           animation: textFadeIn 1s linear;
           transform: rotateY(180deg);
         }
+      }
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .luck-test-game-wrap {
+    .card-wrap {
+      .card {
+        width: 60px;
+        height: 100px;
+        margin-right: 5px;
       }
     }
   }
