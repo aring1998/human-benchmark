@@ -61,17 +61,20 @@ export const cardProbability = (value) => {
 // 抽卡列表转字符串
 export const cardListStr = (arr) => {
   let common = 0, excellent = 0, rare = 0, epic = 0, legend = 0
+  const computedCard = {
+    0: () => { common++ },
+    1: () => { excellent++ },
+    2: () => { rare++ },
+    3: () => { epic++ },
+    4: () => { legend++ }
+  }
   arr.forEach(value => {
-    if (value === 0) common++
-    if (value === 1) excellent++
-    if (value === 2) rare++
-    if (value === 3) epic++
-    if (value === 4) legend++
+    computedCard[value]()
   })
   return `
     <span>
-      本次测试您获得了，
-      ${common ? `${common}张<span style="color: #989898">普通</span>卡牌` : ''}
+      本次测试您获得了
+      ${common ? `，${common}张<span style="color: #989898">普通</span>卡牌` : ''}
       ${excellent ? `，${excellent}张<span style="color: #66CC66">精良</span>卡牌，` : ''}
       ${rare ? `，${rare}张<span style="color: #0066FF">稀有</span>卡牌` : ''}
       ${epic ? `，${epic}张<span style="color: #9933FF">史诗</span>卡牌` : ''}
