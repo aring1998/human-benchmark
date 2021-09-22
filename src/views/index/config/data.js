@@ -60,5 +60,11 @@ export const gameList = [
     title: '序列记忆',
     intro: '记住越来越长的序列。',
     path: '/sequential-memory'
+  },
+  {
+    icon: iconName.luckTest,
+    title: '运气测试',
+    intro: '快乐的抽卡时刻。',
+    path: '/luck-test'
   }
 ]

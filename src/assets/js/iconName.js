@@ -9,5 +9,6 @@ export const iconName = {
   colorVisionTest: 'el-icon-picture-outline-round',
   stroop: 'el-icon-help',
   verbalMemory: 'el-icon-collection',
-  sequentialMemory: 'el-icon-s-grid'
+  sequentialMemory: 'el-icon-s-grid',
+  luckTest: 'el-icon-present'
 }
