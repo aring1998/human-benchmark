@@ -16,10 +16,9 @@ export const chartOptions = {
 }
 
 export const aboutText = [
-  '该测试考验您一次可以在短期记忆中保留多少单词。',
-  '您需要记住的单词数量将会不断增加，直到您再也无法将它们记在脑海中。',
-  '您的分数取决于您正确回答了多少次。',
-  '您有三次失误机会，尽可能做到最好吧！'
+  '这是一个纯娱乐性质的测试。',
+  '每回合您将从5张卡牌中抽出一张，在5次抽取后我们将计算您抽中优质卡牌的比重。',
+  '概率公示：普通(35%)，精良(25%)，稀有(20%)，史诗(15%)，传说(5%)。'
 ]
 
 export const cardOptions = [
@@ -52,10 +51,11 @@ export const cardOptions = [
 
 // 抽卡概率
 export const cardProbability = (value) => {
-  if (value <= 4) return 0  // 普通 40%
-  if (value > 4 && value <= 7) return 2  // 精良 30%
-  if (value > 7 && value <= 9) return 3  // 史诗 20%
-  if (value === 10) return 4  // 传说 10%
+  if (value <= 3.5) return 0  // 普通 35%
+  if (value > 3.5 && value <= 6) return 1 // 精良 25%
+  if (value > 6 && value <= 8) return 2  // 稀有 20%
+  if (value > 8 && value <= 9.5) return 3  // 史诗 15%
+  if (value > 9.5) return 4  // 传说 5%
 }
 
 // 抽卡列表转字符串

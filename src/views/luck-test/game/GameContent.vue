@@ -43,7 +43,7 @@ export default {
       this.turnAnim = false
       this.clickIndex = null
       for (let i = 0; i < 5; i++) {
-        const randomNum = (Math.floor(Math.random() * 10) + 1)
+        const randomNum = (Math.random() * 10) + 1
         const cardIndex = cardProbability(randomNum)
         this.cardList.push(cardIndex)
       }
