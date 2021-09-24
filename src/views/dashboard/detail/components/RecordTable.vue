@@ -1,7 +1,7 @@
 <template>
   <el-table :data="tableData" stripe :cell-style="{'color':'#333', 'font-size':'18px', 'font-weight':'bold'}">
     <el-table-column prop="title" label="测试"></el-table-column>
-    <el-table-column prop="path" label="操作" min-width="150" align="center">
+    <el-table-column prop="path" label="操作" min-width="200" align="center">
       <template slot-scope="scope">
         <el-button
           type="primary"
