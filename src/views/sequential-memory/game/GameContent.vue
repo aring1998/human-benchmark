@@ -64,14 +64,14 @@ export default {
             this.gameSequential.push(randomNo)
             setTimeout(() => {  // 动画结束后清理该单元格动画
               this.$set(this.cellData, randomNo, 0)
-            }, 900);
+            }, 900)
           }, i * 1000)
         }
       }, 10)
       // 等待动画播放完毕才可点击
       setTimeout(() => {
         this.canBeClick = true
-      }, this.$parent.$parent.level * 1000 + 1000);
+      }, this.$parent.$parent.level * 1000 + 1000)
     },
     // 点击单元格
     clickCell(item, index) {
@@ -84,20 +84,20 @@ export default {
         this.$set(this.cellData, index, 2)
         setTimeout(() => {  // 短暂延迟后恢复
           this.$set(this.cellData, index, 0)
-        }, 150);
+        }, 150)
         this.clickCount++
         if (this.clickCount === this.$parent.$parent.level) {
           this.isSuc = true
           setTimeout(() => {
             this.$parent.$parent.level++
             this.randerCell()
-          }, 500);
+          }, 500)
         }
       } else {
         this.isSuc = false
         setTimeout(() => {
           this.$parent.$parent.componentName = 'Result'
-        }, 500);
+        }, 500)
       }
     }
   }

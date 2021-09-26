@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     forget() {
-      console.log(this.form);
+      console.log(this.form)
     }
   }
 }

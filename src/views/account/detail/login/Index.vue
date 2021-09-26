@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     login() {
-      console.log(this.form);
+      console.log(this.form)
     }
   }
 }

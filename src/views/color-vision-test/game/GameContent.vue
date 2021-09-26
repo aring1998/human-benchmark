@@ -85,7 +85,7 @@ export default {
       this.timer = setInterval(() => {
         this.time -= 0.1
         if (this.time < 0) this.clickCell(0)
-      }, 100);
+      }, 100)
     },
     // 点击单元格
     clickCell(item) {

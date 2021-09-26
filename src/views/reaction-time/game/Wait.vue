@@ -24,7 +24,7 @@ export default {
     this.waitTime = (Math.random() * 5 + 3) * 1000  // 等待时间
     this.waitGreen = setTimeout(() => {
       this.$parent.$parent.componentName = 'Click'
-    }, this.waitTime);
+    }, this.waitTime)
   },
   methods: {
     click() {

@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     register() {
-      console.log(this.form);
+      console.log(this.form)
     }
   }
 }

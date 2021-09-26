@@ -17,7 +17,7 @@ instance.interceptors.request.use(config => {
   config.headers.Authorization = `Bearer ${store.state.token}`
   return config
 }), err => {
-  console.log(err);
+  console.log(err)
 }
 // 响应拦截
 instance.interceptors.response.use(res => {
@@ -25,7 +25,7 @@ instance.interceptors.response.use(res => {
   if (res.data.code !== 0) Message.error(res.data.msg)
   return res.data  // 配置只返回data
 }), err => {
-  console.log(err);
+  console.log(err)
 }
 
 // 封装get/post方法

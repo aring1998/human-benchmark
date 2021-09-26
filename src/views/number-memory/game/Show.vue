@@ -27,7 +27,7 @@ export default {
     // 进度条结束滚动
     setTimeout(() => {
       this.$parent.$parent.componentName = 'Input'
-    }, 5050);
+    }, 5050)
   }
 }
 </script>

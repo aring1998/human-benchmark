@@ -59,7 +59,7 @@ export default {
       setTimeout(() => {
         this.vocabularyList.push(this.text)
         this.chioceVocabulary()
-      });
+      })
     }
   }
 }

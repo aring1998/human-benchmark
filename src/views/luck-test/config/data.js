@@ -75,7 +75,7 @@ export const cardListStr = (arr) => {
     <span>
       本次测试您获得了
       ${common ? `，${common}张<span style="color: #989898">普通</span>卡牌` : ''}
-      ${excellent ? `，${excellent}张<span style="color: #66CC66">精良</span>卡牌，` : ''}
+      ${excellent ? `，${excellent}张<span style="color: #66CC66">精良</span>卡牌` : ''}
       ${rare ? `，${rare}张<span style="color: #0066FF">稀有</span>卡牌` : ''}
       ${epic ? `，${epic}张<span style="color: #9933FF">史诗</span>卡牌` : ''}
       ${legend ? `，${legend}张<span style="color: #FFCC00">传说</span>卡牌。` : '。'}

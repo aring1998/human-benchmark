@@ -65,7 +65,7 @@ export default {
       // 等待动画播放完毕才可点击
       setTimeout(() => {
         this.canBeClick = true
-      }, 2000);
+      }, 2000)
     },
     // 点击单元格
     clickCell(item, index) {
