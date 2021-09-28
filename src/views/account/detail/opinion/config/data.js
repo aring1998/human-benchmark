@@ -17,8 +17,7 @@ export const rules =  {
     { pattern: /^[1-9][0-9]{4,9}$/gim, message: '请输入正确的QQ', trigger: 'blur' }
   ],
   opinion: [
-    { required: true, message: '请输入QQ', trigger: 'blur' },
-    { min: 15, message: '请至少输入15字', trigger: 'blur' },
-    { max: 500, message: '输入文本已达上限', trigger: 'blur' }
+    { required: true, min: 15, message: '请至少输入15字', trigger: 'blur' },
+    { max: 500, message: '输入文本已超出上限，请适当减少', trigger: 'blur' }
   ]
 }
