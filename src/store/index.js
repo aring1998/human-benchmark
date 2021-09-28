@@ -9,7 +9,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     userInfo: {
-      username: '访客',
+      username: '',
       token: ''
     }
   },

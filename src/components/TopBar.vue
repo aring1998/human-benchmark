@@ -5,7 +5,7 @@
         <span :class="{ active: $route.path === '/index' }" @click="$router.push('/index')">人类基准测试</span>
         <span :class="{ active: $route.path === '/dashboard' }" @click="$router.push('/dashboard')">仪表盘</span>
       </div>
-      <div class="top-bar-item" v-if="$store.state.userInfo.username === '访客'">
+      <div class="top-bar-item" v-if="!$store.state.userInfo.username">
         <span :class="{ active: $route.path === '/account/register' }" @click="$router.push('/account/register')">注册</span>
         <span :class="{ active: $route.path === '/account/login' }" @click="$router.push('/account/login')">登录</span>
       </div>
@@ -23,8 +23,9 @@ export default {
       for (let i in this.$store.userInfo) {
         this.$store.state.userInfo[i] = ''
       }
-      this.$store.state.userInfo.username = '访客'
+      this.$store.state.userInfo.username = ''
       window.localStorage.removeItem('token')
+      this.$router.push('/index')
       this.$message.success('已退出登录')
     }
   }

@@ -30,7 +30,7 @@ export const accountRoutes = accountList.map(item => {
     beforeEnter: (to, from, next) => {
       // 已登录不能进入登录/注册页面
       if (to.path === '/account/login' || to.path === '/account/register') {
-        if (store.state.userInfo.username !== '访客') {
+        if (store.state.userInfo.username) {
           Message.error('请先退出登录')
           next('/index')
         }

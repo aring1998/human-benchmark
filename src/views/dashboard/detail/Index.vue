@@ -2,8 +2,8 @@
   <div class="card-wrap">
     <div class="card user-info">
       <span class="opacity">用户名</span>
-      <span class="keys">{{ $store.state.userInfo.username }}</span>
-      <span v-if="$store.state.userInfo.username === '访客'">
+      <span class="keys">{{ $store.state.userInfo.username || '访客' }}</span>
+      <span v-if="!$store.state.userInfo.username">
         <router-link to="/account/login">登录</router-link>
         或
         <router-link to="/account/register">注册</router-link>

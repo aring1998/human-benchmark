@@ -2,11 +2,11 @@
   <div class="card-wrap">
     <div class="card path">
       <div class="item">
-        <router-link to="/dashboard">{{ $store.state.userInfo.username }}</router-link>
+        <router-link to="/dashboard">{{ $store.state.userInfo.username || '访客' }}</router-link>
         <span> > </span>
         <span>{{ title }}</span>
       </div>
-      <div class="item" v-if="$store.state.userInfo.username === '访客'">
+      <div class="item" v-if="!$store.state.userInfo.username">
         <span>
         <router-link to="/account/login">登录</router-link>
         或
