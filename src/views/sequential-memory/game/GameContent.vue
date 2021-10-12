@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { gridData } from '@/assets/js/gridData'
+import { gridData } from '@/assets/js/grid-data'
 import { choiceCellIndex } from '../config/data'
 import GridTable from '@/components/GridTable.vue'
 export default {

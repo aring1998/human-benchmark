@@ -9,7 +9,7 @@ export const deepCloneObjArr = data => {
   for (let item in data) {
     res[item] = typeof data[item] === 'object' ? deepCloneObjArr(data[item]) : data[item]
   }
-  return res;
+  return res
 }
 
 // 下划线命名转换小驼峰命名

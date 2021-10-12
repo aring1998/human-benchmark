@@ -9,7 +9,7 @@
 
 <script>
 import { smallHumpNaming } from '@/utils/index'
-import { iconName } from '@/assets/js/iconName'
+import { iconName } from '@/assets/js/icon-name'
 export default {
   props: {
     bgColor: {

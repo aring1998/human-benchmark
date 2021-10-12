@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { gridData } from '@/assets/js/gridData'
+import { gridData } from '@/assets/js/grid-data'
 export default {
   data() {
     return {

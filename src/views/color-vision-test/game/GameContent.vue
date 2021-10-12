@@ -24,7 +24,7 @@
 <script>
 import GridTable from '@/components/GridTable.vue'
 import { deepCloneObj } from '@/utils/index'
-import { gridData } from '@/assets/js/gridData'
+import { gridData } from '@/assets/js/grid-data'
 import { choiceCellIndex, choiceChangeValue } from '../config/data'
 export default {
   data() {
