@@ -20,7 +20,7 @@
       <h2>{{ score || '?' }}</h2>
       <span>{{ unit }}</span>
       <h4>百分之 {{ percentile || '0%' }}</h4>
-      <router-link :to="`/${$route.path.split('/')[1]}`"><i class="el-icon-video-play" />开始测试</router-link>
+      <router-link :to="`/${$route.path.split('/')[$route.path.split('/').length - 1]}`"><i class="el-icon-video-play" />开始测试</router-link>
     </div>
     <div class="card statistical-data">
       <h2>{{ title }}统计数据</h2>

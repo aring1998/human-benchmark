@@ -9,7 +9,7 @@
 
 ## ✨新增游戏/测试
 1. 打开[首页测试列表信息控制](/src/views/index/config/data.js)
-2. 给新游戏选个心怡的[icon](/src/assets/js/iconName.js)（请使用ElementUI中的icon）
+2. 给新游戏选个心怡的[icon](/src/assets/js/icon-name.js)（请使用ElementUI中的icon）
 3. 无需配置路由模块，首页会自动生成一个对应的游戏入口
 4. 按[页面模块目录](#页面模块目录结构)编写代码
 5. 编写细则可参阅[开发细则](./dev-game-detail.md)
