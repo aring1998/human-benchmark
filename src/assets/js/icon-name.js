@@ -10,5 +10,6 @@ export const iconName = {
   stroop: 'el-icon-help',
   verbalMemory: 'el-icon-collection',
   sequentialMemory: 'el-icon-s-grid',
-  luckTest: 'el-icon-present'
+  luckTest: 'el-icon-present',
+  handSpeedTest: 'el-icon-thumb'
 }

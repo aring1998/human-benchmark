@@ -66,5 +66,11 @@ export const gameList = [
     title: '运气测试',
     intro: '快乐的抽卡时刻。',
     path: '/luck-test'
+  },
+  {
+    icon: iconName.handSpeedTest,
+    title: '手速测试',
+    intro: '您的手速如何？',
+    path: '/hand-speed-test'
   }
 ]
