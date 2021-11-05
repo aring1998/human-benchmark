@@ -33,7 +33,6 @@ export default {
     // 补充确认密码校验规则
     this.rules.checkPassword.push({
       validator: (rule, value, callback) => {
-        console.log(value, this.form.password);
         if (value != this.form.password) { callback(new Error('与密码不一致')) }
         callback()
       }, trigger: 'change'
@@ -46,6 +45,14 @@ export default {
         ...this.form,
         password: md5(this.form.password)
       })
+      if (res.code === 0) {
+        this.$store.state.userInfo.token = res.data.token
+        window.localStorage.setItem('token', res.data.token)
+        setTimeout(() => {
+          this.$store.dispatch('token')
+          this.$router.push('/dashboard')
+        }, 1000);
+      }
     }
   }
 }

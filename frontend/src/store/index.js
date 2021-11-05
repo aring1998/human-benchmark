@@ -10,7 +10,7 @@ const store = new Vuex.Store({
   state: {
     userInfo: {
       username: '',
-      token: ''
+      token: '' || window.localStorage.getItem('token')
     }
   },
   mutations,

@@ -31,7 +31,7 @@ export default {
       this.$parent.$parent.componentName = 'Show'
     },
     saveScore() {
-      this.again()
+      // this.again()
     },
     again() {
       this.resetText()
