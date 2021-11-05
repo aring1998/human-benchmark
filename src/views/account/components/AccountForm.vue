@@ -9,7 +9,7 @@
         <el-input v-model="form[item.prop]" :type="item.type" :show-password="item.showPassword" :placeholder="item.placeholder"></el-input>
       </el-form-item>
       <el-form-item>
-        <button @click="checkForm">{{ submitName }}</button>
+        <button type="button" @click="checkForm">{{ submitName }}</button>
       </el-form-item>
     </el-form>
   </div>
