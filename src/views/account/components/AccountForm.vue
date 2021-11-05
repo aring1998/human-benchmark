@@ -30,12 +30,20 @@ export default {
       default: '提交'
     }
   },
+  created() {
+    document.addEventListener('keydown', this.onEnter)
+    // 在销毁前钩子清除document监听事件以防影响其他组件
+    this.$once('hook:beforeDestroy', () => { document.removeEventListener('keydown', this.onEnter, false) })
+  },
   methods: {
     checkForm() {
       this.$refs.form.validate((valid) => {
         if (valid) this.$emit('submit')
         else return false
       })
+    },
+    onEnter(e) {
+      if (e.key === 'Enter') this.checkForm()
     }
   }
 }

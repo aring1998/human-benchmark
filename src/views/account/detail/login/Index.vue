@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import md5 from 'js-md5'
 import { getFormKeys } from '@/utils/index'
 import AccountCard from '../../components/AccountCard.vue'
 import AccountForm from '../../components/AccountForm.vue'
@@ -29,8 +30,16 @@ export default {
     AccountForm
   },
   methods: {
-    login() {
-      console.log(this.form)
+    async login() {
+      const res = await this.$api.post('users/login', {
+        ...this.form,
+        password: md5(this.form.password)
+      })
+      if (res.code === 0) {
+        window.localStorage.setItem('token', res.data.token)
+        this.$store.state.userInfo = res.data
+        this.$router.push('/dashboard')
+      }
     }
   }
 }

@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import md5 from 'js-md5'
 import { getFormKeys } from '@/utils/index'
 import AccountCard from '../../components/AccountCard.vue'
 import AccountForm from '../../components/AccountForm.vue'
@@ -32,14 +33,19 @@ export default {
     // 补充确认密码校验规则
     this.rules.checkPassword.push({
       validator: (rule, value, callback) => {
+        console.log(value, this.form.password);
         if (value != this.form.password) { callback(new Error('与密码不一致')) }
         callback()
       }, trigger: 'change'
     })
   },
   methods: {
-    register() {
+    async register() {
       console.log(this.form)
+      const res = await this.$api.post('users/register', {
+        ...this.form,
+        password: md5(this.form.password)
+      })
     }
   }
 }

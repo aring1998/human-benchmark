@@ -4,7 +4,8 @@ import { Message } from 'element-ui'
 
 // 创建axios实例
 const instance = axios.create({
-  baseURL: 'http://47.103.218.109:10052/api/', 
+  baseURL: 'http://localhost:3000/api/', // 测试环境 
+  // baseURL: 'http://81.68.189.158:27017/api/', // 正式环境
   timeout: 30000,
   validateStatus: status => {
     // 允许返回所有状态码，不会遇到错误就停止
@@ -22,7 +23,8 @@ instance.interceptors.request.use(config => {
 // 响应拦截
 instance.interceptors.response.use(res => {
   if (res.status !== 200) Message.error(`网络请求错误，错误：${res.statusText}`)
-  if (res.data.code !== 0) Message.error(res.data.msg)
+  if (res.data.code !== 0) Message.error(res.data.message)
+  else Message.success(res.data.message)
   return res.data  // 配置只返回data
 }), err => {
   console.log(err)
@@ -34,11 +36,7 @@ export const api = {
     try {
       let res = await instance.get(url, {params})
       return new Promise(resolve => {
-        if (res.code === 0) {
-          resolve(res)
-        } else {
-          resolve(res)
-        }
+        resolve(res)
       })
     } catch (err) {
       console.log(err)
