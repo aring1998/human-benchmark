@@ -6,83 +6,95 @@ export const gameList = [
     icon: iconName.reactionTime,
     title: '反应时间',
     intro: '测试您的视觉反应。',
-    path: '/reaction-time'
+    path: '/reaction-time',
+    best: 0  // 最佳成绩取最大值/最小值，0 取最小值，1取最大值 
   },
   {
     id: 2,
     icon: iconName.numberMemory,
     title: '数字记忆',
     intro: '记住您看到的数字。',
-    path: '/number-memory'
+    path: '/number-memory',
+    best: 1
   },
   {
     id: 3,
     icon: iconName.chimpTest,
     title: '黑猩猩测试',
     intro: '您比黑猩猩聪明吗？',
-    path: '/chimp-test'
+    path: '/chimp-test',
+    best: 1
   },
   {
     id: 4,
     icon: iconName.typingTest,
     title: '打字测试',
     intro: '您每分钟可以打多少字？',
-    path: '/typing-test'
+    path: '/typing-test',
+    best: 1
   },
   {
     id: 5,
     icon: iconName.visualMemory,
     title: '视觉记忆',
     intro: '记住越来越多的方块。',
-    path: '/visual-memory'
+    path: '/visual-memory',
+    best: 1
   },
   {
     id: 6,
     icon: iconName.aimTest,
     title: '瞄准测试',
     intro: '您能多快击中目标？',
-    path: '/aim-test'
+    path: '/aim-test',
+    best: 0
   },
   {
     id: 7,
     icon: iconName.colorVisionTest,
     title: '色觉测试',
     intro: '快速找出不同的颜色。',
-    path: '/color-vision-test'
+    path: '/color-vision-test',
+    best: 1
   },
   {
     id: 8,
     icon: iconName.stroop,
     title: '斯特鲁普',
     intro: '判断颜色是否正确。',
-    path: '/stroop'
+    path: '/stroop',
+    best: 1
   },
   {
     id: 9,
     icon: iconName.verbalMemory,
     title: '词汇记忆',
     intro: '尽可能记住更多的词汇。',
-    path: '/verbal-memory'
+    path: '/verbal-memory',
+    best: 1
   },
   {
     id: 10,
     icon: iconName.sequentialMemory,
     title: '序列记忆',
     intro: '记住越来越长的序列。',
-    path: '/sequential-memory'
+    path: '/sequential-memory',
+    best: 1
   },
   {
     id: 11,
     icon: iconName.luckTest,
     title: '运气测试',
     intro: '快乐的抽卡时刻。',
-    path: '/luck-test'
+    path: '/luck-test',
+    best: 1
   },
   {
     id: 12,
     icon: iconName.handSpeedTest,
     title: '手速测试',
     intro: '您的手速如何？',
-    path: '/hand-speed-test'
+    path: '/hand-speed-test',
+    best: 1
   }
 ]

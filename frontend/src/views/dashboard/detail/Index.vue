@@ -23,6 +23,7 @@
 import { tableData } from './config/data'
 import RecordTable from './components/RecordTable.vue'
 import RecordList from './components/RecordList.vue'
+import { gameList } from '../../index/config/data'
 export default {
   data() {
     return {
@@ -33,6 +34,35 @@ export default {
     RecordTable,
     RecordList
   },
+  created() {
+    this.getBestScore()
+  },
+  methods: {
+    async getBestScore() {
+      const res = await this.$api.get('scores/getBestScore', {
+        gameCount: 13
+      })
+      if (res.code === 0) {
+        const data = res.data.map(item => {
+          let score
+          let percentile
+          if (gameList[item.gameId - 1].best) {
+            score = item.maxScore || '?'
+            percentile = item.maxPercentile || 0
+          } else {
+            score = item.minScore || '?'
+            percentile = item.minPercentile || 0
+          }
+          return {
+            ...tableData[item.gameId - 1],
+            score,
+            percentile
+          }
+        })
+        this.tableData = data
+      }
+    }
+  }
 }
 </script>
 

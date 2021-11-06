@@ -8,7 +8,6 @@ const addScore = async (data) => {
 }
 
 const findScoreGroup = async (gameId, gte, lte) => {
-  console.log(gte, lte);
   return Scores.aggregate([
     {
       $match: {
@@ -25,7 +24,26 @@ const findScoreGroup = async (gameId, gte, lte) => {
   ]).sort({ _id: 1 })
 }
 
+const findBestScore = async (userId, gameId) => {
+  return Scores.aggregate([
+    { $match: { userId, gameId } },
+    {
+      $group: {
+        _id: null,
+        minScore: { $min: '$score' },
+        maxScore: { $max: '$score' }
+      },
+    }
+  ])
+}
+
+const findScore = (data) => {
+  return Scores.find({ ...data }).sort({ score: data.sort })
+}
+
 module.exports = {
   addScore,
   findScoreGroup,
+  findBestScore,
+  findScore
 }
