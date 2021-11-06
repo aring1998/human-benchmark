@@ -1,7 +1,7 @@
 <template>
   <game-wrap
     icon="el-icon-magic-stick"
-    :text="text"
+    :text="`${result}ms`"
     tips="本次测试的平均反应时间"
     cursor="unset"
   >
@@ -15,7 +15,7 @@ import GameBtn from '@/components/GameBtn.vue'
 export default {
   data() {
     return {
-      text: ''
+      result: 0
     }
   },
   components: {
@@ -28,11 +28,13 @@ export default {
     for (let i of reactionTimeArr) {
       res += i
     }
-    this.text = `${res / reactionTimeArr.length}ms`
+    this.result = res / reactionTimeArr.length
   },
   methods: {
-    saveScore() {
-      this.again()
+    async saveScore() {
+      const score = this.result
+      const res = await this.$store.dispatch('saveScore', score)
+      if (res.code === 0) this.again()
     },
     again() {
       this.$parent.$parent.componentName = ''

@@ -32,7 +32,7 @@ export default {
       chartOptions,
       componentName: '',
       reactionTime: 0,
-      count: 0,
+      count: 4,
       reactionTimeArr: []
     }
   },
