@@ -8,12 +8,12 @@
 5. 禁止采用拼音命名
 
 ## ✨新增游戏/测试
-1. 打开[首页测试列表信息控制](/src/views/index/config/data.js)
-2. 给新游戏选个心怡的[icon](/src/assets/js/icon-name.js)（请使用ElementUI中的icon）
+1. 打开[首页测试列表信息控制](/frontend/src/views/index/config/data.js)
+2. 给新游戏选个心怡的[icon](/frontend/src/assets/js/icon-name.js)（请使用ElementUI中的icon）
 3. 无需配置路由模块，首页会自动生成一个对应的游戏入口
 4. 按[页面模块目录](#页面模块目录结构)编写代码
 5. 编写细则可参阅[开发细则](./dev-game-detail.md)
-6. 请不要忘记在[仪表盘](/src/views/dashboard/detail/game-record/)新增对应的游戏记录组件（命名务必保持一致才会自动生成路由）
+6. 请不要忘记在[仪表盘](/frontend/src/views/dashboard/detail/game-record/)新增对应的游戏记录组件（命名务必保持一致才会自动生成路由）
 
 ## 🥓目录结构
 
