@@ -11,7 +11,7 @@
             </p>
           </div>
         </el-col>
-        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" v-loading="loading">
           <div class="item">
             <h4>统计数据</h4>
             <div id="myChart" style="height: 300px; width: 100%;"></div>
@@ -25,6 +25,11 @@
 <script>
 import { getGameId } from '@/utils/getGameId'
 export default {
+  data() {
+    return {
+      loading: false
+    }
+  },
   props: {
     // 图标配置项
     chartOptions: Object,
@@ -44,21 +49,21 @@ export default {
     },
     async getChart(chartOptions, gte, lte) {
       const gameId = getGameId()
+      this.loading = true
       const res = await this.$api.get('scores/getChartData', { gameId, lte, gte })
-      // 对无对应X轴键值的数据做补零处理
-      const keys = chartOptions.xAxis.data
-      const yAxis = []
-      for (let i in keys) {
-        for (let j in res.data) {
-          if (keys[i] == res.data[j]?._id) yAxis.push(res.data[j].count)
+      this.loading = false
+      if (res.code === 0) {
+        // 对无对应X轴键值的数据做补零处理
+        const keys = chartOptions.xAxis.data
+        const yAxis = []
+        for (let i in keys) {
+          for (let j in res.data) {
+            if (keys[i] == res.data[j]?._id) yAxis.push(res.data[j].count)
+          }
+          if (!yAxis[i]) yAxis.push(0)
         }
-        if (!yAxis[i]) yAxis.push(0)
+        this.$set(chartOptions.series[0], 'data', yAxis)
       }
-
-      // keys.map(item => {
-      //   res.data[item]?._id
-      // })
-      this.$set(chartOptions.series[0], 'data', yAxis)
       this.draw()
     }
   }

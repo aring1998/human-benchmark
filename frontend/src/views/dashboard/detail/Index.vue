@@ -11,10 +11,10 @@
       </span>
     </div>
     <div class="card hide-on-mob">
-      <record-table :tableData="tableData" />
+      <record-table :tableData="tableData" v-loading="loading" />
     </div>
     <div class="card hide-on-pc">
-      <record-list :tableData="tableData" />
+      <record-list :tableData="tableData" v-loading="loading" />
     </div>
   </div>
 </template>
@@ -27,7 +27,8 @@ import { gameList } from '../../index/config/data'
 export default {
   data() {
     return {
-      tableData
+      tableData,
+      loading: false
     }
   },
   components: {
@@ -35,13 +36,15 @@ export default {
     RecordList
   },
   created() {
-    this.getBestScore()
+    if (this.$store.state.userInfo.token) this.getBestScore()
   },
   methods: {
     async getBestScore() {
+      this.loading = true
       const res = await this.$api.get('scores/getBestScore', {
         gameCount: 13
       })
+      this.loading = false
       if (res.code === 0) {
         const data = res.data.map(item => {
           let score
