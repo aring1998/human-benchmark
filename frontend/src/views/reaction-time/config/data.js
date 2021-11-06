@@ -1,8 +1,9 @@
+import { newArray} from "@/utils/index"
+
 export const chartOptions = {
   xAxis: {
     type: 'category',
-    data: ['0ms', '25ms', '50ms', '75ms', '100ms', '125ms', '150ms', '175ms', '200ms', '225ms', '250ms',
-      '275ms', '300ms', '325ms', '350ms', '375ms', '400ms', '425ms', '450ms', '475ms', '500ms']
+    data: newArray(0, 530)
   },
   yAxis: {
     type: 'value'

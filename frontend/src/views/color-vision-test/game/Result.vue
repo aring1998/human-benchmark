@@ -17,8 +17,10 @@ export default {
     GameBtn
   },
   methods: {
-    saveScore() {
-      this.again()
+    async saveScore() {
+      const score = this.$parent.$parent.level
+      const res = await this.$store.dispatch('saveScore', score)
+      if (res.code === 0) this.again()
     },
     again() {
       this.$parent.$parent.componentName = ''

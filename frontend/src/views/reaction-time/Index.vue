@@ -1,6 +1,6 @@
 <template>
   <div class="reaction-time pages">
-    <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
+    <base-layout :chartOptions="chartOptions" :aboutText="aboutText" ref="baseLayout">
       <game-intro 
         slot="wrap"
         title="反应时间"
@@ -44,6 +44,9 @@ export default {
     Result,
     TooFast,
     Wait
+  },
+  mounted() {
+    this.$refs.baseLayout.getChart(this.chartOptions)
   }
 }
 </script>

@@ -30,3 +30,12 @@ export const getFormKeys = formOptions => {
   })
   return res
 }
+
+// 设定区间为 min ~ max 的数组
+export const newArray = (min, max) => {
+  const data = Array.from(new Array(max + 1).keys())
+  for (let i = 0; i < min; i++) {
+    data.shift()
+  }
+  return data
+}

@@ -1,6 +1,6 @@
 <template>
   <div class="pages">
-    <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
+    <base-layout :chartOptions="chartOptions" :aboutText="aboutText" ref="baseLayout">
       <game-intro 
         slot="wrap"
         title="数字记忆"
@@ -40,6 +40,9 @@ export default {
     Show,
     Input,
     Result
+  },
+  mounted() {
+    this.$refs.baseLayout.getChart(this.chartOptions, 3, 20)
   }
 }
 </script>

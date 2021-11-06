@@ -12,10 +12,9 @@ const findUserAllInfo = async (data) => {
   return res?._doc
 }
 
-const addUser = ({ username, password }) => {
+const addUser = (data) => {
   const user = new Users({
-    username,
-    password,
+    ...data,
     token: uuid.v4()
   })
   return user.save()

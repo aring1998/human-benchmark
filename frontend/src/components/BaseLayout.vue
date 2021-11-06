@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { getGameId } from '@/utils/getGameId'
 export default {
   props: {
     // 图标配置项
@@ -33,9 +34,6 @@ export default {
       default: ''
     }
   },
-  mounted() {
-    this.draw()
-  },
   methods: {
     draw() {
       // 初始化echarts实例
@@ -43,6 +41,25 @@ export default {
       // 防止越界，重绘echarts（例如屏幕缩小，图标随屏幕适应）
       window.onresize = myChart.resize
       myChart.setOption(this.chartOptions) //设置option
+    },
+    async getChart(chartOptions, gte, lte) {
+      const gameId = getGameId()
+      const res = await this.$api.get('scores/getChartData', { gameId, lte, gte })
+      // 对无对应X轴键值的数据做补零处理
+      const keys = chartOptions.xAxis.data
+      const yAxis = []
+      for (let i in keys) {
+        for (let j in res.data) {
+          if (keys[i] == res.data[j]?._id) yAxis.push(res.data[j].count)
+        }
+        if (!yAxis[i]) yAxis.push(0)
+      }
+
+      // keys.map(item => {
+      //   res.data[item]?._id
+      // })
+      this.$set(chartOptions.series[0], 'data', yAxis)
+      this.draw()
     }
   }
 }

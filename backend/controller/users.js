@@ -1,4 +1,3 @@
-const { Users } = require('../db')
 const usersModel = require('../models/users')
 const { suc, fail } = require('../utils/render')
 
@@ -10,7 +9,7 @@ const register = async (req, res, next) => {
 
   // 判断是否存在同用户名
   const userInfo = await usersModel.findUser({ username })
-  if (userInfo) return fail(res, '已存在该用户')
+  if (userInfo) return fail(res, '该用户名已被注册')
 
   const data = await usersModel.addUser({
     username,

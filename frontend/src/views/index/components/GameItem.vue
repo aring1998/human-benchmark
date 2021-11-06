@@ -24,7 +24,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .game-item {
   display: flex;
   flex-flow: column nowrap;

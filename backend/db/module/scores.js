@@ -2,8 +2,8 @@ const mongoose = require('mongoose')
 
 const scoresSchema = mongoose.Schema({
   userId: String,
-  gameId: String,
-  score: String,
+  gameId: Number,
+  score: Number,
   updated: {
     type: Number,
     default: Date.now()

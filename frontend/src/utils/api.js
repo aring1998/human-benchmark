@@ -1,11 +1,11 @@
 import axios from 'axios'
 import store from '@/store'
-import { Message } from 'element-ui'
+import { Message, Loading } from 'element-ui'
 
 // 创建axios实例
 const instance = axios.create({
   baseURL: 'http://localhost:3000/api/', // 测试环境 
-  // baseURL: 'http://81.68.189.158:27017/api/', // 正式环境
+  // baseURL: 'http://81.68.189.158:3000/api/', // 正式环境
   timeout: 30000,
   validateStatus: status => {
     // 允许返回所有状态码，不会遇到错误就停止
@@ -13,8 +13,10 @@ const instance = axios.create({
   }
 })
 
+let loading
 // 请求拦截
 instance.interceptors.request.use(config => {
+  loading = Loading.service()
   config.headers.Authorization = `${store.state.userInfo.token}`
   return config
 }), err => {
@@ -22,9 +24,12 @@ instance.interceptors.request.use(config => {
 }
 // 响应拦截
 instance.interceptors.response.use(res => {
-  if (res.status !== 200) Message.error(`网络请求错误，错误：${res.statusText}`)
+  loading.close()
+  if (res.status !== 200) return Message.error(`网络请求错误，错误：${res.statusText}`)
   if (res.data.code !== 0) Message.error(res.data.message)
-  else Message.success(res.data.message)
+  else {
+    if (res.data.message) Message.success(res.data.message)
+  }
   return res.data  // 配置只返回data
 }), err => {
   console.log(err)
@@ -39,6 +44,7 @@ export const api = {
         resolve(res)
       })
     } catch (err) {
+      loading.close()
       console.log(err)
     }
   },
@@ -53,6 +59,7 @@ export const api = {
         }
       })
     } catch (err) {
+      loading.close()
       console.log(err)
     }
   }

@@ -7,6 +7,10 @@
     "front": "cd ./frontend && npm run dev",
     "back": "cd ./backend && npm run dev"
   },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0"
+  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"

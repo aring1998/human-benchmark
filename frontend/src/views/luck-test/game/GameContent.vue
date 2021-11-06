@@ -61,7 +61,7 @@ export default {
         this.clickList.forEach(value => {
           score += cardOptions[value].score
         })
-        this.$parent.$parent.percentile = `${(score / 50 * 100).toFixed(1)}%`
+        this.$parent.$parent.percentile = (score / 50 * 100).toFixed(1)
         setTimeout(() => {
           this.$parent.$parent.componentName = 'Result'
         }, 2000)

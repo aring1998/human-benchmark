@@ -9,7 +9,9 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, 'connection error:'))
 
 const Users = require('./module/users')
+const Scores = require('./module/scores')
 
 module.exports = {
-  Users
+  Users,
+  Scores
 }

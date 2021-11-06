@@ -30,12 +30,14 @@ export default {
       this.$parent.$parent.level++
       this.$parent.$parent.componentName = 'Show'
     },
-    saveScore() {
-      // this.again()
+    async saveScore() {
+      const score = this.$parent.$parent.level
+      const res = await this.$store.dispatch('saveScore', score)
+      if (res.code === 0) this.again()
     },
     again() {
       this.resetText()
-      this.$parent.$parent.level = 1
+      this.$parent.$parent.level = 3
       this.$parent.$parent.componentName = ''
     },
     resetText() {

@@ -26,8 +26,10 @@ export default {
       }
       this.$parent.$parent.componentName = 'GameContent'
     },
-    saveScore() {
-      this.again()
+    async saveScore() {
+      const score = this.$parent.$parent.level
+      const res = await this.$store.dispatch('saveScore', score)
+      if (res.code === 0) this.again()
     },
     again() {
       this.$parent.$parent.level = 4

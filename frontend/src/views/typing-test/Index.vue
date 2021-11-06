@@ -1,6 +1,6 @@
 <template>
   <div class="pages">
-    <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
+    <base-layout :chartOptions="chartOptions" :aboutText="aboutText" ref="baseLayout">
       <component
         slot="wrap"
         :is="componentName"
@@ -29,6 +29,9 @@ export default {
     GameIntro,
     GameContent,
     Result
+  },
+  mounted() {
+    this.$refs.baseLayout.getChart(this.chartOptions)
   }
 }
 </script>
