@@ -10,9 +10,6 @@ export default {
   components: {
     AccountCard
   },
-  mounted() {
-    this.$message.error('功能还未开放哦~请不要浪费时间在此啦~')
-  }
 }
 </script>
 
