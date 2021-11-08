@@ -28,7 +28,7 @@ export default {
     for (let i of reactionTimeArr) {
       res += i
     }
-    this.result = res / reactionTimeArr.length
+    this.result = Math.round(res / reactionTimeArr.length)
   },
   methods: {
     async saveScore() {

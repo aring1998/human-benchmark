@@ -3,6 +3,7 @@ const { Scores } = require('../db/index')
 const addScore = async (data) => {
   const score = new Scores({
     ...data,
+    created: Date.now()
   })
   return score.save()
 }

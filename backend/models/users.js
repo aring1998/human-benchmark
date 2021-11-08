@@ -15,7 +15,8 @@ const findUserAllInfo = async (data) => {
 const addUser = (data) => {
   const user = new Users({
     ...data,
-    token: uuid.v4()
+    token: uuid.v4(),
+    created: Date.now()
   })
   return user.save()
 }

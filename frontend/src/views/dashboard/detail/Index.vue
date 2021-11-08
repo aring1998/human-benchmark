@@ -36,7 +36,7 @@ export default {
     RecordList
   },
   created() {
-    if (this.$store.state.userInfo.token) this.getBestScore()
+    if (this.$store.state.userInfo.username) this.getBestScore()
   },
   methods: {
     async getBestScore() {

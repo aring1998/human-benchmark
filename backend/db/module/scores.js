@@ -4,6 +4,7 @@ const scoresSchema = mongoose.Schema({
   userId: String,
   gameId: Number,
   score: Number,
+  created: Number,
   updated: {
     type: Number,
     default: Date.now()

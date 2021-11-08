@@ -21,7 +21,7 @@ export default {
     GameWrap
   },
   mounted() {
-    this.waitTime = (Math.random() * 5 + 3) * 1000  // 等待时间
+    this.waitTime = (Math.random() * 5 + 2) * 1000  // 等待时间
     this.waitGreen = setTimeout(() => {
       this.$parent.$parent.componentName = 'Click'
     }, this.waitTime)

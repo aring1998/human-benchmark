@@ -9,6 +9,7 @@ const usersSchema = mongoose.Schema({
   password: String,
   email: String,
   token: String,
+  created: Number,
   updated: {
     type: Number,
     default: Date.now()
