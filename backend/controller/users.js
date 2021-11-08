@@ -32,7 +32,7 @@ const login = async (req, res, next) => {
 
   const data = await usersModel.findUser({ username, password })
   if (!data) return fail(res, '密码错误')
-  suc(res, data, '登录成功！')
+  suc(res, data, '登录成功')
 }
 
 /**
@@ -49,20 +49,21 @@ const getInfoByToken = async (req, res, next) => {
 /**
  * 修改密码
  */
-const updatePassword = async (req, res, next) => {
+const changePassword = async (req, res, next) => {
   const token = req.headers.authorization
   const { oldPassword, newPassword } = req.body
   const userInfo = await usersModel.findUserAllInfo({ token })
   if (!userInfo) return fail(res, '登录状态有误，请重新登录')
 
-  if (oldPassword !== newPassword) return fail(res, '原密码错误')
+  if (oldPassword !== userInfo.password) return fail(res, '原密码错误')
   const data = await usersModel.updateUser({ token }, { password: newPassword })
-  suc(res, data, '修改密码成功')
+  usersModel.updateToken()
+  suc(res, data, '修改密码成功，请重新登录')
 }
 
 module.exports = {
   register,
   login,
   getInfoByToken,
-  updatePassword
+  changePassword
 }

@@ -1,0 +1,32 @@
+export const formOptions = [
+  {
+    label: '旧密码',
+    prop: 'oldPassword',
+    placeholder: '请输入你刚刚收到的验证码',
+    showPassword: true
+  },
+  {
+    label: '新密码',
+    prop: 'newPassword',
+    placeholder: '请输入您的新密码',
+    showPassword: true
+  },
+  {
+    label: '确认密码',
+    prop: 'checkPassword',
+    placeholder: '请再次输入密码',
+    showPassword: true
+  }
+]
+
+export const rules =  {
+  oldPassword: [
+    { required: true, message: '请输入验证码', trigger: 'blur' },
+    { min: 6, max: 6, message: '请输入正确的验证码', trigger: 'blur' }
+  ],
+  newPassword: [
+    { required: true, message: '请输入密码', trigger: 'blur' },
+    { min: 6, max: 32, message: '长度在 6 到 32 个字符', trigger: 'blur' }
+  ],
+  checkPassword: [{ required: true, message: '请再次输入密码', trigger: 'blur' }]
+}

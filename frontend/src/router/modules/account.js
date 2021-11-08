@@ -16,6 +16,10 @@ const accountList = [
     title: '忘记密码'
   },
   {
+    path: 'change-password',
+    title: '修改密码'
+  },
+  {
     path: 'opinion',
     title: '意见反馈'
   }
@@ -32,6 +36,12 @@ export const accountRoutes = accountList.map(item => {
       if (to.path === '/account/login' || to.path === '/account/register') {
         if (store.state.userInfo.username) {
           Message.error('请先退出登录')
+          next('/index')
+        }
+      }
+      if (to.path === '/account/change-password') {
+        if (!store.state.userInfo.username) {
+          Message.error('请先登录')
           next('/index')
         }
       }
