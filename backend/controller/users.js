@@ -5,13 +5,17 @@ const { suc, fail } = require('../utils/render')
  * 注册
  */
 const register = async (req, res, next) => {
-  const { username, password } = req.body
+  const { email, username, password } = req.body
 
   // 判断是否存在同用户名
   const userInfo = await usersModel.findUser({ username })
   if (userInfo) return fail(res, '该用户名已被注册')
 
+  const emailInfo = await usersModel.findUser({ username })
+  if (emailInfo) return fail(res, '该邮箱已被使用')
+
   const data = await usersModel.addUser({
+    email,
     username,
     password,
   })
@@ -61,9 +65,25 @@ const changePassword = async (req, res, next) => {
   suc(res, data, '修改密码成功，请重新登录')
 }
 
+/**
+ * 重置密码
+ */
+const resetPassword = async (req, res, next) => {
+  const { vCode, email, newPassword } = req.body
+  const reg = new RegExp(`${email}`, 'i')
+  const userInfo = await usersModel.findUser({ email: reg })
+  if (!userInfo) return fail(res, '账号信息有误，请联系管理员')
+
+  if (vCode !== userInfo.vCode) return fail(res, '验证码有误')
+  const data = await usersModel.updateUser( { email: reg }, { password: newPassword, vCode: '' })
+  usersModel.updateToken()
+  suc(res, data, '修改密码成功，请重新登录')
+}
+
 module.exports = {
   register,
   login,
   getInfoByToken,
-  changePassword
+  changePassword,
+  resetPassword
 }

@@ -21,11 +21,11 @@ export const formOptions = [
 
 export const rules =  {
   oldPassword: [
-    { required: true, message: '请输入验证码', trigger: 'blur' },
-    { min: 6, max: 6, message: '请输入正确的验证码', trigger: 'blur' }
+    { required: true, message: '请输入旧密码', trigger: 'blur' },
+    { min: 6, max: 32, message: '长度在 6 到 32 个字符', trigger: 'blur' }
   ],
   newPassword: [
-    { required: true, message: '请输入密码', trigger: 'blur' },
+    { required: true, message: '请输入新密码', trigger: 'blur' },
     { min: 6, max: 32, message: '长度在 6 到 32 个字符', trigger: 'blur' }
   ],
   checkPassword: [{ required: true, message: '请再次输入密码', trigger: 'blur' }]

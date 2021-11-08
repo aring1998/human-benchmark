@@ -24,7 +24,6 @@ const addUser = (data) => {
 const updateUser = (query, value) => {
   Users.updateOne(query, value, (err, res) => {
     if (!err) {
-      console.log(res);
       return res
     }
   })

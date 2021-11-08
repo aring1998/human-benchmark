@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     async register() {
-      console.log(this.form)
       const res = await this.$api.post('users/register', {
         ...this.form,
         password: md5(this.form.password)

@@ -7,13 +7,17 @@ const usersSchema = mongoose.Schema({
     unique: true // 唯一值
   },
   password: String,
-  email: String,
+  email: {
+    type: String,
+    unique: true // 唯一值
+  },
   token: String,
   created: Number,
   updated: {
     type: Number,
     default: Date.now()
-  }
+  },
+  vCode: String
 })
 
 const Users = mongoose.model('users', usersSchema)
