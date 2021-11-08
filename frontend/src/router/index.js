@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
 
-import { dashboardRoutes, gameRoutes } from './modules/game-list'
+import { gameRoutes } from './modules/game-list'
 import { accountRoutes } from './modules/account'
 export default new Router({
   routes: [
@@ -30,7 +30,10 @@ export default new Router({
             title: '人类基准测试 - 仪表盘'
           }
         },
-        ...dashboardRoutes
+        {
+          path: 'game-record',
+          component: () => import('@/views/dashboard/detail/components/RecordLayout.vue')
+        }
       ]
     },
     {

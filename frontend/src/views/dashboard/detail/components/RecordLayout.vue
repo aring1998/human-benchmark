@@ -34,7 +34,6 @@
 </template>
 
 <script>
-import { getGameId } from '@/utils/game-config'
 import { gameList } from '@/views/index/config/data'
 import { autoCreateChartOptions } from '@/utils/game-config'
 export default {
@@ -44,20 +43,32 @@ export default {
       percentile: '',
       loading: false,
       allDataOptions: null,
-      userDataOptions: null
+      userDataOptions: null,
+      title: '',
+      unit: ''
     }
   },
-  props: {
-    title: String,
-    unit: String
+  watch: {
+    $route: {
+      handler() {
+        this.init()
+      }
+    }
   },
-  async mounted() {
-    this.loading = true
-    await this.getBestScore()
-    await this.getChart()
-    this.loading = false
+  created() {
+    this.init()
   },
   methods: {
+    async init() {
+      const gameListData = gameList[this.$route.query.gameId - 1]
+      this.title = gameListData.title
+      this.unit = gameListData.unit
+      document.title = `人类基准测试 - 仪表盘 - ${this.title}`
+      this.loading = true
+      await this.getBestScore()
+      await this.getChart()
+      this.loading = false
+    },
     draw() {
       // 初始化echarts实例
       let allDataChart = this.$echarts.init(document.getElementById('allDataChart'))
@@ -70,7 +81,7 @@ export default {
     },
     // 获取最优分数
     async getBestScore() {
-      const gameId = getGameId()
+      const gameId = this.$route.query.gameId
       const res = await this.$api.get('scores/getBestScore', {
         gameId
       })

@@ -5,8 +5,10 @@ import { api } from './api'
 
 // 获取当前游戏ID
 export const getGameId = () => {
+  const routerGameId = router.app._route.query.gameId
+  if (routerGameId) return routerGameId
   for (let i of gameList) {
-    if (i.path === router.app._route.path || `/dashboard${i.path}` === router.app._route.path)
+    if (i.path === router.app._route.path)
       return i.id
   }
 }

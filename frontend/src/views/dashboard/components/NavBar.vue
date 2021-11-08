@@ -3,8 +3,13 @@
     <div class="icon-wrap"
       v-for="(item, index) of gameList"
       :key="index"
-      @click="$router.push(`/dashboard${item.path}`)"
-      :class="{ 'active': $route.path.indexOf(item.path) > 0 }"
+      @click="$router.push({
+        path: '/dashboard/game-record',
+        query: {
+          gameId: item.id
+        }
+      })"
+      :class="{ 'active': $route.query.gameId == item.id }"
     >
       <i :class="item.icon"></i>
     </div>
