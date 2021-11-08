@@ -1,22 +1,3 @@
-import { newArray } from '@/utils/index'
-
-export const chartOptions = {
-  xAxis: {
-    type: 'category',
-    data: newArray(0, 50)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [],
-      type: 'line',
-      smooth: true
-    }
-  ]
-}
-
 export const aboutText = [
   '斯特鲁普效应在心理学中指优势反应对非优势反应的干扰。',
   '例如当测试者被要求回答有颜色意义的字体的颜色时，回答字本身的意义为优势反应，而回答字体颜色为非优势反应。',

@@ -1,22 +1,3 @@
-import { newArray } from '@/utils/index'
-
-export const chartOptions = {
-  xAxis: {
-    type: 'category',
-    data: newArray(3, 30)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [],
-      type: 'line',
-      smooth: true
-    }
-  ]
-}
-
 export const aboutText = [
   '每个级别中，方块会按照顺序闪烁。',
   '结束闪烁后，您需要按照刚刚方块出现的顺序逐个点击方块',

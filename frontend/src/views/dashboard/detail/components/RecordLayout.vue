@@ -15,18 +15,18 @@
       </span>
       </div>
     </div>
-    <div class="card record-info">
+    <div class="card record-info" v-loading="loading">
       <h3>{{ title }}</h3>
       <h2>{{ score || '?' }}</h2>
       <span>{{ unit }}</span>
       <h4>百分之 {{ percentile || '0%' }}</h4>
       <router-link :to="`/${$route.path.split('/')[$route.path.split('/').length - 1]}`"><i class="el-icon-video-play" />开始测试</router-link>
     </div>
-    <div class="card statistical-data">
+    <div class="card statistical-data" v-loading="loading">
       <h2>{{ title }}统计数据</h2>
       <div id="allDataChart" style="height: 300px; width: 100%;"></div>
     </div>
-    <div class="card statistical-data">
+    <div class="card statistical-data" v-loading="loading">
       <h2>您的{{ title }}统计数据</h2>
       <div id="userDataChart" style="height: 300px; width: 100%;"></div>
     </div>
@@ -34,11 +34,14 @@
 </template>
 
 <script>
+import { getGameId } from '@/utils/game-config'
+import { gameList } from '@/views/index/config/data'
 export default {
   data() {
     return {
       score: '',
-      percentile: ''
+      percentile: '',
+      loading: false
     }
   },
   props: {
@@ -47,8 +50,12 @@ export default {
     allDataOptions: Object,
     userDataOptions: Object
   },
-  mounted() {
+  async mounted() {
     this.draw()
+    this.loading = true
+    await this.getBestScore()
+    await this.getChart()
+    this.loading = false
   },
   methods: {
     draw() {
@@ -60,6 +67,38 @@ export default {
       let userDataChart = this.$echarts.init(document.getElementById('allDataChart'))
       window.onresize = userDataChart.resize
       // userDataChart.setOption(this.userDataOptions)
+    },
+    async getBestScore() {
+      const gameId = getGameId()
+      const res = await this.$api.get('scores/getBestScore', {
+        gameId
+      })
+      if (res.code === 0) {
+        if (gameList[gameId - 1].best) {
+          this.score = res.data.maxScore
+          this.percentile = res.data.maxPercentile
+        } else {
+          this.score = res.data.minScore
+          this.percentile = res.data.minPercentile
+        }
+      }
+    },
+    async getChart(chartOptions, gte, lte) {
+      const gameId = getGameId()
+      const res = await this.$api.get('scores/getChartData', { gameId, lte, gte })
+      if (res.code === 0) {
+        // 对无对应X轴键值的数据做补零处理
+        const keys = chartOptions.xAxis.data
+        const yAxis = []
+        for (let i in keys) {
+          for (let j in res.data) {
+            if (keys[i] == res.data[j]?._id) yAxis.push(res.data[j].count)
+          }
+          if (!yAxis[i]) yAxis.push(0)
+        }
+        this.$set(chartOptions.series[0], 'data', yAxis)
+      }
+      this.draw()
     }
   }
 }

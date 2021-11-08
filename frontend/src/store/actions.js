@@ -1,6 +1,6 @@
 import { api } from '@/utils/api'
 import { Message } from 'element-ui'
-import { getGameId } from '@/utils/getGameId'
+import { getGameId } from '@/utils/game-config'
 
 export default {
   async token() {

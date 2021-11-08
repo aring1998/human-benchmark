@@ -34,8 +34,26 @@ export const getFormKeys = formOptions => {
 // 设定区间为 min ~ max 的数组
 export const newArray = (min, max) => {
   const data = Array.from(new Array(max + 1).keys())
-  for (let i = 0; i < min; i++) {
-    data.shift()
-  }
+  data.slice(0, min)
   return data
+}
+
+// 创建图标配置
+export const createChartOptions = (min, max) => {
+  return {
+    xAxis: {
+      type: 'category',
+      data: newArray(min, max)
+    },
+    yAxis: {
+      type: 'value'
+    },
+    series: [
+      {
+        data: [],
+        type: 'line',
+        smooth: true
+      }
+    ]
+  }
 }

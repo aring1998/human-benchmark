@@ -10,7 +10,7 @@
       chartOptions 图标配置: 传入echart图标相关的配置，一般采用平滑折线图
       aboutText 关于测试文本: 即简单介绍您的测试，写做数组格式，每个逗号用以分段落
      -->
-    <base-layout :chartOptions="chartOptions" :aboutText="aboutText" ref="baseLayout">
+    <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
       <!-- 
         这是游戏第一次打开时展示的界面
           一般情况下点击开始后，隐藏当前GameIntro组件，使用动态组件，即下文v-show部分
@@ -44,13 +44,12 @@ import GameIntro from '@/components/GameIntro.vue'
 import GameContent from './game/GameContent.vue'
 import Result from './game/Result.vue'
 // 引入./config中的配置数据
-import { chartOptions, aboutText } from './config/data'
+import { aboutText } from './config/data'
 
 export default {
   data() {
     return {
       aboutText,
-      chartOptions,
       componentName: '',
       // 接下来此处一般存储游戏公用数据部分，如；level, score等
       level: 1

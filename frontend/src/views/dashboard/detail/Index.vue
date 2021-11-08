@@ -35,10 +35,11 @@ export default {
     RecordTable,
     RecordList
   },
-  created() {
+  mounted() {
     if (this.$store.state.userInfo.username) this.getBestScore()
   },
   methods: {
+    // 获取最优分数
     async getBestScore() {
       this.loading = true
       const res = await this.$api.get('scores/getBestScore', {
@@ -47,8 +48,7 @@ export default {
       this.loading = false
       if (res.code === 0) {
         const data = res.data.map(item => {
-          let score
-          let percentile
+          let score, percentile
           if (gameList[item.gameId - 1].best) {
             score = item.maxScore || '?'
             percentile = item.maxPercentile || 0

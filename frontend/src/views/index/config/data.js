@@ -7,7 +7,8 @@ export const gameList = [
     title: '反应时间',
     intro: '测试您的视觉反应。',
     path: '/reaction-time',
-    best: 0  // 最佳成绩取最大值/最小值，0 取最小值，1取最大值 
+    best: 0,  // 最佳成绩取最大值/最小值，0 取最小值，1取最大值 
+    scoreRange: [100, 800] // 成绩取值范围
   },
   {
     id: 2,
@@ -15,7 +16,8 @@ export const gameList = [
     title: '数字记忆',
     intro: '记住您看到的数字。',
     path: '/number-memory',
-    best: 1
+    best: 1,
+    scoreRange: [3, 30]
   },
   {
     id: 3,
@@ -23,7 +25,8 @@ export const gameList = [
     title: '黑猩猩测试',
     intro: '您比黑猩猩聪明吗？',
     path: '/chimp-test',
-    best: 1
+    best: 1,
+    scoreRange: [4, 40]
   },
   {
     id: 4,
@@ -31,7 +34,8 @@ export const gameList = [
     title: '打字测试',
     intro: '您每分钟可以打多少字？',
     path: '/typing-test',
-    best: 1
+    best: 1,
+    scoreRange: [30, 300]
   },
   {
     id: 5,
@@ -39,7 +43,8 @@ export const gameList = [
     title: '视觉记忆',
     intro: '记住越来越多的方块。',
     path: '/visual-memory',
-    best: 1
+    best: 1,
+    scoreRange: [1, 30]
   },
   {
     id: 6,
@@ -47,7 +52,8 @@ export const gameList = [
     title: '瞄准测试',
     intro: '您能多快击中目标？',
     path: '/aim-test',
-    best: 0
+    best: 0,
+    scoreRange: [300, 1000]
   },
   {
     id: 7,
@@ -55,7 +61,8 @@ export const gameList = [
     title: '色觉测试',
     intro: '快速找出不同的颜色。',
     path: '/color-vision-test',
-    best: 1
+    best: 1,
+    scoreRange: [1, 100]
   },
   {
     id: 8,
@@ -63,7 +70,8 @@ export const gameList = [
     title: '斯特鲁普',
     intro: '判断颜色是否正确。',
     path: '/stroop',
-    best: 1
+    best: 1,
+    scoreRange: [0, 100]
   },
   {
     id: 9,
@@ -71,7 +79,8 @@ export const gameList = [
     title: '词汇记忆',
     intro: '尽可能记住更多的词汇。',
     path: '/verbal-memory',
-    best: 1
+    best: 1,
+    scoreRange: [1, 200]
   },
   {
     id: 10,
@@ -79,7 +88,8 @@ export const gameList = [
     title: '序列记忆',
     intro: '记住越来越长的序列。',
     path: '/sequential-memory',
-    best: 1
+    best: 1,
+    scoreRange: [1, 30]
   },
   {
     id: 11,
@@ -87,7 +97,8 @@ export const gameList = [
     title: '运气测试',
     intro: '快乐的抽卡时刻。',
     path: '/luck-test',
-    best: 1
+    best: 1,
+    scoreRange: [1, 100]
   },
   {
     id: 12,
@@ -95,6 +106,7 @@ export const gameList = [
     title: '手速测试',
     intro: '您的手速如何？',
     path: '/hand-speed-test',
-    best: 1
+    best: 1,
+    scoreRange: [10, 100]
   }
 ]

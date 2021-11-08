@@ -1,22 +1,3 @@
-import { newArray } from "@/utils"
-
-export const chartOptions = {
-  xAxis: {
-    type: 'category',
-    data: newArray(4, 30)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [],
-      type: 'line',
-      smooth: true
-    }
-  ]
-}
-
 export const aboutText = [
   '这是一项对工作记忆的测试，这项研究因发现黑猩猩在执行此测试时胜过人类而闻名。',
   '在这项研究中，有些黑猩猩能够在90%的时间内记住9位数。',

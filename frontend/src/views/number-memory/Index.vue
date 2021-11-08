@@ -1,6 +1,6 @@
 <template>
   <div class="pages">
-    <base-layout :chartOptions="chartOptions" :aboutText="aboutText" ref="baseLayout">
+    <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
       <game-intro 
         slot="wrap"
         title="数字记忆"
@@ -22,12 +22,11 @@ import GameIntro from '@/components/GameIntro.vue'
 import Show from './game/Show.vue'
 import Input from './game/Input.vue'
 import Result from './game/Result.vue'
-import { chartOptions, aboutText } from './config/data'
+import { aboutText } from './config/data'
 export default {
   data() {
     return {
       aboutText,
-      chartOptions,
       componentName: '',
       level: 3,
       numberText: '',
@@ -40,9 +39,6 @@ export default {
     Show,
     Input,
     Result
-  },
-  mounted() {
-    this.$refs.baseLayout.getChart(this.chartOptions, 3, 20)
   }
 }
 </script>

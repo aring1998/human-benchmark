@@ -1,22 +1,3 @@
-import { newArray } from "@/utils"
-
-export const chartOptions = {
-  xAxis: {
-    type: 'category',
-    data: newArray(100, 800)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [],
-      type: 'line',
-      smooth: true
-    }
-  ]
-}
-
 export const aboutText = [
   '该测试考验反应能力和手眼协调能力。',
   '请尽可能快速精确地点击目标。',

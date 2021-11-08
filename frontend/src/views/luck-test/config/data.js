@@ -1,22 +1,3 @@
-import { newArray } from "@/utils"
-
-export const chartOptions = {
-  xAxis: {
-    type: 'category',
-    data: newArray(0, 100)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [],
-      type: 'line',
-      smooth: true
-    }
-  ]
-}
-
 export const aboutText = [
   '这是一个纯娱乐性质的测试。',
   '每回合您将从5张卡牌中抽出一张，在5次抽取后我们将计算您抽中优质卡牌的比重。',

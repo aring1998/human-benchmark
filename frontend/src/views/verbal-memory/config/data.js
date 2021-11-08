@@ -1,21 +1,3 @@
-import { newArray } from '@/utils/index'
-export const chartOptions = {
-  xAxis: {
-    type: 'category',
-    data: newArray(0, 110)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [],
-      type: 'line',
-      smooth: true
-    }
-  ]
-}
-
 export const aboutText = [
   '该测试考验您一次可以在短期记忆中保留多少单词。',
   '您需要记住的单词数量将会不断增加，直到您再也无法将它们记在脑海中。',

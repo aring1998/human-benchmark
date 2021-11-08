@@ -1,22 +1,3 @@
-import { newArray } from "@/utils/index"
-
-export const chartOptions = {
-  xAxis: {
-    type: 'category',
-    data: newArray(0, 80)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [],
-      type: 'line',
-      smooth: true
-    }
-  ]
-}
-
 export const aboutText = [
   '该测试是对于颜色敏感度的考验。',
   '每个级别中，都会有一个方块与其他的方块不同，尝试找到并点击它！',

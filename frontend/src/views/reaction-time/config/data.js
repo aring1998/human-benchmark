@@ -1,22 +1,3 @@
-import { newArray} from "@/utils/index"
-
-export const chartOptions = {
-  xAxis: {
-    type: 'category',
-    data: newArray(0, 530)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [],
-      type: 'line',
-      smooth: true
-    }
-  ]
-}
-
 export const aboutText = [
   '这是一个测试反应时间的简单工具。',
   '除了测试您的反应时间以外，此测试还受计算机和显示器延迟的影响，使用快速的计算机和低延迟/高帧率的显示器能有效提高您的分数。',

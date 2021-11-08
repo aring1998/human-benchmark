@@ -1,22 +1,3 @@
-import { newArray } from "@/utils"
-
-export const chartOptions = {
-  xAxis: {
-    type: 'category',
-    data: newArray(1, 30)
-  },
-  yAxis: {
-    type: 'value'
-  },
-  series: [
-    {
-      data: [],
-      type: 'line',
-      smooth: true
-    }
-  ]
-}
-
 export const aboutText = [
   '该测试是对于视觉敏感度的考验。',
   '每个级别中，一些方块会闪烁白色。记住它们，并在方块重置后点击它们！',

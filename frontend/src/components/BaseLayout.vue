@@ -23,21 +23,23 @@
 </template>
 
 <script>
-import { getGameId } from '@/utils/getGameId'
+import { autoCreateChartOptions } from '@/utils/game-config'
 export default {
   data() {
     return {
+      chartOptions: null,
       loading: false
     }
   },
   props: {
-    // 图标配置项
-    chartOptions: Object,
     // 关于的文本，写作数组以分段
     aboutText: {
       type: Array,
       default: ''
     }
+  },
+  mounted() {
+    this.getChart()
   },
   methods: {
     draw() {
@@ -47,23 +49,11 @@ export default {
       window.onresize = myChart.resize
       myChart.setOption(this.chartOptions) //设置option
     },
-    async getChart(chartOptions, gte, lte) {
-      const gameId = getGameId()
+    // 获取图表数据
+    async getChart() {
       this.loading = true
-      const res = await this.$api.get('scores/getChartData', { gameId, lte, gte })
+      this.chartOptions = await autoCreateChartOptions()
       this.loading = false
-      if (res.code === 0) {
-        // 对无对应X轴键值的数据做补零处理
-        const keys = chartOptions.xAxis.data
-        const yAxis = []
-        for (let i in keys) {
-          for (let j in res.data) {
-            if (keys[i] == res.data[j]?._id) yAxis.push(res.data[j].count)
-          }
-          if (!yAxis[i]) yAxis.push(0)
-        }
-        this.$set(chartOptions.series[0], 'data', yAxis)
-      }
       this.draw()
     }
   }
