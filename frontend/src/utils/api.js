@@ -47,12 +47,8 @@ export const api = {
   async post(url, data) {
     try {
       let res = await instance.post(url, data)
-      return new Promise((resolve, reject) => {
-        if (res.code === 0) {
-          resolve(res)
-        } else {
-          reject(res)
-        }
+      return new Promise(resolve => {
+        resolve(res)
       })
     } catch (err) {
       console.log(err)

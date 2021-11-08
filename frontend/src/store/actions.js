@@ -5,9 +5,8 @@ import { getGameId } from '@/utils/getGameId'
 export default {
   async token() {
     const res = await api.post('users/token')
-    if (res.code === 0) {
-      this.state.userInfo = res.data
-    }
+    if (res.code === 0) this.state.userInfo = res.data
+    else window.localStorage.removeItem('token')
   },
   // 保存分数
   saveScore(_, score) {
