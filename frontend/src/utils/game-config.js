@@ -26,7 +26,11 @@ export const autoCreateChartOptions = async (userId) => {
     const yAxis = []
     for (let i in keys) {
       for (let j in res.data) {
-        if (keys[i] == res.data[j]?._id) yAxis.push(res.data[j].count)
+        if (res.data[i]?._id) break
+        if (keys[i] == res.data[j]?._id){
+          yAxis.push(res.data[j].count)
+          break
+        }
       }
       if (!yAxis[i]) yAxis.push(0)
     }

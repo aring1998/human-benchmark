@@ -1,5 +1,5 @@
 <template>
-  <account-card title="意见反馈" tips="为了更好的用户体验，请您提出宝贵意见">
+  <account-card title="意见反馈" tips="为了更好的用户体验，请您提出宝贵意见" v-loading="loading">
     <account-form
       :formOptions="formOptions"
       :form="form"
@@ -20,6 +20,7 @@ export default {
     return {
       formOptions,
       rules,
+      loading: false,
       form: getFormKeys(formOptions)
     }
   },
@@ -28,8 +29,17 @@ export default {
     AccountForm
   },
   methods: {
-    submit() {
-      console.log(this.form)
+    async submit() {
+      this.loading = true
+      const res = await this.$api.post('mailer/feedback', {
+        ...this.form
+      })
+      this.loading = false
+      if (res.code === 0) {
+        for (let key in this.form) {
+          this.form[key] = ''
+        }
+      }
     }
   }
 }
