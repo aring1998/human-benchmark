@@ -3,7 +3,11 @@
   "version": "0.1.0",
   "private": false,
   "scripts": {
-    "dev": "nodemon ./bin/www"
+    "dev": "nodemon ./bin/www",
+    "pm": "pm2 start ./bin/www --name human-benchmark",
+    "pms": "pm2 stop human-benchmark",
+    "pmr": "pm2 restart human-benchmark",
+    "pmd": "pm2 delete human-benchmark"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -14,5 +18,8 @@
     "mongoose": "^6.0.12",
     "morgan": "~1.9.1",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "pm2": "^5.1.2"
   }
 }
