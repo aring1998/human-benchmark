@@ -9,7 +9,6 @@ const { suc, fail } = require('../utils/render')
   const { gameId, score, } = req.body
   const token = req.headers.authorization
   const userInfo = await usersModel.findUser({ token })
-  // if (!userInfo) return fail(res, '请先登录才可以保存分数哦')
 
   const data = await scoresModel.addScore({
     userId: userInfo ? userInfo._id : 0,
@@ -24,8 +23,8 @@ const { suc, fail } = require('../utils/render')
  * 找到对应游戏分数统计数据
  */
 const getChartData = async (req, res, next) => {
-  const { gameId, lte, gte } = req.query
-  const data = await scoresModel.findScoreGroup(+gameId, gte ? Number(gte) : 0, lte ? Number(lte) : 999)
+  const { gameId, userId, lte, gte } = req.query
+  const data = await scoresModel.findScoreGroup(Number(gameId), userId, gte ? Number(gte) : 0, lte ? Number(lte) : 999)
   suc(res, data, '')
 }
 

@@ -9,6 +9,7 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     userInfo: {
+      _id: '',
       username: '',
       token: '' || window.localStorage.getItem('token')
     }

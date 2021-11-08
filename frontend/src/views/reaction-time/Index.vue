@@ -1,6 +1,6 @@
 <template>
   <div class="reaction-time pages">
-    <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
+    <base-layout :aboutText="aboutText">
       <game-intro 
         slot="wrap"
         title="反应时间"

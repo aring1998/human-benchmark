@@ -18,4 +18,5 @@
   - **query** `lte` 获取区间的最小值
   - **query** `gte` 获取区间的最大值
 - **获取用户最佳分数及对应百分位** `get` `/api/scores/getBestScore`
-  - **query** `gameCount` *游戏总量
+  - **query** `gameCount` 游戏总量
+  - **query** `gameId` 游戏Id,如若传该值,则仅返回对应游戏的最佳分数

@@ -12,14 +12,12 @@ export const getGameId = () => {
 }
 
 // 自动创建图表配置
-export const autoCreateChartOptions = async () => {
+export const autoCreateChartOptions = async (userId) => {
   const gameId = getGameId()
-  console.log(gameList[gameId - 1]);
   const range = gameList[gameId - 1].scoreRange
   if (!range) return
   const chartOptions = createChartOptions(range[0], range[1])
-  console.log(range, gameId);
-  const res = await api.get('scores/getChartData', { gameId, gte: range[0], lte: range[1] })
+  const res = await api.get('scores/getChartData', { gameId, userId, gte: range[0], lte: range[1] })
   if (res.code === 0) {
     // 对无对应X轴键值的数据做补零处理
     const keys = chartOptions.xAxis.data

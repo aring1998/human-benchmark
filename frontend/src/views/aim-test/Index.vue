@@ -1,6 +1,6 @@
 <template>
   <div class="aim-test pages">
-    <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
+    <base-layout :aboutText="aboutText">
       <game-intro 
         slot="wrap"
         title="瞄准测试"

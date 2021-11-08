@@ -36,22 +36,22 @@
 <script>
 import { getGameId } from '@/utils/game-config'
 import { gameList } from '@/views/index/config/data'
+import { autoCreateChartOptions } from '@/utils/game-config'
 export default {
   data() {
     return {
       score: '',
       percentile: '',
-      loading: false
+      loading: false,
+      allDataOptions: null,
+      userDataOptions: null
     }
   },
   props: {
     title: String,
-    unit: String,
-    allDataOptions: Object,
-    userDataOptions: Object
+    unit: String
   },
   async mounted() {
-    this.draw()
     this.loading = true
     await this.getBestScore()
     await this.getChart()
@@ -62,12 +62,13 @@ export default {
       // 初始化echarts实例
       let allDataChart = this.$echarts.init(document.getElementById('allDataChart'))
       window.onresize = allDataChart.resize
-      // allDataChart.setOption(this.allDataOptions)
+      allDataChart.setOption(this.allDataOptions)
 
-      let userDataChart = this.$echarts.init(document.getElementById('allDataChart'))
+      let userDataChart = this.$echarts.init(document.getElementById('userDataChart'))
       window.onresize = userDataChart.resize
-      // userDataChart.setOption(this.userDataOptions)
+      userDataChart.setOption(this.userDataOptions)
     },
+    // 获取最优分数
     async getBestScore() {
       const gameId = getGameId()
       const res = await this.$api.get('scores/getBestScore', {
@@ -83,21 +84,9 @@ export default {
         }
       }
     },
-    async getChart(chartOptions, gte, lte) {
-      const gameId = getGameId()
-      const res = await this.$api.get('scores/getChartData', { gameId, lte, gte })
-      if (res.code === 0) {
-        // 对无对应X轴键值的数据做补零处理
-        const keys = chartOptions.xAxis.data
-        const yAxis = []
-        for (let i in keys) {
-          for (let j in res.data) {
-            if (keys[i] == res.data[j]?._id) yAxis.push(res.data[j].count)
-          }
-          if (!yAxis[i]) yAxis.push(0)
-        }
-        this.$set(chartOptions.series[0], 'data', yAxis)
-      }
+    async getChart() {
+      this.allDataOptions = await autoCreateChartOptions()
+      this.userDataOptions = await autoCreateChartOptions(this.$store.state.userInfo._id)
       this.draw()
     }
   }

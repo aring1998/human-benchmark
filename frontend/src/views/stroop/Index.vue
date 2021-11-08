@@ -1,6 +1,6 @@
 <template>
   <div class="pages">
-    <base-layout :chartOptions="chartOptions" :aboutText="aboutText">
+    <base-layout :aboutText="aboutText">
       <game-intro 
         slot="wrap"
         title="斯特鲁普"

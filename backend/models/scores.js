@@ -8,12 +8,12 @@ const addScore = async (data) => {
   return score.save()
 }
 
-const findScoreGroup = async (gameId, gte, lte) => {
-  console.log(gameId, gte, lte);
+const findScoreGroup = async (gameId, userId, gte, lte) => {
   return Scores.aggregate([
     {
       $match: {
         gameId,
+        userId: userId ? userId : /^/,
         score: { $gte: gte, $lte: lte },
       },
     },
@@ -27,7 +27,6 @@ const findScoreGroup = async (gameId, gte, lte) => {
 }
 
 const findBestScore = async (userId, gameId) => {
-  console.log(userId, gameId);
   return Scores.aggregate([
     { $match: { userId, gameId } },
     {

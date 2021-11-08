@@ -7,8 +7,9 @@ export const gameList = [
     title: '反应时间',
     intro: '测试您的视觉反应。',
     path: '/reaction-time',
-    best: 0,  // 最佳成绩取最大值/最小值，0 取最小值，1取最大值 
-    scoreRange: [100, 800] // 成绩取值范围
+    best: 0, // 最佳成绩取最大值/最小值，0 取最小值，1取最大值 
+    scoreRange: [100, 800], // 成绩取值范围
+    unit: 'ms'
   },
   {
     id: 2,
@@ -17,7 +18,8 @@ export const gameList = [
     intro: '记住您看到的数字。',
     path: '/number-memory',
     best: 1,
-    scoreRange: [3, 30]
+    scoreRange: [3, 30],
+    unit: '级'
   },
   {
     id: 3,
@@ -26,7 +28,8 @@ export const gameList = [
     intro: '您比黑猩猩聪明吗？',
     path: '/chimp-test',
     best: 1,
-    scoreRange: [4, 40]
+    scoreRange: [4, 40],
+    unit: '级'
   },
   {
     id: 4,
@@ -35,7 +38,8 @@ export const gameList = [
     intro: '您每分钟可以打多少字？',
     path: '/typing-test',
     best: 1,
-    scoreRange: [30, 300]
+    scoreRange: [30, 300],
+    unit: '个'
   },
   {
     id: 5,
@@ -44,7 +48,8 @@ export const gameList = [
     intro: '记住越来越多的方块。',
     path: '/visual-memory',
     best: 1,
-    scoreRange: [1, 30]
+    scoreRange: [1, 30],
+    unit: '级'
   },
   {
     id: 6,
@@ -53,7 +58,8 @@ export const gameList = [
     intro: '您能多快击中目标？',
     path: '/aim-test',
     best: 0,
-    scoreRange: [300, 1000]
+    scoreRange: [300, 1000],
+    unit: 'ms'
   },
   {
     id: 7,
@@ -62,7 +68,8 @@ export const gameList = [
     intro: '快速找出不同的颜色。',
     path: '/color-vision-test',
     best: 1,
-    scoreRange: [1, 100]
+    scoreRange: [1, 100],
+    unit: '级'
   },
   {
     id: 8,
@@ -71,7 +78,8 @@ export const gameList = [
     intro: '判断颜色是否正确。',
     path: '/stroop',
     best: 1,
-    scoreRange: [0, 100]
+    scoreRange: [0, 100],
+    unit: '分'
   },
   {
     id: 9,
@@ -80,7 +88,8 @@ export const gameList = [
     intro: '尽可能记住更多的词汇。',
     path: '/verbal-memory',
     best: 1,
-    scoreRange: [1, 200]
+    scoreRange: [1, 200],
+    unit: '个'
   },
   {
     id: 10,
@@ -89,7 +98,8 @@ export const gameList = [
     intro: '记住越来越长的序列。',
     path: '/sequential-memory',
     best: 1,
-    scoreRange: [1, 30]
+    scoreRange: [1, 30],
+    unit: '级'
   },
   {
     id: 11,
@@ -98,7 +108,8 @@ export const gameList = [
     intro: '快乐的抽卡时刻。',
     path: '/luck-test',
     best: 1,
-    scoreRange: [1, 100]
+    scoreRange: [1, 100],
+    unit: '百分位'
   },
   {
     id: 12,
@@ -107,6 +118,7 @@ export const gameList = [
     intro: '您的手速如何？',
     path: '/hand-speed-test',
     best: 1,
-    scoreRange: [10, 100]
+    scoreRange: [10, 100],
+    unit: '次'
   }
 ]
