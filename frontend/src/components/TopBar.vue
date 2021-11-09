@@ -10,7 +10,7 @@
         <span :class="{ active: $route.path === '/account/login' }" @click="$router.push('/account/login')">登录</span>
       </div>
       <div class="top-bar-item" v-else>
-        <span :class="{ active: $route.path === '/account/change-password' }" @click="$router.push('/account/change-password')">修改密码</span>
+        <span class="hide-on-mob" :class="{ active: $route.path === '/account/change-password' }" @click="$router.push('/account/change-password')">修改密码</span>
         <span @click="logOut">退出登录</span>
       </div>
     </div>

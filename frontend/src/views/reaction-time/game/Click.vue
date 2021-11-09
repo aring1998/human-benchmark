@@ -1,5 +1,5 @@
 <template>
-  <div @click="click">
+  <div @touchstart="touchstart">
     <game-wrap
       icon="el-icon-more"
       text="点击！"
@@ -26,9 +26,9 @@ export default {
     })
   },
   methods: {
-    click() {
+    touchstart() {
       let reactionTime = new Date().getTime()
-      reactionTime -= this.beginTime + 50
+      reactionTime -= this.beginTime
       this.$parent.$parent.reactionTime = reactionTime
       this.$parent.$parent.reactionTimeArr.push(reactionTime)
       this.$parent.$parent.count++

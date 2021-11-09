@@ -1,5 +1,5 @@
 <template>
-  <div @click="click">
+  <div @touchstart="touchstart">
     <game-wrap
       icon="el-icon-more"
       text="请等待"
@@ -27,7 +27,7 @@ export default {
     }, this.waitTime)
   },
   methods: {
-    click() {
+    touchstart() {
       this.$parent.$parent.componentName = 'TooFast'
       clearTimeout(this.waitGreen)
     }

@@ -1,5 +1,5 @@
 <template>
-  <div @click="click">
+  <div @touchstart="touchstart">
     <game-wrap
       icon="el-icon-warning"
       text="太快了"
@@ -14,7 +14,7 @@ export default {
     GameWrap
   },
   methods: {
-    click() {
+    touchstart() {
       this.$parent.$parent.componentName = 'Wait'
     }
   }
