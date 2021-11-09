@@ -4,7 +4,7 @@
       <div class="info">
         <span>{{ item.title }}</span>
         <router-link :to="item.path"><i class="el-icon-video-play" />开始测试</router-link>
-        <router-link :to="`/dashboard${item.path}`"><i class="el-icon-s-data" />查看纪录</router-link>
+        <router-link :to="`/dashboard/game-record?gameId=${item.id}`"><i class="el-icon-s-data" />查看纪录</router-link>
       </div>
       <div class="record">
         <span>{{ item.score }}</span>

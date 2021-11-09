@@ -12,7 +12,7 @@
           type="primary"
           size="small"
           primary
-          @click="$router.push(`/dashboard${scope.row.path}`)"><i class="el-icon-s-data" />查看纪录</el-button>
+          @click="$router.push(`/dashboard/game-record?gameId=${scope.row.id}`)"><i class="el-icon-s-data" />查看纪录</el-button>
       </template>
     </el-table-column>
     <el-table-column prop="score" label="分数" align="center" min-width="80"></el-table-column>

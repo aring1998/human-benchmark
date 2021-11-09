@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     start() {
-      document.documentElement.scrollTo({ top: 490, behavior: 'smooth' })
+      this.$router.push('/dashboard')
     }
   }
 }
