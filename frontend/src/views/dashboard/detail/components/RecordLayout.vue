@@ -20,7 +20,7 @@
       <h2>{{ score || '?' }}</h2>
       <span>{{ unit }}</span>
       <h4>百分之 {{ percentile || '0%' }}</h4>
-      <router-link :to="`/${$route.path.split('/')[$route.path.split('/').length - 1]}`"><i class="el-icon-video-play" />开始测试</router-link>
+      <router-link :to="startRouter"><i class="el-icon-video-play" />开始测试</router-link>
     </div>
     <div class="card statistical-data" v-loading="loading">
       <h2>{{ title }}统计数据</h2>
@@ -45,7 +45,8 @@ export default {
       allDataOptions: null,
       userDataOptions: null,
       title: '',
-      unit: ''
+      unit: '',
+      startRouter: ''
     }
   },
   watch: {
@@ -64,6 +65,7 @@ export default {
       this.title = gameListData.title
       this.unit = gameListData.unit
       document.title = `人类基准测试 - 仪表盘 - ${this.title}`
+      this.startRouter = gameListData.path
       this.loading = true
       await this.getBestScore()
       await this.getChart()
