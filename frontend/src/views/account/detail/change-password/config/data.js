@@ -2,7 +2,7 @@ export const formOptions = [
   {
     label: '旧密码',
     prop: 'oldPassword',
-    placeholder: '请输入你刚刚收到的验证码',
+    placeholder: '请输入您的旧密码',
     showPassword: true
   },
   {

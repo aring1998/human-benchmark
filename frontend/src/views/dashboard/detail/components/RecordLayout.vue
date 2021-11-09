@@ -77,10 +77,11 @@ export default {
 
       let userDataChart = this.$echarts.init(document.getElementById('userDataChart'))
       window.onresize = userDataChart.resize
-      userDataChart.setOption(this.userDataOptions)
+      if (this.userDataOptions) userDataChart.setOption(this.userDataOptions)
     },
     // 获取最优分数
     async getBestScore() {
+      if (!this.$store.state.userInfo.username) return
       const gameId = this.$route.query.gameId
       const res = await this.$api.get('scores/getBestScore', {
         gameId
@@ -97,7 +98,7 @@ export default {
     },
     async getChart() {
       this.allDataOptions = await autoCreateChartOptions()
-      this.userDataOptions = await autoCreateChartOptions(this.$store.state.userInfo._id)
+      if (this.$store.state.userInfo.username) this.userDataOptions = await autoCreateChartOptions(this.$store.state.userInfo._id)
       this.draw()
     }
   }
