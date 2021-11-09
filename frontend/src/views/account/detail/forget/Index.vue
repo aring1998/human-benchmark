@@ -1,5 +1,5 @@
 <template>
-  <account-card title="找回密码" :tips="tips">
+  <account-card title="找回密码" :tips="tips" v-loading="loading">
     <account-form
       :formOptions="mailFormOptions"
       :form="mailForm"
@@ -26,6 +26,7 @@ import { mailFormOptions, mailRules, resetFormOptions, resetRules } from './conf
 export default {
   data() {
     return {
+      loading: false,
       tips: '输入您的帐户电子邮件。我们将向您发送密码重置消息。',
 
       mailFormOptions,
@@ -54,9 +55,11 @@ export default {
   },
   methods: {
     async sendMail() {
+      this.loading = true
       const res = await this.$api.post('mailer/resetMail', {
         ...this.mailForm
       })
+      this.loading = false
       if (res.code === 0) this.sendMailSuc = true
     },
     async reset() {
