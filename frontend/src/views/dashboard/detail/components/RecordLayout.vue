@@ -77,9 +77,10 @@ export default {
       window.onresize = allDataChart.resize
       allDataChart.setOption(this.allDataOptions)
 
+      if (!this.userDataOptions) return
       let userDataChart = this.$echarts.init(document.getElementById('userDataChart'))
       window.onresize = userDataChart.resize
-      if (this.userDataOptions) userDataChart.setOption(this.userDataOptions)
+      userDataChart.setOption(this.userDataOptions)
     },
     // 获取最优分数
     async getBestScore() {
@@ -100,7 +101,7 @@ export default {
     },
     async getChart() {
       this.allDataOptions = await autoCreateChartOptions()
-      if (this.$store.state.userInfo.username) this.userDataOptions = await autoCreateChartOptions(this.$store.state.userInfo._id)
+      if (this.$store.state.userInfo._id) this.userDataOptions = await autoCreateChartOptions(this.$store.state.userInfo._id)
       this.draw()
     }
   }
