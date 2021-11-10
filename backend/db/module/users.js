@@ -7,10 +7,7 @@ const usersSchema = mongoose.Schema({
     unique: true // 唯一值
   },
   password: String,
-  email: {
-    type: String,
-    unique: true // 唯一值
-  },
+  email: String,
   token: String,
   created: Number,
   updated: {
