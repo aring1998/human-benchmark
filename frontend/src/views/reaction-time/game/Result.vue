@@ -1,5 +1,5 @@
 <template>
-  <div @touchstart="touchstart">
+  <div @click="click">
     <game-wrap
       icon="el-icon-time"
       :text="text"
@@ -23,8 +23,9 @@ export default {
     this.text = `${this.$parent.$parent.reactionTime}ms`
   },
   methods: {
-    touchstart() {
-      this.$parent.$parent.componentName = 'Wait'
+    click() {
+      if (this.$parent.$parent.count === 5) this.$parent.$parent.componentName = 'Again'
+      else this.$parent.$parent.componentName = 'Wait'
     }
   }
 }

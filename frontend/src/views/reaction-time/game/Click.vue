@@ -1,5 +1,5 @@
 <template>
-  <div @touchstart="touchstart">
+  <div @touchstart="touchstart" @touchend="touchend">
     <game-wrap
       icon="el-icon-more"
       text="点击！"
@@ -32,8 +32,9 @@ export default {
       this.$parent.$parent.reactionTime = reactionTime
       this.$parent.$parent.reactionTimeArr.push(reactionTime)
       this.$parent.$parent.count++
-      if (this.$parent.$parent.count === 5) this.$parent.$parent.componentName = 'Again'
-      else this.$parent.$parent.componentName = 'Result'
+    },
+    touchend() {
+      this.$parent.$parent.componentName = 'Result'
     }
   }
 }
