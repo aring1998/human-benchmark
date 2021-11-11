@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     async saveScore() {
-      const score = this.$parent.$parent.time
+      const score = Math.round(this.$parent.$parent.time / 29)
       const res = await this.$store.dispatch('saveScore', score)
       if (res.code === 0) this.again()
     },
