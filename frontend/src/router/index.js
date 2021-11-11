@@ -7,7 +7,7 @@ import { accountRoutes } from './modules/account'
 export default new Router({
   routes: [
     {
-      path: '',
+      path: '*',
       redirect: () => {
         return '/index'
       }
