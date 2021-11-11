@@ -5,8 +5,7 @@ import { getGameId } from '@/utils/game-config'
 export default {
   async token() {
     const res = await api.post('users/token')
-    if (res.code === 0) this.state.userInfo = res.data
-    else window.localStorage.removeItem('token')
+    this.commit('setUserInfo', res)
   },
   // 保存分数
   saveScore(_, score) {

@@ -17,18 +17,22 @@ Vue.use(ElementUI)
 import * as echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 
-/* eslint-disable no-new */
-new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App)
-})
+;(async () => {
+  if (store.state.userInfo.token) await store.dispatch('token')
 
-// 全局导航守卫
-router.beforeEach((to, from, next) => {
-  // 调用router中的数据更改title
-  if (to.meta.length) document.title = to.meta.title
-  else document.title = '人类基准测试'
-  next()
-})
+  /* eslint-disable no-new */
+  new Vue({
+    el: '#app',
+    router,
+    store,
+    render: h => h(App)
+  })
+
+  // 全局导航守卫
+  router.beforeEach((to, from, next) => {
+    // 调用router中的数据更改title
+    if (to.meta.length) document.title = to.meta.title
+    else document.title = '人类基准测试'
+    next()
+  })
+})()

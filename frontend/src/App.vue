@@ -15,9 +15,6 @@ export default {
     TopBar,
     FooterBar
   },
-  mounted() {
-    if (this.$store.state.userInfo.token) this.$store.dispatch('token')
-  }
 }
 </script>
 
