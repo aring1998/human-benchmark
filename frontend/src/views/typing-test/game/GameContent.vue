@@ -2,7 +2,7 @@
   <div class="typing-test-game-wrap common-wrap">
     <h2>{{ $parent.$parent.wordEveryMin || '打字测试' }}</h2>
     <h4>您每分钟能打多少字？</h4>
-    <div class="typing-wrap hide-on-mob">
+    <div class="typing-wrap hide-on-mob" v-loading="loading">
       <span
         v-for="(item, index) in text.length"
         :key="index"
@@ -27,27 +27,33 @@ import OnlyPC from '@/components/OnlyPC.vue'
 export default {
   data() {
     return {
-      text: `If you've never met a moose, it's hard to picture the sheer size of these animals.They're taller than a horse, even without their giant antlers. They can weigh over 1000 lbs, and can run as fast as 35 miles per
-        hour.Fortunately, they're not interested in humans!. Leave them alone and they'll leave you alone,munching on weeds, branches,and any plant they can find in ponds and rivers. They're excellent
-        swimmers,and can even eat underwater without any difficulty.`,
+      text: '',
       userTyping: [],
       isFirst: true,
       second: '00',
       minute: '00',
       timer: null,
       wordTimer: null,
-      flag: true
+      flag: true,
+      loading: false
     }
   },
   components: {
     OnlyPC
   },
   mounted() {
+    this.getArticle()
     document.addEventListener('keydown', this.typing)
     // 在销毁前钩子清除document监听事件以防影响其他组件
     this.$once('hook:beforeDestroy', () => { document.removeEventListener('keydown', this.typing, false) })
   },
   methods: {
+    async getArticle() {
+      this.loading = true
+      const res = await this.$api.get('articles/randomArticle')
+      if (res.code === 0) this.text = res.data.text
+      this.loading = false
+    },
     // 打字
     typing(e) {
       e.preventDefault()
@@ -108,12 +114,14 @@ export default {
     margin: 0 0 30px 0;
   }
   .typing-wrap {
+    width: 100%;
     max-width: $max-width;
     word-wrap: break-word;
     font-size: 18px;
     background: rgba(255, 255, 255, 0.8);
     padding: 20px;
     border-radius: 10px;
+    min-height: 50px;
     line-height: 1.6;
     cursor: text;
     color: #333;

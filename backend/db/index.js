@@ -10,8 +10,10 @@ db.on('error', console.error.bind(console, 'connection error:'))
 
 const Users = require('./module/users')
 const Scores = require('./module/scores')
+const Articles = require('./module/articles')
 
 module.exports = {
   Users,
-  Scores
+  Scores,
+  Articles
 }
