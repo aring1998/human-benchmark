@@ -50,10 +50,10 @@ export default {
         const data = res.data.map(item => {
           let score, percentile
           if (gameList[item.gameId - 1].best) {
-            score = item.maxScore || '?'
+            score = item.maxScore ? `${item.maxScore} ${gameList[item.gameId - 1]?.unit}` : '?'
             percentile = item.maxPercentile || 0
           } else {
-            score = item.minScore || '?'
+            score = item.minScore ? `${item.minScore} ${gameList[item.gameId - 1]?.unit}` : '?'
             percentile = item.minPercentile || 0
           }
           return {
