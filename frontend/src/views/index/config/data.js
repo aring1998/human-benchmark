@@ -39,7 +39,7 @@ export const gameList = [
     path: '/typing-test',
     best: 1,
     scoreRange: [30, 300],
-    unit: '个'
+    unit: '字'
   },
   {
     id: 5,

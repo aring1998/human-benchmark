@@ -9,7 +9,7 @@ const addArticle = (data) => {
   return article.save()
 }
 
-// 直接通过再次text中输入添加文章
+// 直接通过在text中输入添加文章
 const addRightNow = () => {
   addArticle({text: ``})
 }

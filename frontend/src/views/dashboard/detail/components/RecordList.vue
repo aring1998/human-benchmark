@@ -50,12 +50,12 @@ export default {
       }
     }
     .record {
-      width: 30%;
+      width: 35%;
       display: flex;
       flex-flow: column nowrap;
-      justify-content: space-between;
+      justify-content: space-evenly;
       span {
-        font-size: 36px;
+        font-size: 20px;
         font-weight: 900;
         text-align: right;
       }
