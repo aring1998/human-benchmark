@@ -5,7 +5,7 @@
 
 ## 🔨应用框架
 1. Express
-2. Mogonoes
+2. Mongooes
 
 ## 📦常用操作
 1. 安装依赖 `npm install`
