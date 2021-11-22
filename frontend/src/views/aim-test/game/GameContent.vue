@@ -5,10 +5,10 @@
       <span>{{ surplus }}</span>
     </div>
     <div class="game-content" ref="gameContent">
-      <div class="icon-wrap" :style="{ 'top': `${top}px`, 'left': `${left}px`} " ref="target">
+      <div class="icon-wrap" :style="{ 'top': `${top}px`, 'left': `${left}px` }" ref="target">
         <i
           class="el-icon-aim"
-          :class="{ 'anim': animAgain}"
+          :class="{ 'anim': animAgain }"
           @click="targetChange"
           @click.once="firstClick"
         ></i>

@@ -1,5 +1,5 @@
 <template>
-  <div class="common-wrap hide-on-pc">
+  <div class="hide-on-pc">
     <div class="only-pc">该测试旨在台式电脑和笔记本电脑上进行（或者您可以尝试将您的浏览器窗口变大）</div>
     <button class="common-btn" @click="$router.go(-1)">点击返回</button>
   </div>
@@ -19,6 +19,6 @@ export default {
   border-radius: 10px;
   width: 75%;
   padding: 20px;
-  margin-bottom: 30px;
+  margin: 0 auto 30px auto;
 }
 </style>
