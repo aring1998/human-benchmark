@@ -38,7 +38,7 @@ export const gameList = [
     intro: '您每分钟可以打多少字？',
     path: '/typing-test',
     best: 1,
-    scoreRange: [30, 300],
+    scoreRange: [60, 500],
     unit: '字'
   },
   {
