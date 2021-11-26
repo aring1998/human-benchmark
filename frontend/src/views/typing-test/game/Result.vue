@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     async saveScore() {
-      const score = this.$parent.$parent.percentile
+      const score = this.$parent.$parent.wordEveryMin
       const res = await this.$store.dispatch('saveScore', score)
       if (res.code === 0) this.again()
     },
