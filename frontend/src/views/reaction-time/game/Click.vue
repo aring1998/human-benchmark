@@ -1,5 +1,5 @@
 <template>
-  <div @touchstart="touchstart" @touchend="touchend">
+  <div @touchstart="touchstart" @touchend="touchend" @mousedown="touchstart" @mouseup="touchend">
     <game-wrap
       icon="el-icon-more"
       text="点击！"
