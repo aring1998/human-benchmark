@@ -1,6 +1,6 @@
 <template>
   <div class="account-form">
-    <el-form :model="form" :rules="rules" ref="form">
+    <el-form :model="form" :rules="rules" ref="form" @submit.native.prevent>
       <el-form-item
         v-for="(item, index) of formOptions" :key="index"
         :label="item.label"
