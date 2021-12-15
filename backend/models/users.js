@@ -31,7 +31,7 @@ const updateUser = (query, value) => {
 
 const updateToken = (id) => {
   const token = uuid.v4()
-  return Users.updateOne({ id }, { token })
+  return Users.updateOne({ _id: id }, { token })
 }
 
 module.exports = {
