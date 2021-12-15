@@ -22,11 +22,7 @@ const addUser = (data) => {
 }
 
 const updateUser = (query, value) => {
-  Users.updateOne(query, value, (err, res) => {
-    if (!err) {
-      return res
-    }
-  })
+  return Users.updateOne(query, value)
 }
 
 const updateToken = (id) => {
