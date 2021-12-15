@@ -34,7 +34,7 @@ export const getFormKeys = formOptions => {
 // 设定区间为 min ~ max 的数组
 export const newArray = (min, max) => {
   const data = Array.from(new Array(max + 1).keys())
-  data.slice(0, min)
+  data.splice(0, min)
   return data
 }
 
