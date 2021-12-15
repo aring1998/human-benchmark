@@ -7,7 +7,7 @@
       v-model="$parent.$parent.userAnswer"
       ref="userAnswer"
       @keydown.enter="submit"
-      @paste="(e) => { return e.preventDefault() }"
+      @paste="e => e.preventDefault()"
     >
     <button class="common-btn" @click="submit">提交</button>
   </div>

@@ -13,7 +13,6 @@ import GameWrap from '@/components/GameWrap.vue'
 export default {
   data() {
     return {
-      waitTime: 0,
       beginTime: 0
     }
   },

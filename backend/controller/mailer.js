@@ -47,10 +47,10 @@ const resetMail = async (req, res, next) => {
   }
   transporter.sendMail(mailOptions, async err => {
     if (err) return fail(res, '发送失败')
-    await usersModel.updateUser({}, { vCode: code })
+    await usersModel.updateUser({ email: reg }, { vCode: code })
     setTimeout(() => {
-      usersModel.updateUser({}, { vCode: '' })
-    }, 30000);
+      usersModel.updateUser({ email: reg }, { vCode: '' })
+    }, 300000);
     suc(res, {}, '发送成功')
   })
 }

@@ -33,8 +33,8 @@ export default {
     // 补充确认密码校验规则
     if (this.rules.checkPassword.length === 2) this.rules.checkPassword.pop()
     this.rules.checkPassword.push({
-      validator: (rule, value, callback) => {
-        if (value != this.form.password) { callback(new Error('与密码不一致')) }
+      validator: (_, value, callback) => {
+        if (value !== this.form.password) { callback(new Error('与密码不一致')) }
         callback()
       }, trigger: 'change'
     })

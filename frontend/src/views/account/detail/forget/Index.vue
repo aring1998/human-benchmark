@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import md5 from 'js-md5'
 import { getFormKeys } from '@/utils/index'
 import AccountCard from '../../components/AccountCard.vue'
 import AccountForm from '../../components/AccountForm.vue'
@@ -45,10 +46,10 @@ export default {
   },
   mounted() {
     // 补充确认密码校验规则
-    if (this.resetRules.checkPassword.length === 2) this.rules.checkPassword.pop()
+    if (this.resetRules.checkPassword.length === 2) this.resetRules.checkPassword.pop()
     this.resetRules.checkPassword.push({
-      validator: (rule, value, callback) => {
-        if (value != this.resetForm.newPassword) { callback(new Error('与密码不一致')) }
+      validator: (_, value, callback) => {
+        if (value !== this.resetForm.newPassword) { callback(new Error('与密码不一致')) }
         callback()
       }, trigger: 'change'
     })
@@ -69,7 +70,7 @@ export default {
         ...this.resetForm,
         newPassword: md5(this.resetForm.newPassword)
       })
-      if (res.code === 0) this.$router.push('/login')
+      if (res.code === 0) this.$router.push('/account/login')
     }
   }
 }
