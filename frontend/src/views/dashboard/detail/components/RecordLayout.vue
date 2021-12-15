@@ -86,8 +86,10 @@ export default {
     async getBestScore() {
       if (!this.$store.state.userInfo.username) return
       const gameId = this.$route.query.gameId
-      const res = await this.$api.get('scores/getBestScore', {
-        gameId
+      const res = await this.$api.post('scores/getBestScore', {
+        gameId,
+        gte: gameList[gameId - 1].scoreRange[0],
+        lte: gameList[gameId - 1].scoreRange[1]
       })
       if (res.code === 0) {
         if (gameList[gameId - 1].best) {

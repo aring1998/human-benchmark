@@ -42,8 +42,8 @@ export default {
     // 获取最优分数
     async getBestScore() {
       this.loading = true
-      const res = await this.$api.get('scores/getBestScore', {
-        gameCount: 13
+      const res = await this.$api.post('scores/getBestScore', {
+        gameList
       })
       this.loading = false
       if (res.code === 0) {

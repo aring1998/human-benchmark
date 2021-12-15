@@ -36,18 +36,18 @@ const getBestScore = async (req, res, next) => {
   const userInfo = await usersModel.findUser({ token })
   if (!userInfo) return fail(res, '您需要先登录')
 
-  const { gameCount, gameId } = req.query
+  const { gameList, gameId, gte, lte } = req.body
 
   // 如果是仪表盘详情页
   if (gameId) {
-    const scores = await getBestScoreByGameId(userInfo._id.toString(), +gameId)
+    const scores = await getBestScoreByGameId(userInfo._id.toString(), +gameId, gte, lte)
     return suc(res, scores[0], '')
   }
 
   // 查询所有游戏最优成绩
   const scoresArr = []
-  for (let i = 1; i < +gameCount; i++) {
-    const scores = await getBestScoreByGameId(userInfo._id.toString(), i)
+  for (let i of gameList) {
+    const scores = await getBestScoreByGameId(userInfo._id.toString(), i.id, i.scoreRange[0], i.scoreRange[1])
     scoresArr.push(...scores)
   }
   suc(res, scoresArr, '')
@@ -56,12 +56,12 @@ const getBestScore = async (req, res, next) => {
 /**
  * 获取用户对应游戏最优分数
  */
-const getBestScoreByGameId = async (userId, gameId) => {
-  const scores = await scoresModel.findBestScore(userId, gameId)
+const getBestScoreByGameId = async (userId, gameId, gte, lte) => {
+  const scores = await scoresModel.findBestScore(userId, gameId, gte ? Number(gte) : 0, lte ? Number(lte) : 999)
   scores.length > 0 ? scores[0].gameId = gameId : scores.push({ gameId })  // 补充其游戏id
   // 获取该用户分数的百分位
-  const allScoresForMin = await scoresModel.findScore({ gameId, sort: 1 })
-  const allScoresForMax = await scoresModel.findScore({ gameId, sort: -1 })
+  const allScoresForMin = await scoresModel.findScore({ gameId, sort: 1, score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 } })
+  const allScoresForMax = await scoresModel.findScore({ gameId, sort: -1, score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 } })
   let minIndex = ''
   let maxIndex = ''
   const minScore = scores ? scores[0].minScore : ''

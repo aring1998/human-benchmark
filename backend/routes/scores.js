@@ -5,6 +5,6 @@ const { saveScore, getChartData, getBestScore } = require('../controller/scores'
 
 router.post('/saveScore', saveScore)
 router.get('/getChartData', getChartData)
-router.get('/getBestScore', getBestScore)
+router.post('/getBestScore', getBestScore)
 
 module.exports = router
