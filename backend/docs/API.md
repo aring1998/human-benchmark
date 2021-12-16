@@ -33,12 +33,14 @@
 
 - **获取游戏统计数据** `get` `/api/scores/getChartData`
   - **query** `gameId` *游戏id
-  - **query** `lte` 获取区间的最小值
-  - **query** `gte` 获取区间的最大值
+  - **query** `gte` 获取区间的最小值
+  - **query** `lte` 获取区间的最大值
 
-- **获取用户最佳分数及对应百分位** `get` `/api/scores/getBestScore`
-  - **query** `gameCount` 游戏总量
-  - **query** `gameId` 游戏Id,如若传该值,则仅返回对应游戏的最佳分数
+- **获取用户最佳分数及对应百分位** `post` `/api/scores/getBestScore`
+  - **data** `gameList` 游戏配置列表 (传此项为获取所有游戏的最佳分数)
+  - **data** `gameId` 游戏Id,如若传该值,则仅返回对应游戏的最佳分数 (传此项为获取该值对应游戏id的最佳分数)
+  - **data** `gte` 获取区间的最小值
+  - **data** `lte` 获取区间的最大值
 
 ## 邮件
 
