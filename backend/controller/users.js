@@ -11,7 +11,7 @@ const register = async (req, res, next) => {
   const userInfo = await usersModel.findUser({ username })
   if (userInfo) return fail(res, '该用户名已被注册')
 
-  const emailInfo = await usersModel.findUser({ username })
+  const emailInfo = await usersModel.findUser({ email })
   if (emailInfo) return fail(res, '该邮箱已被使用')
 
   const data = await usersModel.addUser({
@@ -31,11 +31,11 @@ const login = async (req, res, next) => {
 
   const userInfo = await usersModel.findUser({ username })
   if (!userInfo) return fail(res, '用户名不存在')
-  // 更新用户token
-  await usersModel.updateToken(userInfo._id)
 
   const data = await usersModel.findUser({ username, password })
   if (!data) return fail(res, '密码错误')
+  // 更新用户token
+  await usersModel.updateToken(userInfo._id)
   suc(res, data, '登录成功')
 }
 
