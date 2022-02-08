@@ -12,7 +12,7 @@ const register = async (req, res, next) => {
   if (userInfo) return fail(res, '该用户名已被注册')
 
   const emailInfo = await usersModel.findUser({ email })
-  if (emailInfo) return fail(res, '该邮箱已被使用')
+  if (emailInfo && email) return fail(res, '该邮箱已被使用')
 
   const data = await usersModel.addUser({
     email,
