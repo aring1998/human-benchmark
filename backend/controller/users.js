@@ -32,10 +32,13 @@ const login = async (req, res, next) => {
   const userInfo = await usersModel.findUser({ username })
   if (!userInfo) return fail(res, '用户名不存在')
 
-  const data = await usersModel.findUser({ username, password })
-  if (!data) return fail(res, '密码错误')
+  const checkPassword = await usersModel.findUser({ username, password })
+  if (!checkPassword) return fail(res, '密码错误')
+    
   // 更新用户token
   await usersModel.updateToken(userInfo._id)
+
+  const data = await usersModel.findUser({ _id: userInfo._id })
   suc(res, data, '登录成功')
 }
 
