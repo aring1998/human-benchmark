@@ -29,11 +29,10 @@ const register = async (req, res, next) => {
 const login = async (req, res, next) => {
   const { username, password } = req.body
 
-  const userInfo = await usersModel.findUser({ username })
+  const userInfo = await usersModel.findUserAllInfo({ username })
   if (!userInfo) return fail(res, '用户名不存在')
 
-  const checkPassword = await usersModel.findUser({ username, password })
-  if (!checkPassword) return fail(res, '密码错误')
+  if (userInfo.password !== password) return fail(res, '密码错误')
     
   // 更新用户token
   await usersModel.updateToken(userInfo._id)
