@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { init as echartsInit } from 'echarts'
 import { autoCreateChartOptions } from '@/utils/game-config'
 export default {
   data() {
@@ -44,7 +45,7 @@ export default {
   methods: {
     draw() {
       // 初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById('myChart'))
+      let myChart = echartsInit(document.getElementById('myChart'))
       // 防止越界，重绘echarts（例如屏幕缩小，图标随屏幕适应）
       window.onresize = myChart.resize
       myChart.setOption(this.chartOptions) //设置option

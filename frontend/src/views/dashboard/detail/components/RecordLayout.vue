@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { init as echartsInit } from 'echarts'
 import { gameList } from '@/views/index/config/data'
 import { autoCreateChartOptions } from '@/utils/game-config'
 export default {
@@ -73,12 +74,12 @@ export default {
     },
     draw() {
       // 初始化echarts实例
-      let allDataChart = this.$echarts.init(document.getElementById('allDataChart'))
+      let allDataChart = echartsInit(document.getElementById('allDataChart'))
       window.onresize = allDataChart.resize
       allDataChart.setOption(this.allDataOptions)
 
       if (!this.userDataOptions) return
-      let userDataChart = this.$echarts.init(document.getElementById('userDataChart'))
+      let userDataChart = echartsInit(document.getElementById('userDataChart'))
       window.onresize = userDataChart.resize
       userDataChart.setOption(this.userDataOptions)
     },
