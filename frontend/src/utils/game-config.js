@@ -23,17 +23,11 @@ export const autoCreateChartOptions = async (userId) => {
   if (res.code === 0) {
     // 对无对应X轴键值的数据做补零处理
     const keys = chartOptions.xAxis.data
-    const yAxis = []
-    for (let i in keys) {
-      for (let j in res.data) {
-        if (res.data[i]?._id) break
-        if (keys[i] == res.data[j]?._id){
-          yAxis.push(res.data[j].count)
-          break
-        }
-      }
-      if (!yAxis[i]) yAxis.push(0)
-    }
+    const resDict = res.data.reduce((pre, { _id, count }) => {
+      pre[_id] = count
+      return pre
+    }, {})
+    const yAxis = keys.map(value => resDict[value] || 0)
     chartOptions.series[0].data = yAxis
   }
   return chartOptions
