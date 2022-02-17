@@ -1,7 +1,7 @@
 <template>
   <div id="app" v-cloak>
     <top-bar></top-bar>
-    <router-view/>
+    <router-view />
     <footer-bar></footer-bar>
   </div>
 </template>
@@ -14,7 +14,7 @@ export default {
   components: {
     TopBar,
     FooterBar
-  },
+  }
 }
 </script>
 

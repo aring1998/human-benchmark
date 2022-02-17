@@ -12,14 +12,20 @@ export const deepCloneObjArr = data => {
   return res
 }
 
+// 节流
+export const debounce = (fn, delay) => {
+  let timer = null
+  return function() {
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(fn, delay)
+  }
+}
+
 // 下划线命名转换小驼峰命名
 export const smallHumpNaming = data => {
   return data.replace(/\-(\w)/g, (all, letter) => letter.toUpperCase())
-}
-
-// 下划线命名转换大驼峰命名
-export const bigHumpNaming = data => {
-  return data.replace(/(^|-)(\w)/g, (all, symbol, letter) => letter.toUpperCase())
 }
 
 // 获取表单键值，引用可根据表单配置初始化组件中的表单数据
