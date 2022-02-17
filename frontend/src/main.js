@@ -8,8 +8,8 @@ Vue.config.productionTip = false
 import { api } from './utils/api'
 Vue.prototype.$api = api
 
-// 全局注册elementUi
-import ElementUI from 'element-ui'
+// 按需引入ElementUI
+import ElementUI from './flugins/element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
