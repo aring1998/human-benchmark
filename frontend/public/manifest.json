@@ -1,0 +1,10 @@
+{
+  "start_url": "/",
+  "description": "人类基准测试",
+  "id": "/index.html",
+  "name": "人类基准测试",
+  "short_name": "人类基准测试",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
