@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
-// mongoose.connect('mongodb://localhost/human-benchmark', {  // 本地环境
-mongoose.connect('mongodb://81.68.189.158:26918/human-benchmark', {  // 正式环境
+const dotenv = require('dotenv')
+dotenv.config()
+
+mongoose.connect(`mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`, {
+  // 正式环境
   useNewUrlParser: true,
   useUnifiedTopology: true
 })

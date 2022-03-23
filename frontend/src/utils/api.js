@@ -4,8 +4,7 @@ import { Message } from 'element-ui'
 
 // 创建axios实例
 const instance = axios.create({
-  // baseURL: 'http://localhost:3000/api/', // 测试环境
-  baseURL: 'http://81.68.189.158:3000/api/', // 正式环境
+  baseURL: process.env.VUE_APP_URL,
   timeout: 30000,
   validateStatus: status => {
     // 允许返回所有状态码，不会遇到错误就停止
