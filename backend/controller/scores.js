@@ -62,19 +62,19 @@ const getBestScoreByGameId = async (userId, gameId, gte, lte) => {
   // 获取该用户分数的百分位
   const allScoresForMin = await scoresModel.findScore({ gameId, sort: 1, score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 } })
   const allScoresForMax = await scoresModel.findScore({ gameId, sort: -1, score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 } })
-  let minIndex = ''
-  let maxIndex = ''
-  const minScore = scores ? scores[0].minScore : ''
-  const maxScore = scores ? scores[0].maxScore : ''
+  let minIndex = null
+  let maxIndex = null
+  const minScore = scores ? scores[0].minScore : undefined
+  const maxScore = scores ? scores[0].maxScore : undefined
   for (let j in allScoresForMin) {
-    if (minScore === '' || minIndex !== '') break
-    if (allScoresForMin[j].score == minScore) minIndex = j
+    if (minScore === undefined || minIndex !== null) break
+    if (allScoresForMin[j].score === minScore) minIndex = j
   }
   for (let k in allScoresForMax) {
-    if (maxScore === '' || maxIndex !== '') break
-    if (allScoresForMax[k].score == maxScore) maxIndex = k
+    if (maxScore === undefined || maxIndex !== null) break
+    if (allScoresForMax[k].score === maxScore) maxIndex = k
   }
-  if (minScore && maxScore) {
+  if (minScore !== undefined && maxScore !== undefined) {
     const minPercentile = 100 - 100 / allScoresForMin.length * minIndex
     const maxPercentile = 100 - 100 / allScoresForMax.length * maxIndex
     if (scores.length > 0) {
