@@ -36,7 +36,7 @@ export default {
         password: md5(this.form.password)
       })
       if (res.code === 0) {
-        window.localStorage.setItem('token', res.data.token)
+        window.localStorage.setItem('human-benchmark-token', res.data.token)
         this.$store.state.userInfo = res.data
         this.$router.push('/dashboard')
       }

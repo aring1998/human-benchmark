@@ -11,13 +11,13 @@ const store = new Vuex.Store({
     userInfo: {
       _id: '',
       username: '',
-      token: '' || window.localStorage.getItem('token')
+      token: '' || window.localStorage.getItem('human-benchmark-token')
     }
   },
   mutations,
   getters,
   actions,
-  mudules: {},
+  mudules: {}
 })
 
 // 导出

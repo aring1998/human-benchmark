@@ -24,7 +24,7 @@ export default {
       for (let i in this.$store.state.userInfo) {
         this.$store.state.userInfo[i] = ''
       }
-      window.localStorage.removeItem('token')
+      window.localStorage.removeItem('human-benchmark-token')
       this.$router.push('/index')
       this.$message.success('已退出登录')
     }

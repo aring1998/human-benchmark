@@ -47,7 +47,7 @@ export default {
       })
       if (res.code === 0) {
         this.$store.state.userInfo.token = res.data.token
-        window.localStorage.setItem('token', res.data.token)
+        window.localStorage.setItem('human-benchmark-token', res.data.token)
         setTimeout(() => {
           this.$store.dispatch('token')
           this.$router.push('/dashboard')
