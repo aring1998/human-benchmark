@@ -1,5 +1,5 @@
 // 在此写标准的路径可不用在路由中配置
-import { iconName } from "@/assets/js/icon-name"
+import { iconName } from '@/assets/js/icon-name'
 export const gameList = [
   {
     id: 1,
@@ -7,7 +7,7 @@ export const gameList = [
     title: '反应时间',
     intro: '测试您的视觉反应。',
     path: '/reaction-time',
-    best: 0, // 最佳成绩取最大值/最小值，0 取最小值，1取最大值 
+    best: 0, // 最佳成绩取最大值/最小值，0 取最小值，1取最大值
     scoreRange: [100, 800], // 成绩取值范围
     unit: 'ms'
   },
@@ -120,5 +120,15 @@ export const gameList = [
     best: 1,
     scoreRange: [10, 100],
     unit: '次'
+  },
+  {
+    id: 13,
+    icon: iconName.timePerceptionTest,
+    title: '时间感知测试',
+    intro: '尝试判断时间。',
+    path: '/time-perception-test',
+    best: 1,
+    scoreRange: [0, 100],
+    unit: '百分位'
   }
 ]

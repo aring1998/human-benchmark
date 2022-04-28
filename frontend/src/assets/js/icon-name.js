@@ -11,5 +11,6 @@ export const iconName = {
   verbalMemory: 'el-icon-collection',
   sequentialMemory: 'el-icon-s-grid',
   luckTest: 'el-icon-present',
-  handSpeedTest: 'el-icon-thumb'
+  handSpeedTest: 'el-icon-thumb',
+  timePerceptionTest: 'el-icon-time'
 }
