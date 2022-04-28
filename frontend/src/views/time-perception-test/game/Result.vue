@@ -1,6 +1,6 @@
 <template>
   <game-wrap
-    :text="`${$parent.$parent.score} %`"
+    :text="`${$parent.$parent.percentile} %`"
     tips="本次测试您的时间感知准确率"
     cursor="unset"
   >
@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     async saveScore() {
-      const score = this.$parent.$parent.score
+      const score = Math.round(this.$parent.$parent.percentile)
       const res = await this.$store.dispatch('saveScore', score)
       if (res.code === 0) this.again()
     },

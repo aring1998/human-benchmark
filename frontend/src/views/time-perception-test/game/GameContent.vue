@@ -73,8 +73,8 @@ export default {
           { valCount: 0, difTimeCount: 0 }
         )
         const { valCount, difTimeCount } = timeObj
-        if (valCount > difTimeCount) this.$parent.$parent.score = Number(((difTimeCount / valCount) * 100).toFixed(2))
-        else this.$parent.$parent.score = Number(((valCount / difTimeCount) * 100).toFixed(2))
+        if (valCount > difTimeCount) this.$parent.$parent.percentile = Number(((difTimeCount / valCount) * 100).toFixed(2))
+        else this.$parent.$parent.percentile = Number(((valCount / difTimeCount) * 100).toFixed(2))
         setTimeout(() => {
           this.$parent.$parent.componentName = 'result'
         }, 1000)

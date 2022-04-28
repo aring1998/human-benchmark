@@ -27,7 +27,7 @@ export default {
     return {
       aboutText,
       componentName: '',
-      score: 0
+      percentile: 0
     }
   },
   components: {
