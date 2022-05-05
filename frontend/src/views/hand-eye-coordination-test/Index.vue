@@ -4,7 +4,7 @@
       <game-intro 
         slot="wrap"
         title="手眼协调测试"
-        intro="点击方框，并在指定数字的秒数后再次点击"
+        intro="尽量使小球停留在虚线圆框内"
         v-show="componentName === ''"
         @start="componentName = 'GameContent'"
       />

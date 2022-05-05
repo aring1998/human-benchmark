@@ -135,7 +135,7 @@ export const gameList = [
     id: 14,
     icon: iconName.handEyeCoordinationTest,
     title: '手眼协调测试',
-    intro: '尝试判断时间。',
+    intro: '您的手和眼睛配合的如何？',
     path: '/hand-eye-coordination-test',
     best: 1,
     scoreRange: [5, 50],
