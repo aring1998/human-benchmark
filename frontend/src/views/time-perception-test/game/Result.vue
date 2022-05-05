@@ -24,7 +24,7 @@ export default {
     },
     again() {
       this.$parent.$parent.componentName = ''
-      this.$parent.$parent.score = 0
+      this.$parent.$parent.percentile = 0
     }
   }
 }

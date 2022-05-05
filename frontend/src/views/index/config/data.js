@@ -138,7 +138,7 @@ export const gameList = [
     intro: '尝试判断时间。',
     path: '/hand-eye-coordination-test',
     best: 1,
-    scoreRange: [5, 100],
+    scoreRange: [5, 50],
     unit: '分'
   }
 ]
