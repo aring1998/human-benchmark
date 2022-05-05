@@ -130,5 +130,15 @@ export const gameList = [
     best: 1,
     scoreRange: [0, 100],
     unit: '百分位'
+  },
+  {
+    id: 14,
+    icon: iconName.handEyeCoordinationTest,
+    title: '手眼协调测试',
+    intro: '尝试判断时间。',
+    path: '/hand-eye-coordination-test',
+    best: 1,
+    scoreRange: [5, 100],
+    unit: '分'
   }
 ]

@@ -12,5 +12,6 @@ export const iconName = {
   sequentialMemory: 'el-icon-s-grid',
   luckTest: 'el-icon-present',
   handSpeedTest: 'el-icon-thumb',
-  timePerceptionTest: 'el-icon-time'
+  timePerceptionTest: 'el-icon-time',
+  handEyeCoordinationTest: 'el-icon-place'
 }
