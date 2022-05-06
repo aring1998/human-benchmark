@@ -13,6 +13,14 @@ import ElementUI from './flugins/element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 
+// 全局导航守卫
+router.beforeEach((to, _from, next) => {
+  // 调用router中的数据更改title
+  if (to.meta.title) document.title = to.meta.title
+  else document.title = '人类基准测试'
+  next()
+})
+
 ;(async () => {
   if (store.state.userInfo.token) await store.dispatch('token')
 
@@ -22,13 +30,5 @@ Vue.use(ElementUI)
     router,
     store,
     render: h => h(App)
-  })
-
-  // 全局导航守卫
-  router.beforeEach((to, _from, next) => {
-    // 调用router中的数据更改title
-    if (to.meta.length) document.title = to.meta.title
-    else document.title = '人类基准测试'
-    next()
   })
 })()
