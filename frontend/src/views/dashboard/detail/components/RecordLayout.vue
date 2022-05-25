@@ -19,7 +19,7 @@
       <h3>{{ title }}</h3>
       <h2>{{ score || '?' }}</h2>
       <span>{{ unit }}</span>
-      <h4>百分之 {{ percentile || '0%' }}</h4>
+      <h4>排名 {{ percentile || '0%' }}</h4>
       <router-link :to="startRouter"><i class="el-icon-video-play" />开始测试</router-link>
     </div>
     <div class="card statistical-data" v-loading="loading">

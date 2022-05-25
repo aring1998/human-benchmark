@@ -16,7 +16,7 @@
       </template>
     </el-table-column>
     <el-table-column prop="score" label="分数" align="center" min-width="80"></el-table-column>
-    <el-table-column prop="percentile" label="百分位">
+    <el-table-column prop="percentile" label="排名">
       <template slot-scope="scope">
         <el-progress :text-inside="true" :stroke-width="26" :percentage="scope.row.percentile"></el-progress>
       </template>
