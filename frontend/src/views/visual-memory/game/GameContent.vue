@@ -132,16 +132,13 @@ export default {
 }
 @keyframes shakeCell {
   0% {
-    position: relative;
-    left: 0;
+    transform: translate(0, 0);
   }
   33% {
-    position: relative;
-    left: -5px;
+    transform: translate(5px, 0);
   }
   100% {
-    position: relative;
-    left: 5px;
+    transform: translate(-5px, 0);
   }
 }
 </style>

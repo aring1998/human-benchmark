@@ -116,10 +116,6 @@ export default {
       animation: rotateCell .3s linear;
       background-color: #fff;
     }
-    .wrong-click {
-      animation: shakeCell .3s linear;
-      background-color: #00000080;
-    }
   }
 }
 @media screen and (max-width: 480px) {
@@ -152,20 +148,6 @@ export default {
   }
   100% {
     transform: rotateX(180deg);
-  }
-}
-@keyframes shakeCell {
-  0% {
-    position: relative;
-    left: 0;
-  }
-  33% {
-    position: relative;
-    left: -5px;
-  }
-  100% {
-    position: relative;
-    left: 5px;
   }
 }
 </style>

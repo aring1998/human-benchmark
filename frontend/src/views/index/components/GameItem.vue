@@ -38,10 +38,9 @@ export default {
   margin: 20px auto 0 auto;
   cursor: pointer;
   top: 0;
-  transition: top .5s;
+  transition: transform .5s;
   &:hover {
-    position: relative;
-    top: -10px;
+    transform: translate(0, -10px);
     i {
       color: $hover-color;
     }
