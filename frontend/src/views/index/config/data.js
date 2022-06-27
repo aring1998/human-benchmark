@@ -8,7 +8,7 @@ export const gameList = [
     intro: '测试您的视觉反应。',
     path: '/reaction-time',
     best: 0, // 最佳成绩取最大值/最小值，0 取最小值，1取最大值
-    scoreRange: [100, 800], // 成绩取值范围
+    scoreRange: [100, 500], // 成绩取值范围
     unit: 'ms'
   },
   {
@@ -18,7 +18,7 @@ export const gameList = [
     intro: '记住您看到的数字。',
     path: '/number-memory',
     best: 1,
-    scoreRange: [3, 30],
+    scoreRange: [3, 20],
     unit: '级'
   },
   {
@@ -28,7 +28,7 @@ export const gameList = [
     intro: '您比黑猩猩聪明吗？',
     path: '/chimp-test',
     best: 1,
-    scoreRange: [4, 40],
+    scoreRange: [4, 30],
     unit: '级'
   },
   {
@@ -38,7 +38,7 @@ export const gameList = [
     intro: '您每分钟可以打多少字？',
     path: '/typing-test',
     best: 1,
-    scoreRange: [60, 500],
+    scoreRange: [60, 400],
     unit: '字'
   },
   {
@@ -48,7 +48,7 @@ export const gameList = [
     intro: '记住越来越多的方块。',
     path: '/visual-memory',
     best: 1,
-    scoreRange: [1, 30],
+    scoreRange: [1, 25],
     unit: '级'
   },
   {
@@ -68,7 +68,7 @@ export const gameList = [
     intro: '快速找出不同的颜色。',
     path: '/color-vision-test',
     best: 1,
-    scoreRange: [1, 100],
+    scoreRange: [1, 70],
     unit: '级'
   },
   {
@@ -78,7 +78,7 @@ export const gameList = [
     intro: '判断颜色是否正确。',
     path: '/stroop',
     best: 1,
-    scoreRange: [0, 100],
+    scoreRange: [1, 60],
     unit: '分'
   },
   {
@@ -88,7 +88,7 @@ export const gameList = [
     intro: '尽可能记住更多的词汇。',
     path: '/verbal-memory',
     best: 1,
-    scoreRange: [1, 200],
+    scoreRange: [1, 150],
     unit: '个'
   },
   {
@@ -98,7 +98,7 @@ export const gameList = [
     intro: '记住越来越长的序列。',
     path: '/sequential-memory',
     best: 1,
-    scoreRange: [1, 30],
+    scoreRange: [1, 20],
     unit: '级'
   },
   {
@@ -118,7 +118,7 @@ export const gameList = [
     intro: '您的手速如何？',
     path: '/hand-speed-test',
     best: 1,
-    scoreRange: [10, 100],
+    scoreRange: [20, 130],
     unit: '次'
   },
   {
