@@ -49,7 +49,7 @@ export default {
       if (res.code === 0) {
         const data = res.data.map(item => ({
           ...tableData[item.gameId - 1],
-          score: item.maxScore ? `${item.maxScore} ${gameList[item.gameId - 1]?.unit}` : '?',
+          score: item.bestScore ? `${item.bestScore} ${gameList[item.gameId - 1]?.unit}` : '?',
           percentile: item.percentile || 0
         }))
         this.tableData = data
