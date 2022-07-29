@@ -47,21 +47,11 @@ export default {
       })
       this.loading = false
       if (res.code === 0) {
-        const data = res.data.map(item => {
-          let score, percentile
-          if (gameList[item.gameId - 1].best) {
-            score = item.maxScore ? `${item.maxScore} ${gameList[item.gameId - 1]?.unit}` : '?'
-            percentile = item.maxPercentile || 0
-          } else {
-            score = item.minScore ? `${item.minScore} ${gameList[item.gameId - 1]?.unit}` : '?'
-            percentile = item.minPercentile || 0
-          }
-          return {
-            ...tableData[item.gameId - 1],
-            score,
-            percentile
-          }
-        })
+        const data = res.data.map(item => ({
+          ...tableData[item.gameId - 1],
+          score: item.maxScore ? `${item.maxScore} ${gameList[item.gameId - 1]?.unit}` : '?',
+          percentile: item.percentile || 0
+        }))
         this.tableData = data
       }
     }
@@ -75,7 +65,7 @@ export default {
   flex-flow: column nowrap;
   font-size: 18px;
   .opacity {
-    opacity: .6;
+    opacity: 0.6;
     margin-bottom: 4px;
   }
   .keys {

@@ -14,14 +14,14 @@ const findScoreGroup = async (gameId, userId, gte, lte, section) => {
       $match: {
         gameId,
         userId: userId ? userId : /^/,
-        score: { $gte: gte, $lte: lte },
+        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 },
       },
     },
     {
       $group: {
         _id: {
           $floor: {
-            $divide: ['$score', section],
+            $divide: ['$score', section ? Number(section) : 1],
           },
         },
         count: { $sum: 1 },
@@ -36,7 +36,7 @@ const findBestScore = async (userId, gameId, gte, lte) => {
       $match: {
         gameId,
         userId: userId,
-        score: { $gte: gte, $lte: lte },
+        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 },
       },
     },
     {
@@ -49,13 +49,66 @@ const findBestScore = async (userId, gameId, gte, lte) => {
   ])
 }
 
-const findScore = (data) => {
-  return Scores.find({ ...data }).sort({ score: data.sort })
+const findBestScoreIndex = (gameId, gte, lte, best, score) => {
+  return Scores.aggregate([
+    {
+      $match: {
+        gameId,
+        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 },
+      },
+    },
+    {
+      $sort: {
+        score: best,
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        table: {
+          $push: '$$ROOT',
+        },
+      },
+    },
+    {
+      $unwind: {
+        path: '$table',
+        includeArrayIndex: 'index',
+      },
+    },
+    {
+      $project: {
+        _id: 0,
+        score: '$table.score',
+        index: {
+          $add: ['$index', 1],
+        },
+      },
+    },
+    {
+      $match: { score },
+    },
+  ])
+}
+
+const findScoreCount = (gameId, gte, lte) => {
+  return Scores.aggregate([
+    {
+      $match: {
+        gameId,
+        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 },
+      },
+    },
+    {
+      $count: 'total',
+    },
+  ])
 }
 
 module.exports = {
   addScore,
   findScoreGroup,
   findBestScore,
-  findScore,
+  findBestScoreIndex,
+  findScoreCount,
 }

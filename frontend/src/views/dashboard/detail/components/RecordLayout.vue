@@ -8,11 +8,11 @@
       </div>
       <div class="item" v-if="!$store.state.userInfo.username">
         <span>
-        <router-link to="/account/login">登录</router-link>
-        或
-        <router-link to="/account/register">注册</router-link>
-        以保存您的测试结果
-      </span>
+          <router-link to="/account/login">登录</router-link>
+          或
+          <router-link to="/account/register">注册</router-link>
+          以保存您的测试结果
+        </span>
       </div>
     </div>
     <div class="card record-info" v-loading="loading">
@@ -87,19 +87,16 @@ export default {
     async getBestScore() {
       if (!this.$store.state.userInfo.username) return
       const gameId = this.$route.query.gameId
+      const gameItem = gameList[gameId - 1]
       const res = await this.$api.post('scores/getBestScore', {
         gameId,
-        gte: gameList[gameId - 1].scoreRange[0],
-        lte: gameList[gameId - 1].scoreRange[1]
+        gte: gameItem.scoreRange[0],
+        lte: gameItem.scoreRange[1],
+        best: gameItem.best
       })
       if (res.code === 0) {
-        if (gameList[gameId - 1].best) {
-          this.score = res.data.maxScore
-          this.percentile = res.data.maxPercentile
-        } else {
-          this.score = res.data.minScore
-          this.percentile = res.data.minPercentile
-        }
+        this.score = res.data.bestScore
+        this.percentile = res.data.percentile
       }
     },
     async getChart() {
