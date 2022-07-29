@@ -45,7 +45,7 @@ const getBestScore = async (req, res) => {
   // 如果是仪表盘详情页
   if (gameId) {
     const scores = await getBestScoreByGameId(userInfo._id.toString(), +gameId, gte, lte, best)
-    return suc(res, scores[0], '')
+    return suc(res, scores, '')
   }
 
   // 查询所有游戏最优成绩
