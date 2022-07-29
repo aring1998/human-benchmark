@@ -49,12 +49,10 @@ const getBestScore = async (req, res) => {
   }
 
   // 查询所有游戏最优成绩
-  const scoresArr = []
-  for (let i of gameList) {
-    const scores = await getBestScoreByGameId(userInfo._id.toString(), i.id, i.scoreRange[0], i.scoreRange[1], i.best)
-    scoresArr.push(...scores)
-  }
-  suc(res, scoresArr, '')
+  const data = await Promise.all(
+    gameList.map((item) => getBestScoreByGameId(userInfo._id.toString(), item.id, item.scoreRange[0], item.scoreRange[1], item.best))
+  )
+  suc(res, data, '')
 }
 
 /**
@@ -73,7 +71,7 @@ const getBestScoreByGameId = async (userId, gameId, gte, lte, best) => {
     const percentile = (1 - (bestScoreItem[0].index - 1) / scoreCount[0].total) * 100
     scores[0].percentile = Number(percentile.toFixed(1))
   }
-  return scores
+  return scores[0]
 }
 
 module.exports = {
