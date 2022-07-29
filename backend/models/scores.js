@@ -3,12 +3,12 @@ const { Scores } = require('../db/index')
 const addScore = async (data) => {
   const score = new Scores({
     ...data,
-    created: Date.now()
+    created: Date.now(),
   })
   return score.save()
 }
 
-const findScoreGroup = async (gameId, userId, gte, lte) => {
+const findScoreGroup = async (gameId, userId, gte, lte, section) => {
   return Scores.aggregate([
     {
       $match: {
@@ -19,7 +19,11 @@ const findScoreGroup = async (gameId, userId, gte, lte) => {
     },
     {
       $group: {
-        _id: '$score',
+        _id: {
+          $floor: {
+            $divide: ['$score', section],
+          },
+        },
         count: { $sum: 1 },
       },
     },
@@ -39,9 +43,9 @@ const findBestScore = async (userId, gameId, gte, lte) => {
       $group: {
         _id: null,
         minScore: { $min: '$score' },
-        maxScore: { $max: '$score' }
+        maxScore: { $max: '$score' },
       },
-    }
+    },
   ])
 }
 
@@ -53,5 +57,5 @@ module.exports = {
   addScore,
   findScoreGroup,
   findBestScore,
-  findScore
+  findScore,
 }

@@ -5,15 +5,15 @@ const { suc, fail } = require('../utils/render')
 /**
  * 保存分数
  */
- const saveScore = async (req, res, next) => {
-  const { gameId, score, } = req.body
+const saveScore = async (req, res, next) => {
+  const { gameId, score } = req.body
   const token = req.headers.authorization
   const userInfo = await usersModel.findUser({ token })
 
   const data = await scoresModel.addScore({
     userId: userInfo ? userInfo._id : 0,
     gameId,
-    score
+    score,
   })
 
   suc(res, data, '保存成功')
@@ -23,8 +23,18 @@ const { suc, fail } = require('../utils/render')
  * 找到对应游戏分数统计数据
  */
 const getChartData = async (req, res, next) => {
-  const { gameId, userId, lte, gte } = req.query
-  const data = await scoresModel.findScoreGroup(Number(gameId), userId, gte ? Number(gte) : 0, lte ? Number(lte) : 999)
+  const { gameId, userId, lte, gte, section } = req.query
+  const groupData = await scoresModel.findScoreGroup(
+    Number(gameId),
+    userId,
+    gte ? Number(gte) : 0,
+    lte ? Number(lte) : 999,
+    section ? Number(section) : 1
+  )
+  const data = groupData.map((item) => ({
+    ...item,
+    _id: item._id * (section ? Number(section) : 1),
+  }))
   suc(res, data, '')
 }
 
@@ -58,7 +68,7 @@ const getBestScore = async (req, res, next) => {
  */
 const getBestScoreByGameId = async (userId, gameId, gte, lte) => {
   const scores = await scoresModel.findBestScore(userId, gameId, gte ? Number(gte) : 0, lte ? Number(lte) : 999)
-  scores.length > 0 ? scores[0].gameId = gameId : scores.push({ gameId })  // 补充其游戏id
+  scores.length > 0 ? (scores[0].gameId = gameId) : scores.push({ gameId }) // 补充其游戏id
   // 获取该用户分数的百分位
   const allScoresForMin = await scoresModel.findScore({ gameId, sort: 1, score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 } })
   const allScoresForMax = await scoresModel.findScore({ gameId, sort: -1, score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 } })
@@ -75,8 +85,8 @@ const getBestScoreByGameId = async (userId, gameId, gte, lte) => {
     if (allScoresForMax[k].score === maxScore) maxIndex = k
   }
   if (minScore !== undefined && maxScore !== undefined) {
-    const minPercentile = 100 - 100 / allScoresForMin.length * minIndex
-    const maxPercentile = 100 - 100 / allScoresForMax.length * maxIndex
+    const minPercentile = 100 - (100 / allScoresForMin.length) * minIndex
+    const maxPercentile = 100 - (100 / allScoresForMax.length) * maxIndex
     if (scores.length > 0) {
       scores[0].minPercentile = Number(minPercentile.toFixed(1))
       scores[0].maxPercentile = Number(maxPercentile.toFixed(1))
@@ -88,5 +98,5 @@ const getBestScoreByGameId = async (userId, gameId, gte, lte) => {
 module.exports = {
   saveScore,
   getChartData,
-  getBestScore
+  getBestScore,
 }
