@@ -1,13 +1,6 @@
 <template>
   <account-card title="注册" tips="已有账号？" path="/account/login" linkName="登录">
-    <account-form
-      :formOptions="formOptions"
-      :form="form"
-      :rules="rules"
-      submitName="注册"
-      @submit="register"
-      ref="form"
-    />
+    <account-form :formOptions="formOptions" :form="form" :rules="rules" submitName="注册" @submit="register" ref="form" />
   </account-card>
 </template>
 
@@ -34,9 +27,12 @@ export default {
     if (this.rules.checkPassword.length === 2) this.rules.checkPassword.pop()
     this.rules.checkPassword.push({
       validator: (_, value, callback) => {
-        if (value !== this.form.password) { callback(new Error('与密码不一致')) }
+        if (value !== this.form.password) {
+          callback(new Error('与密码不一致'))
+        }
         callback()
-      }, trigger: 'change'
+      },
+      trigger: 'change'
     })
   },
   methods: {
@@ -46,18 +42,13 @@ export default {
         password: md5(this.form.password)
       })
       if (res.code === 0) {
-        this.$store.state.userInfo.token = res.data.token
         window.localStorage.setItem('human-benchmark-token', res.data.token)
-        setTimeout(() => {
-          this.$store.dispatch('token')
-          this.$router.push('/dashboard')
-        }, 1000);
+        this.$store.state.userInfo = res.data
+        this.$router.push('/dashboard')
       }
     }
   }
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

@@ -4,36 +4,39 @@ const { suc, fail } = require('../utils/render')
 /**
  * 注册
  */
-const register = async (req, res, next) => {
+const register = async (req, res) => {
   const { email, username, password } = req.body
 
   // 判断是否存在同用户名
   const userInfo = await usersModel.findUser({ username })
   if (userInfo) return fail(res, '该用户名已被注册')
 
-  const emailInfo = await usersModel.findUser({ email })
-  if (emailInfo && email) return fail(res, '该邮箱已被使用')
+  if (email) {
+    const emailInfo = await usersModel.findUser({ email })
+    if (emailInfo) return fail(res, '该邮箱已被使用')
+  }
 
   const data = await usersModel.addUser({
     email,
     username,
     password,
   })
+  delete data.password
 
-  suc(res, { token: data.token }, '注册成功')
+  suc(res, data, '注册成功，已为您自动登录')
 }
 
 /**
  * 登录
  */
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   const { username, password } = req.body
 
   const userInfo = await usersModel.findUserAllInfo({ username })
   if (!userInfo) return fail(res, '用户名不存在')
 
   if (userInfo.password !== password) return fail(res, '密码错误')
-    
+
   // 更新用户token
   await usersModel.updateToken(userInfo._id)
 
@@ -44,7 +47,7 @@ const login = async (req, res, next) => {
 /**
  * 根据token获取用户信息
  */
-const getInfoByToken = async (req, res, next) => {
+const getInfoByToken = async (req, res) => {
   const token = req.headers.authorization
   const data = await usersModel.findUser({ token })
   if (!data) return fail(res, '登录信息已过期，请重新登陆')
@@ -55,7 +58,7 @@ const getInfoByToken = async (req, res, next) => {
 /**
  * 修改密码
  */
-const changePassword = async (req, res, next) => {
+const changePassword = async (req, res) => {
   const token = req.headers.authorization
   const { oldPassword, newPassword } = req.body
   const userInfo = await usersModel.findUserAllInfo({ token })
@@ -70,14 +73,14 @@ const changePassword = async (req, res, next) => {
 /**
  * 重置密码
  */
-const resetPassword = async (req, res, next) => {
+const resetPassword = async (req, res) => {
   const { vCode, email, newPassword } = req.body
   const reg = new RegExp(`${email}`, 'i')
   const userInfo = await usersModel.findUser({ email: reg })
   if (!userInfo) return fail(res, '账号信息有误，请联系管理员')
 
   if (vCode !== userInfo.vCode) return fail(res, '验证码有误')
-  await usersModel.updateUser( { email: reg }, { password: newPassword, vCode: '' })
+  await usersModel.updateUser({ email: reg }, { password: newPassword, vCode: '' })
   usersModel.updateToken()
   suc(res, {}, '修改密码成功，请重新登录')
 }
@@ -87,5 +90,5 @@ module.exports = {
   login,
   getInfoByToken,
   changePassword,
-  resetPassword
+  resetPassword,
 }
