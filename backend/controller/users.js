@@ -75,12 +75,12 @@ const changePassword = async (req, res) => {
  */
 const resetPassword = async (req, res) => {
   const { vCode, email, newPassword } = req.body
-  const reg = new RegExp(`${email}`, 'i')
+  const reg = new RegExp(email, 'i')
   const userInfo = await usersModel.findUser({ email: reg })
   if (!userInfo) return fail(res, '账号信息有误，请联系管理员')
 
-  if (vCode !== userInfo.vCode) return fail(res, '验证码有误')
-  await usersModel.updateUser({ email: reg }, { password: newPassword, vCode: '' })
+  if (!vCode || vCode !== userInfo.vCode) return fail(res, '验证码有误')
+  await usersModel.updateUser({ email: reg }, { password: newPassword, vCode: null })
   usersModel.updateToken()
   suc(res, {}, '修改密码成功，请重新登录')
 }

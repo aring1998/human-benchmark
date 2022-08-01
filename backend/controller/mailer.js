@@ -7,8 +7,8 @@ const usersModel = require('../models/users')
 /**
  * 意见反馈
  */
-const feedback = async (req, res, next) => {
-  const mailTemp = fs.readFileSync(path.join(__dirname, "..", "assets", 'opnion.html'), 'utf-8')
+const feedback = async (req, res) => {
+  const mailTemp = fs.readFileSync(path.join(__dirname, '..', 'assets', 'opnion.html'), 'utf-8')
   const { qq, opinion } = req.body
   const html = mailTemp.replace('$qq', qq || '匿名').replace('$opnion', opinion)
   const mailOptions = {
@@ -16,9 +16,9 @@ const feedback = async (req, res, next) => {
     to: 'aring<1303340995@qq.com>', // 发给谁
     subject: '《人类基准测试》您有新的意见反馈', // 主题是什么
     text: '', // 文本内容
-    html // html模板
+    html, // html模板
   }
-  transporter.sendMail(mailOptions, err => {
+  transporter.sendMail(mailOptions, (err) => {
     if (err) return fail(res, '提交失败')
     suc(res, {}, '提交成功')
   })
@@ -27,10 +27,10 @@ const feedback = async (req, res, next) => {
 /**
  * 重置密码邮件
  */
-const resetMail = async (req, res, next) => {
-  const mailTemp = fs.readFileSync(path.join(__dirname, "..", "assets", 'reset.html'), 'utf-8')
+const resetMail = async (req, res) => {
+  const mailTemp = fs.readFileSync(path.join(__dirname, '..', 'assets', 'reset.html'), 'utf-8')
   const { email } = req.body
-  const reg = new RegExp(`${email}`, 'i')
+  const reg = new RegExp(email, 'i')
   const userInfo = await usersModel.findUser({ email: reg })
   if (!userInfo) return fail(res, '不存在该邮箱对应的用户')
   let code = ''
@@ -39,23 +39,23 @@ const resetMail = async (req, res, next) => {
   }
   const html = mailTemp.replace('$code', code)
   const mailOptions = {
-    from: 'aring<1303340995@qq.com>', // 谁发的
-    to: `<${email}>`, // 发给谁
-    subject: '《人类基准测试》您的重置验证码', // 主题是什么
-    text: '', // 文本内容
-    html // html模板
+    from: 'aring<1303340995@qq.com>',
+    to: `<${email}>`,
+    subject: '《人类基准测试》您的重置验证码',
+    text: '',
+    html,
   }
-  transporter.sendMail(mailOptions, async err => {
+  transporter.sendMail(mailOptions, async (err) => {
     if (err) return fail(res, '发送失败')
     await usersModel.updateUser({ email: reg }, { vCode: code })
-    setTimeout(() => {
-      usersModel.updateUser({ email: reg }, { vCode: '' })
-    }, 300000);
+    setTimeout(async () => {
+      await usersModel.updateUser({ email: reg }, { vCode: null })
+    }, 300000)
     suc(res, {}, '发送成功')
   })
 }
 
 module.exports = {
   feedback,
-  resetMail
+  resetMail,
 }
