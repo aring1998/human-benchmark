@@ -7,6 +7,7 @@ const usersRouter = require('./routes/users')
 const scoresRouter = require('./routes/scores')
 const mailerRouter = require('./routes/mailer')
 const articlesRouter = require('./routes/articles')
+const wordsRouter = require('./routes/words')
 
 const app = express()
 
@@ -30,6 +31,7 @@ app.use('/api/users', usersRouter)
 app.use('/api/scores', scoresRouter)
 app.use('/api/mailer', mailerRouter)
 app.use('/api/articles', articlesRouter)
+app.use('/api/words', wordsRouter)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,37 +1,47 @@
 <template>
   <div class="verbal-memory-game-wrap common-wrap">
-    <div class="info">
-      <div class="item">
-        <span class="opacity keys">得分</span>
-        <span>{{ $parent.$parent.score }}</span>
+    <template v-loading="loading">
+      <div class="info">
+        <div class="item">
+          <span class="opacity keys">得分</span>
+          <span>{{ $parent.$parent.score }}</span>
+        </div>
+        <div class="item">
+          <span class="opacity keys">生命</span>
+          <span>{{ life }}</span>
+        </div>
       </div>
-      <div class="item">
-        <span class="opacity keys">生命</span>
-        <span>{{ life }}</span>
+      <div class="game-table">
+        <span>{{ text }}</span>
       </div>
-    </div>
-    <div class="game-table">
-      <span>{{ text }}</span>
-    </div>
-    <div class="btn-wrap">
-      <button class="common-btn" @click="seen">见过</button>
-      <button class="common-btn" @click="isNew">新的</button>
-    </div>
+      <div class="btn-wrap">
+        <button class="common-btn" @click="seen">见过</button>
+        <button class="common-btn" @click="isNew">新的</button>
+      </div>
+    </template>
   </div>
 </template>
 
 <script>
-import { vocabulary, vocabularyRange } from '../config/data'
+import { vocabularyRange } from '../config/data'
 export default {
   data() {
     return {
       life: 3,
       text: '',
       randomNum: 0,
-      vocabularyList: []
+      vocabulary: [],
+      vocabularyList: [],
+      loading: false
     }
   },
-  mounted() {
+  async mounted() {
+    this.loading = true
+    const res = await this.$api.get('words/randomWords', { size: 200 })
+    this.loading = false
+    if (res.code === 0) {
+      this.vocabulary = res.data
+    }
     this.chioceVocabulary()
   },
   methods: {
@@ -42,7 +52,7 @@ export default {
       // 避免连续出现相同词汇
       if (this.randomNum === randomNum) return this.chioceVocabulary()
       else this.randomNum = randomNum
-      this.text = vocabulary[randomNum]
+      this.text = this.vocabulary[randomNum]
     },
     seen() {
       if (this.vocabularyList.indexOf(this.text) > -1) this.$parent.$parent.score++
@@ -55,7 +65,7 @@ export default {
       this.onClick()
     },
     onClick() {
-      if (this.life === 0) return this.$parent.$parent.componentName = 'Result'
+      if (this.life === 0) return (this.$parent.$parent.componentName = 'Result')
       setTimeout(() => {
         this.vocabularyList.push(this.text)
         this.chioceVocabulary()

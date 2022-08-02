@@ -18,9 +18,11 @@ db.on('error', console.error.bind(console, 'connection error:'))
 const Users = require('./module/users')
 const Scores = require('./module/scores')
 const Articles = require('./module/articles')
+const Words = require('./module/words')
 
 module.exports = {
   Users,
   Scores,
   Articles,
+  Words,
 }
