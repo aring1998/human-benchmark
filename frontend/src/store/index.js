@@ -12,7 +12,8 @@ const store = new Vuex.Store({
       _id: '',
       username: '',
       token: '' || window.localStorage.getItem('human-benchmark-token')
-    }
+    },
+    loading: false
   },
   mutations,
   getters,

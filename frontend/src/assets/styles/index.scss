@@ -9,9 +9,9 @@ html {
 }
 
 a {
-  color: #2B87D1CC;
+  color: #2b87d1cc;
   &:hover {
-    color: #2B87D1;
+    color: #2b87d1;
   }
 }
 
@@ -30,16 +30,27 @@ button:focus {
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color .5s;
+  transition: background-color 0.5s;
   user-select: none;
-  animation: textFadeIn .5s linear;
+  animation: textFadeIn 0.5s linear;
   &:hover {
     background-color: #fff;
   }
   &.secondary {
-    background-color: rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, 0.5);
     &:hover {
       background-color: #fff;
+    }
+  }
+  &[disabled] {
+    cursor: not-allowed;
+    &:hover {
+      background-color: $sub-color;
+    }
+    &.secondary {
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
     }
   }
 }
@@ -67,7 +78,7 @@ button:focus {
         cursor: default;
       }
       .opacity {
-        opacity: .7;
+        opacity: 0.8;
       }
       .keys {
         margin: 0 10px;
@@ -97,14 +108,16 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
-input[type=number] {-moz-appearance: textfield;}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
 
 .pages {
   min-height: 100vh;
   box-sizing: border-box;
   background-color: #e6e8f4;
   padding-bottom: 30px;
-} 
+}
 
 .hide {
   display: none !important;
@@ -124,7 +137,7 @@ input[type=number] {-moz-appearance: textfield;}
 
 @keyframes textFadeIn {
   0% {
-    opacity: .1;
+    opacity: 0.1;
     transform: translate(0, 10px);
   }
   100% {

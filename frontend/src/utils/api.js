@@ -14,6 +14,7 @@ const instance = axios.create({
 
 // 请求拦截
 instance.interceptors.request.use(config => {
+  store.state.loading = true
   config.headers.Authorization = `${store.state.userInfo.token}`
   return config
 }), err => {
@@ -21,6 +22,7 @@ instance.interceptors.request.use(config => {
 }
 // 响应拦截
 instance.interceptors.response.use(res => {
+  store.state.loading = false
   if (res.status !== 200) return Message.error(`网络请求错误，错误：${res.statusText}`)
   if (res.data.code !== 0) Message.error(res.data.message)
   else {
