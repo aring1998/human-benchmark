@@ -3,7 +3,7 @@
 ## 🍻[在线试玩](https://aring.cc/human-benchmark)
 
 ## 📖介绍
-**Vue+Node.js**开发的全栈Web项目，通过脑力游戏和认知测试来衡量您的才能
+**Vue+Express**开发的全栈Web项目，通过脑力游戏和认知测试来衡量您的才能
 
 ## 📦快速运行
 1. 运行前端 `npm run front`
