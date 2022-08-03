@@ -142,7 +142,7 @@ export const gameList = [
     best: 1,
     section: 400,
     scoreRange: [0, 6000],
-    unit: '百分位'
+    unit: 'ms'
   },
   {
     id: 14,
