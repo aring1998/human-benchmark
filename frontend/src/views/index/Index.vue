@@ -13,7 +13,7 @@
         <i class="el-icon-message"></i>
       </el-badge>
     </div>
-    <el-dialog title="公告" :visible="noticeShow" width="70%" :before-close="closeDialog">
+    <el-dialog title="公告" :visible="noticeShow" width="70%" :before-close="closeNotice">
       <el-carousel height="350px" trigger="click" :autoplay="false" indicator-position="outside">
         <el-carousel-item v-for="item of noticeList" :key="item.id">
           <div class="notice-content">
@@ -29,7 +29,7 @@
         </el-carousel-item>
       </el-carousel>
       <span slot="footer" style="text-align: center">
-        <el-button type="success" plain @click="closeDialog">我知道了</el-button>
+        <el-button type="success" plain @click="closeNotice">我知道了</el-button>
       </span>
     </el-dialog>
   </div>
@@ -84,10 +84,11 @@ export default {
         this.noticeList = data
       }
     },
-    closeDialog() {
+    closeNotice() {
       this.noticeShow = false
       if (!this.noticeList.length) return
       localStorage.setItem('noticeList', JSON.stringify(this.noticeList.map(item => item._id) || ''))
+      this.noticeList = []
     }
   }
 }
@@ -113,6 +114,11 @@ export default {
     bottom: 80px;
     right: 60px;
     cursor: pointer;
+    &:hover {
+      i {
+        color: $main-color;
+      }
+    }
     i {
       font-size: 30px;
     }
