@@ -139,9 +139,9 @@ export const gameList = [
     title: '时间感知测试',
     intro: '尝试判断时间。',
     path: '/time-perception-test',
-    best: -1,
-    section: 10,
-    scoreRange: [0, 100],
+    best: 1,
+    section: 400,
+    scoreRange: [0, 6000],
     unit: '百分位'
   },
   {

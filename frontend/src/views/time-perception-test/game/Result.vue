@@ -1,7 +1,7 @@
 <template>
   <game-wrap
-    :text="`${$parent.$parent.percentile} %`"
-    tips="本次测试您的时间感知准确率"
+    :text="`${$parent.$parent.time}ms`"
+    tips="本次测试您的时间感知偏差时间"
     cursor="unset"
   >
     <game-btn @saveScore="saveScore" @again="again"/>
@@ -18,13 +18,13 @@ export default {
   },
   methods: {
     async saveScore() {
-      const score = Math.round(this.$parent.$parent.percentile)
+      const score = Math.round(this.$parent.$parent.time)
       const res = await this.$store.dispatch('saveScore', score)
       if (res.code === 0) this.again()
     },
     again() {
       this.$parent.$parent.componentName = ''
-      this.$parent.$parent.percentile = 0
+      this.$parent.$parent.time = 0
     }
   }
 }

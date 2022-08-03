@@ -27,7 +27,7 @@ export default {
     return {
       aboutText,
       componentName: '',
-      percentile: 0
+      time: 0
     }
   },
   components: {

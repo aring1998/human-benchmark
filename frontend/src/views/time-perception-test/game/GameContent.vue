@@ -65,16 +65,11 @@ export default {
       item.btnType = 'success'
       this.clickCount++
       if (this.clickCount === 6) {
-        const timeObj = this.timeList.reduce(
-          (pre, item) => ({
-            valCount: (pre.valCount += Number(item.val)),
-            difTimeCount: (pre.difTimeCount += Number(item.difTime / 1000))
-          }),
-          { valCount: 0, difTimeCount: 0 }
-        )
-        const { valCount, difTimeCount } = timeObj
-        if (valCount > difTimeCount) this.$parent.$parent.percentile = Number(((difTimeCount / valCount) * 100).toFixed(2))
-        else this.$parent.$parent.percentile = Number(((valCount / difTimeCount) * 100).toFixed(2))
+        this.$parent.$parent.time = this.timeList.reduce((pre, item) => {
+          const valTime = item.val * 1000
+          if (valTime > item.difTime ) return pre += valTime - item.difTime
+          else return pre += item.difTime - valTime
+        }, 0)
         setTimeout(() => {
           this.$parent.$parent.componentName = 'result'
         }, 1000)
