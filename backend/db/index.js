@@ -19,10 +19,12 @@ const Users = require('./module/users')
 const Scores = require('./module/scores')
 const Articles = require('./module/articles')
 const Words = require('./module/words')
+const Notices = require('./module/notices')
 
 module.exports = {
   Users,
   Scores,
   Articles,
   Words,
+  Notices,
 }
