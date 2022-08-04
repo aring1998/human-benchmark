@@ -140,8 +140,8 @@ export const gameList = [
     intro: '尝试判断时间。',
     path: '/time-perception-test',
     best: 1,
-    section: 400,
-    scoreRange: [0, 6000],
+    section: 100,
+    scoreRange: [0, 3000],
     unit: 'ms'
   },
   {
