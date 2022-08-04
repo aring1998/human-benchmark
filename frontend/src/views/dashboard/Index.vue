@@ -3,15 +3,18 @@
     <div class="dashboard">
       <nav-bar></nav-bar>
       <router-view />
+      <mail-station></mail-station>
     </div>
   </div>
 </template>
 
 <script>
+import MailStation from '@/components/MailStation.vue'
 import NavBar from './components/NavBar.vue'
 export default {
   components: {
-    NavBar
+    NavBar,
+    MailStation
   }
 }
 </script>
