@@ -43,8 +43,8 @@ export default {
     async getNotice() {
       const noticeList = JSON.parse(localStorage.getItem('noticeList') || '[]')
       const res = await this.$api.get('notices/getNotices')
-      const data = res.data
       if (res.code === 0) {
+        const data = res.data
         this.unreadNotice = data.filter(item => !noticeList.includes(item._id)).length
         this.noticeList = data
       }

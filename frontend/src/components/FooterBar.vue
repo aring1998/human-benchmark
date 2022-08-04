@@ -2,6 +2,7 @@
   <div class="footer-bar-wrap">
     <div class="footer-bar">
       <div class="line"></div>
+      <p>仿写国外站点<a href="https://humanbenchmark.com/">HumanBenchmark</a>，仅作编程练习用途</p>
       <p>该站点为开源项目，欢迎开发者访问参考学习</p>
       <p>请尊重知识产权，切勿进行商业用途</p>
       <a href="https://gitee.com/aring1998/human-benchmark" target="_blank">访问项目源码</a>
@@ -11,12 +12,6 @@
     </div>
   </div>
 </template>
-
-<script>
-export default {
-
-}
-</script>
 
 <style lang="scss">
 .footer-bar-wrap {
