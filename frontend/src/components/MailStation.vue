@@ -120,37 +120,37 @@ export default {
   .el-dialog__footer {
     text-align: center;
   }
-  @media screen and (min-width: 480px) {
-    .el-carousel__item.is-active {
-      &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
-        background-color: transparent;
-      }
-      &::-webkit-scrollbar-thumb {
-        border-radius: 8px;
-        background-color: #c0c4cc;
-      }
+}
+@media screen and (min-width: 480px) {
+  .el-carousel__item.is-active {
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: transparent;
+    }
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background-color: #c0c4cc;
     }
   }
-  @media screen and (max-width: 480px) {
-    .index {
-      .notice-content {
-        padding: 0 10px;
-      }
-      .el-carousel__arrow {
-        display: none;
-      }
-      .notice-content {
-        .img-wrap {
-          img {
-            width: 100%;
-          }
+}
+@media screen and (max-width: 480px) {
+  .mail-station {
+    .notice-content {
+      padding: 0 10px;
+    }
+    .el-carousel__arrow {
+      display: none;
+    }
+    .notice-content {
+      .img-wrap {
+        img {
+          width: 100%;
         }
       }
-      .mail-wrap {
-        right: 30px;
-      }
+    }
+    .mail-wrap {
+      right: 30px;
     }
   }
 }
