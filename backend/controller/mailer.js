@@ -37,7 +37,7 @@ const resetMail = async (req, res) => {
   for (let i = 0; i < 6; i++) {
     code += Math.floor(Math.random() * 10)
   }
-  const html = mailTemp.replace('$code', code)
+  const html = mailTemp.replace('$code', code).replace('$username', userInfo.username)
   const mailOptions = {
     from: 'aring<1303340995@qq.com>',
     to: `<${email}>`,
