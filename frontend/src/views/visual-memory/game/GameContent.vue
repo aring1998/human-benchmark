@@ -7,7 +7,7 @@
       </div>
       <div class="item">
         <span class="opacity keys">生命</span>
-        <span class="icon" v-for="item in 3" :key="item" :class="{'opacity': item > life}">♥</span>
+        <span class="icon" v-for="item in 3" :key="item" :class="{ opacity: item > life }">♥</span>
       </div>
     </div>
     <grid-table
@@ -52,16 +52,20 @@ export default {
       this.cellData = [...gridData[this.cellIndex].data]
       // 游戏单元格个数
       const cellNum = this.cellData.length
-      setTimeout(() => { // 再次执行动画需要设定延迟
+      this.$nextTick(() => {
+        // 再次执行动画需要设定延迟
         for (let i = -2; i < this.$parent.$parent.level; i++) {
           let randomNo = Math.floor(Math.random() * cellNum)
           // 防止赋值到已经存在值的单元格
           for (let j = 0; this.cellData[randomNo] === 1; j++) {
             randomNo = Math.floor(Math.random() * cellNum)
           }
-          this.$set(this.cellData, randomNo, 1)
+          this.cellData[randomNo] = 1
         }
-      }, 10)
+        setTimeout(() => {
+          this.$forceUpdate()
+        }, 50)
+      })
       // 等待动画播放完毕才可点击
       setTimeout(() => {
         this.canBeClick = true
@@ -71,23 +75,28 @@ export default {
     clickCell(item, index) {
       if (item > 1 || !this.canBeClick) return
       this.$set(this.cellData, index, item + 2)
-      setTimeout(() => {
+      this.$nextTick(() => {
         // 达成目标
         if (document.getElementsByClassName('right-click').length === this.$parent.$parent.level + 2) {
-          this.$parent.$parent.level++
           if (this.$parent.$parent.level === 40) {
             this.$message.error('您是否作弊了呢？')
-            return this.$parent.$parent.componentName = 'Result'
+            return (this.$parent.$parent.componentName = 'Result')
           }
-          this.randerCell()
+          setTimeout(() => {
+            this.$parent.$parent.level++
+            this.randerCell()
+          }, 600)
         }
         // 错误达到3次
         if (document.getElementsByClassName('wrong-click').length === 3) {
+          this.canBeClick = false
           this.life--
-          if (this.life === 0) return this.$parent.$parent.componentName = 'Result'
-          this.randerCell()
+          setTimeout(() => {
+            if (this.life === 0) return (this.$parent.$parent.componentName = 'Result')
+            this.randerCell()
+          }, 600)
         }
-      }, 1000)
+      })
     }
   }
 }
@@ -101,25 +110,25 @@ export default {
       animation: showCell 2s linear;
     }
     .right-click {
-      animation: rotateCell .3s linear;
+      animation: rotateCell 0.3s linear;
       background-color: #fff;
     }
     .wrong-click {
-      animation: shakeCell .3s linear;
+      animation: shakeCell 0.3s linear;
       background-color: #00000080;
     }
   }
 }
 @keyframes showCell {
   0% {
-    background-color: rgba($color: #006, $alpha: .15);
+    background-color: rgba($color: #006, $alpha: 0.15);
   }
   30%,
   80% {
     background-color: rgba($color: #fff, $alpha: 1);
   }
   100% {
-    background-color: rgba($color: #006, $alpha: .15);
+    background-color: rgba($color: #006, $alpha: 0.15);
   }
 }
 @keyframes rotateCell {
