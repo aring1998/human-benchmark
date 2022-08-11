@@ -7,7 +7,11 @@
       </div>
       <div class="item">
         <span class="opacity keys">生命</span>
-        <span class="icon" v-for="item in 3" :key="item" :class="{ opacity: item > life }">♥</span>
+        <svg viewBox="0 0 24 24" class="svg" v-for="item in 3" :key="item" :class="{ opacity: item > life }">
+          <path
+            d="M12 21.35l-1.45-1.32c-5.15-4.67-8.55-7.75-8.55-11.53 0-3.08 2.42-5.5 5.5-5.5 1.74 0 3.41.81 4.5 2.09 1.09-1.28 2.76-2.09 4.5-2.09 3.08 0 5.5 2.42 5.5 5.5 0 3.78-3.4 6.86-8.55 11.54l-1.45 1.31z"
+          />
+        </svg>
       </div>
     </div>
     <grid-table
