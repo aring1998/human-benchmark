@@ -82,6 +82,7 @@ export default {
       this.$nextTick(() => {
         // 达成目标
         if (document.getElementsByClassName('right-click').length === this.$parent.$parent.level + 2) {
+          this.canBeClick = false
           if (this.$parent.$parent.level === 40) {
             this.$message.error('您是否作弊了呢？')
             return (this.$parent.$parent.componentName = 'Result')

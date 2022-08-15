@@ -97,7 +97,7 @@ export const gameList = [
     path: '/verbal-memory',
     best: -1,
     section: 10,
-    scoreRange: [0, 150],
+    scoreRange: [10, 180],
     unit: '个'
   },
   {
