@@ -6,14 +6,15 @@
       </div>
     </div>
     <div class="card-wrap">
-      <div class="card"
+      <div
+        class="card"
         v-for="(item, index) of cardList"
         :key="index"
-        :style="{'color': cardOptions[item].color}"
-        :class="{'show': showAnim, 'turn': turnAnim && clickIndex === index}"
+        :style="{ color: cardOptions[item].color }"
+        :class="{ show: showAnim, turn: turnAnim && clickIndex === index }"
         @click="clickCard(item, index)"
       >
-        <span :class="{'show-text': clickIndex === index}">{{ cardOptions[item].name }}</span>
+        <span :class="{ 'show-text': clickIndex === index }">{{ cardOptions[item].name }}</span>
       </div>
     </div>
   </div>
@@ -43,7 +44,7 @@ export default {
       this.turnAnim = false
       this.clickIndex = null
       for (let i = 0; i < 5; i++) {
-        const randomNum = (Math.random() * 10) + 1
+        const randomNum = Math.random() * 10 + 1
         const cardIndex = cardProbability(randomNum)
         this.cardList.push(cardIndex)
       }
@@ -61,11 +62,11 @@ export default {
         this.clickList.forEach(value => {
           score += cardOptions[value].score
         })
-        this.$parent.$parent.percentile = (score / 50 * 100).toFixed(1)
+        this.$parent.$parent.percentile = ((score / 50) * 100).toFixed(1)
         setTimeout(() => {
           this.$parent.$parent.componentName = 'Result'
         }, 2000)
-      } 
+      }
       setTimeout(() => {
         this.randerCard()
       }, 2000)
@@ -109,7 +110,6 @@ export default {
         &.show-text {
           opacity: 1;
           animation: textFadeIn 1s linear;
-          transform: rotateY(180deg);
         }
       }
     }
@@ -128,10 +128,10 @@ export default {
 }
 @keyframes turnCard {
   0% {
-    transform: rotateY(0deg);
+    transform: rotateY(180deg);
   }
   100% {
-    transform: rotateY(180deg);
+    transform: rotateY(360deg);
   }
 }
 </style>
