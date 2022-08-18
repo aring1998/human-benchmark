@@ -50,6 +50,7 @@
 
 @media screen and (max-width: 480px) {
   .footer-bar-wrap {
+    position: relative;
     .footer-bar {
       padding: 0 10px;
     }
