@@ -7,8 +7,7 @@
       <p>请尊重知识产权，切勿进行商业用途</p>
       <a href="https://gitee.com/aring1998/human-benchmark" target="_blank">访问项目源码</a>
       <router-link to="/account/opinion">意见反馈</router-link>
-      <a class="hide-on-mob" href="http://wpa.qq.com/msgrd?v=3&uin=1303340995&site=qq&menu=yes" target="_blank">联系作者</a>
-      <a class="hide-on-pc" href="mqqwpa://im/chat?chat_type=wpa&uin=1303340995&version=1&src_type=web&web_src=http:://wpa.b.qq.com">联系作者</a>
+      <a href="http://wpa.qq.com/msgrd?v=3&uin=1303340995&site=qq&menu=yes" target="_blank">联系作者</a>
     </div>
   </div>
 </template>
