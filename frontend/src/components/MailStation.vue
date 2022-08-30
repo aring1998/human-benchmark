@@ -1,5 +1,5 @@
 <template>
-  <div class="mail-station">
+  <div class="mail-station" v-if="stationShow">
     <div class="mail-wrap" @click.stop="noticeShow = true">
       <el-badge :value="unreadNotice" :hidden="unreadNotice === 0">
         <i class="el-icon-message"></i>
@@ -31,6 +31,7 @@
 export default {
   data() {
     return {
+      stationShow: false,
       noticeShow: false,
       noticeList: [],
       unreadNotice: 0
@@ -45,6 +46,7 @@ export default {
       const res = await this.$api.get('notices/getNotices')
       if (res.code === 0) {
         const data = res.data
+        if (data.length) this.stationShow = true
         this.unreadNotice = data.filter(item => !noticeList.includes(item._id)).length
         this.noticeList = data
       }

@@ -1,9 +1,12 @@
 const { Notices } = require('../db/index')
 
 const findNotices = async () => {
-  const data = await Notices.find({ delFlag: 0 })
-  data.forEach((item, index) => {
-    if (item.created + item.showDays * 1000 * 60 * 60 * 24 < Date.now()) data.splice(index, 1)
+  const notices = await Notices.find({ delFlag: 0 })
+  const data = []
+  notices.forEach((item) => {
+    if (item.created + item.showDays * 1000 * 60 * 60 * 24 > Date.now()) {
+      data.push(item)
+    }
   })
   return data
 }
