@@ -4,7 +4,7 @@
       <span>{{ level }} 级</span>
       <span>{{ $parent.$parent.score }} 分</span>
     </div>
-    <div class="wrap" @mousedown="stopBall">
+    <div class="wrap" @touchstart="stopBall" @touchend.prevent @mousedown="stopBall">
       <div class="x-axis axis" ref="xAxis">
         <div class="x-ball ball" :style="{ left: `${xBall}px`, transition: `left ${runTime}s linear` }" ref="xBall"></div>
       </div>
@@ -70,7 +70,7 @@ export default {
         clearInterval(this.xRunTimer)
         this.xRunTimer = null
         this.yBallRun()
-      } else {
+      } else if (this.yRunTimer !== null) {
         this.yBall = this.$refs.yBall.offsetTop
         clearInterval(this.yRunTimer)
         this.gameEnd()
