@@ -126,6 +126,9 @@ export default {
     cursor: text;
     color: #333;
     user-select: none;
+    text-align: left;
+    word-break: break-all;
+    text-indent: 20px;
     span {
       &.current {
         position: relative;
