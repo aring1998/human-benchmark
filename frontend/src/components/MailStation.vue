@@ -5,7 +5,7 @@
         <i class="el-icon-message"></i>
       </el-badge>
     </div>
-    <el-dialog title="站内信" :visible="noticeShow" width="70%" :before-close="closeNotice">
+    <el-dialog class="notice-wrap" title="站内信" :visible="noticeShow" :before-close="closeNotice">
       <el-carousel height="350px" trigger="click" :autoplay="false" indicator-position="outside">
         <el-carousel-item v-for="item of noticeList" :key="item.id">
           <div class="notice-content">
@@ -86,24 +86,29 @@ export default {
       font-size: 30px;
     }
   }
-  .notice-content {
-    padding: 0 50px;
-    overflow: auto;
-    h4 {
-      font-size: 20px;
-      text-align: center;
-      margin: 12px 0;
+  .notice-wrap {
+    .el-dialog {
+      width: 70%;
     }
-    p {
-      font-size: 18px;
-      text-indent: 36px;
-      margin: 8px 0;
-      line-height: 1.5;
-    }
-    .img-wrap {
-      text-align: center;
-      img {
-        width: 20%;
+    .notice-content {
+      padding: 0 50px;
+      overflow: auto;
+      h4 {
+        font-size: 20px;
+        text-align: center;
+        margin: 12px 0;
+      }
+      p {
+        font-size: 18px;
+        text-indent: 36px;
+        margin: 8px 0;
+        line-height: 1.5;
+      }
+      .img-wrap {
+        text-align: center;
+        img {
+          width: 20%;
+        }
       }
     }
   }
@@ -138,8 +143,13 @@ export default {
 }
 @media screen and (max-width: 480px) {
   .mail-station {
-    .notice-content {
-      padding: 0 10px;
+    .notice-wrap {
+      .el-dialog {
+        width: 90%;
+      }
+      .notice-content {
+        padding: 0 10px;
+      }
     }
     .el-carousel__arrow {
       display: none;
