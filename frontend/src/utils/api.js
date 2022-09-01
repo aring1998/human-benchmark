@@ -5,7 +5,7 @@ import { Message } from 'element-ui'
 // 创建axios实例
 const instance = axios.create({
   baseURL: process.env.VUE_APP_URL,
-  timeout: 30000,
+  timeout: 10000,
   validateStatus: status => {
     // 允许返回所有状态码，不会遇到错误就停止
     return status >= 200 && status <= 600

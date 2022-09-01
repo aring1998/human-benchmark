@@ -11,6 +11,7 @@
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
     <link rel="apple-touch-icon" href="./favicon.ico" />
     <link rel="manifest" href="./manifest.json" />
+    <link rel="stylesheet" href="./style.css">
     <title>人类基准测试</title>
     <script>
       var _hmt = _hmt || []
@@ -26,7 +27,10 @@
     <noscript>
       <strong>很抱歉，如果禁用了JavaScript，将导致该站点无法正常显示，请开启它</strong>
     </noscript>
-    <div id="app"></div>
+    <div id="app" class="login-loader-wrap">
+      <div class="loader"></div>
+      <span>加载中</span>
+    </div>
     <!-- built files will be auto injected -->
   </body>
 </html>

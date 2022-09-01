@@ -22,13 +22,14 @@ router.beforeEach((to, _from, next) => {
 })
 
 ;(async () => {
-  if (store.state.userInfo.token) await store.dispatch('token')
-
-  /* eslint-disable no-new */
-  new Vue({
-    el: '#app',
-    router,
-    store,
-    render: h => h(App)
-  })
+  try {
+    if (store.state.userInfo.token) await store.dispatch('token')
+  } finally {
+    new Vue({
+      el: '#app',
+      router,
+      store,
+      render: h => h(App)
+    })
+  }
 })()
