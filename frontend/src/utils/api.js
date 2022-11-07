@@ -17,9 +17,10 @@ instance.interceptors.request.use(config => {
   store.state.loading = true
   config.headers.Authorization = `${store.state.userInfo.token}`
   return config
-}), err => {
-  console.log(err)
-}
+}),
+  err => {
+    console.log(err)
+  }
 // 响应拦截
 instance.interceptors.response.use(res => {
   store.state.loading = false
@@ -28,16 +29,20 @@ instance.interceptors.response.use(res => {
   else {
     if (res.data.message) Message.success(res.data.message)
   }
-  return res.data  // 配置只返回data
-}), err => {
-  console.log(err)
-}
+  return res.data // 配置只返回data
+}),
+  err => {
+    if (err.code === 'ECONNABORTED' || err.message.includes('timeout')) {
+      Message.error('网络请求超时，请尝试刷新页面')
+    }
+    console.log(err)
+  }
 
 // 封装get/post方法
 export const api = {
   async get(url, params) {
     try {
-      let res = await instance.get(url, {params})
+      let res = await instance.get(url, { params })
       return new Promise(resolve => {
         resolve(res)
       })
