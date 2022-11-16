@@ -39,8 +39,12 @@ export default {
     randerText() {
       this.randomTextIndex = Math.floor(Math.random() * 4)
       this.randomColorIndex = Math.floor(Math.random() * 4)
-      this.showText = colorArr[this.randomTextIndex].name
-      this.color = colorArr[this.randomColorIndex].color
+      const text = colorArr[this.randomTextIndex].name
+      const color = colorArr[this.randomTextIndex].color
+      // 阻止连续出现同一颜色同一文本
+      if (this.showText === text && this.color === color) return this.randerText()
+      this.showText = text
+      this.color = color
     },
     firstClick() {
       clearInterval(this.timer)
