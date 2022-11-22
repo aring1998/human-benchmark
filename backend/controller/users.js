@@ -1,5 +1,6 @@
 const usersModel = require('../models/users')
 const { suc, fail } = require('../utils/render')
+const uuid = require('uuid')
 
 /**
  * 注册
@@ -20,6 +21,7 @@ const register = async (req, res) => {
     email,
     username,
     password,
+    token: uuid.v4(),
   })
   delete data.password
 
