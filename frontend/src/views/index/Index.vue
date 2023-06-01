@@ -1,6 +1,6 @@
 <template>
   <div class="index pages">
-    <game-intro title="人类基准" intro="通过脑力游戏和认知测试来衡量您的才能" @start="$router.push('dashboard')" />
+    <game-intro title="人类基准测试" intro="通过脑力游戏和认知测试来衡量您的各项能力" @start="$router.push('dashboard')" />
     <div class="game-list">
       <el-row justify="space-evenly">
         <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8" v-for="(item, index) of gameList" :key="index">

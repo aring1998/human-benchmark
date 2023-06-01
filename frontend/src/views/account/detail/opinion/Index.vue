@@ -1,5 +1,5 @@
 <template>
-  <account-card title="意见反馈" tips="为了更好的用户体验，请您提出宝贵意见" v-loading="loading">
+  <account-card title="意见反馈" tips="若您遇到问题或是有一些建议，欢迎您在此提出" v-loading="loading">
     <account-form
       :formOptions="formOptions"
       :form="form"

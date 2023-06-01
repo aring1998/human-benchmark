@@ -31,7 +31,7 @@ export const gameList = [
     path: '/chimp-test',
     best: -1,
     section: 1,
-    scoreRange: [4, 30],
+    scoreRange: [4, 20],
     unit: '级'
   },
   {
@@ -53,7 +53,7 @@ export const gameList = [
     path: '/visual-memory',
     best: -1,
     section: 1,
-    scoreRange: [1, 25],
+    scoreRange: [5, 25],
     unit: '级'
   },
   {
@@ -108,7 +108,7 @@ export const gameList = [
     path: '/sequential-memory',
     best: -1,
     section: 1,
-    scoreRange: [1, 20],
+    scoreRange: [1, 15],
     unit: '级'
   },
   {
@@ -152,7 +152,7 @@ export const gameList = [
     path: '/hand-eye-coordination-test',
     best: -1,
     section: 2,
-    scoreRange: [4, 50],
+    scoreRange: [4, 40],
     unit: '分'
   }
 ]
