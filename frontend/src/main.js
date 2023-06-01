@@ -29,7 +29,7 @@ Vue.use(ElementUI)
   })
   router.afterEach(() => {
     clearTimeout(timer)
-    loading.close()
+    loading?.close()
   })
 })()
 ;(async () => {
