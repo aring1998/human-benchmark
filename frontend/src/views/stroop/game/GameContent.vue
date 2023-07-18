@@ -40,7 +40,7 @@ export default {
       this.randomTextIndex = Math.floor(Math.random() * 4)
       this.randomColorIndex = Math.floor(Math.random() * 4)
       const text = colorArr[this.randomTextIndex].name
-      const color = colorArr[this.randomTextIndex].color
+      const color = colorArr[this.randomColorIndex].color
       // 阻止连续出现同一颜色同一文本
       if (this.showText === text && this.color === color) return this.randerText()
       this.showText = text
