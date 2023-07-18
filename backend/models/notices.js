@@ -1,7 +1,7 @@
 const { Notices } = require('../db/index')
 
 const findNotices = async () => {
-  const notices = await Notices.find({ delFlag: 0 })
+  const notices = await Notices.find({ delFlag: 0 }).sort({ created: -1 })
   const data = []
   notices.forEach((item) => {
     if (item.created + item.showDays * 1000 * 60 * 60 * 24 > Date.now()) {
