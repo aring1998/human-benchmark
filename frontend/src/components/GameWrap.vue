@@ -38,6 +38,7 @@ export default {
 
 <style lang="scss">
 .game-wrap {
+  position: relative;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
