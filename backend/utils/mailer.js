@@ -1,5 +1,7 @@
 // 引入模块
 const nodemailer = require('nodemailer')
+const dotenv = require('dotenv')
+dotenv.config()
 
 // 设置邮箱配置
 const transporter = nodemailer.createTransport({
@@ -10,7 +12,7 @@ const transporter = nodemailer.createTransport({
   // 用户信息
   auth: {
     user: '1303340995@qq.com',
-    pass: 'augkavxuintejbii',
+    pass: process.env.MAIL_AUTH_CODE,
   },
 })
 
