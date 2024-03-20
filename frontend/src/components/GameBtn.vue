@@ -84,4 +84,13 @@ export default {
     }
   }
 }
+@media screen and (max-width: 480px) {
+  .btn-wrap {
+    .appreciate-modal {
+      .el-dialog {
+        width: 90%;
+      }
+    }
+  }
+}
 </style>

@@ -13,5 +13,6 @@ export const iconName = {
   luckTest: 'el-icon-present',
   handSpeedTest: 'el-icon-thumb',
   timePerceptionTest: 'el-icon-time',
-  handEyeCoordinationTest: 'el-icon-place'
+  handEyeCoordinationTest: 'el-icon-place',
+  calculateTest: 'el-icon-set-up',
 }

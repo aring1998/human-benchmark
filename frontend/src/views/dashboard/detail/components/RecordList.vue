@@ -8,7 +8,7 @@
       </div>
       <div class="record">
         <span>{{ item.score }}</span>
-        <el-progress :text-inside="true" :stroke-width="22" :percentage="item.percentile"></el-progress>
+        <el-progress :text-inside="true" :stroke-width="22" :percentage="item.percentile" text-color="#fff"></el-progress>
       </div>
     </div>
   </div>

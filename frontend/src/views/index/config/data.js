@@ -154,5 +154,16 @@ export const gameList = [
     section: 2,
     scoreRange: [4, 40],
     unit: '分'
+  },
+  {
+    id: 15,
+    icon: iconName.calculateTest,
+    title: '计算测试',
+    intro: '快速且精确的计算。',
+    path: '/calculate-test',
+    best: -1,
+    section: 2,
+    scoreRange: [6, 30],
+    unit: '分'
   }
 ]

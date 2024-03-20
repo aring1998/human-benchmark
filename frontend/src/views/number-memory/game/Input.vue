@@ -51,6 +51,7 @@ export default {
     margin-bottom: 30px;
     padding: 10px;
     color: #fff;
+    border: 1px solid transparent;
     &:focus {
       border: 1px solid rgb(204, 204, 204);
     }
