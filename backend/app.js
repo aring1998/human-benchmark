@@ -1,6 +1,5 @@
 const createError = require('http-errors')
 const express = require('express')
-const rateLimit = require('express-rate-limit')
 const path = require('path')
 const cookieParser = require('cookie-parser')
 const logger = require('morgan')
@@ -10,6 +9,7 @@ const mailerRouter = require('./routes/mailer')
 const articlesRouter = require('./routes/articles')
 const wordsRouter = require('./routes/words')
 const noticesRouter = require('./routes/notices')
+const { limitIpReqPerMin } = require('./middles/rate-limit')
 
 const app = express()
 
@@ -24,13 +24,7 @@ app.all('*', function (req, res, next) {
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-// 限制同一ip多次请求
-const limiter = rateLimit({
-  max: 200, // 允许的最大请求数
-  windowMs: 60000, // 时间窗口的毫秒数
-  message: 'Too many requests from this IP address',
-})
-app.use(limiter)
+app.use(limitIpReqPerMin(200))
 app.use(logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
