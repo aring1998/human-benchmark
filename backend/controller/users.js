@@ -76,7 +76,7 @@ const changePassword = async (req, res) => {
  */
 const resetPassword = async (req, res) => {
   const { vCode, email, newPassword } = req.body
-  const reg = new RegExp(email, 'i')
+  const reg = new RegExp(`^${email}$`, 'i')
   const userInfo = await usersModel.findUser({ email: reg })
   if (!userInfo) return fail(res, '账号信息有误，请联系管理员')
 

@@ -30,7 +30,7 @@ const feedback = async (req, res) => {
 const resetMail = async (req, res) => {
   const mailTemp = fs.readFileSync(path.join(__dirname, '..', 'assets', 'reset.html'), 'utf-8')
   const { email } = req.body
-  const reg = new RegExp(email, 'i')
+  const reg = new RegExp(`^${email}$`, 'i')
   const userInfo = await usersModel.findUser({ email: reg })
   if (!userInfo) return fail(res, '不存在该邮箱对应的用户')
   let code = ''
