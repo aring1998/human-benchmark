@@ -5,6 +5,6 @@ const { feedback, resetMail } = require('../controller/mailer')
 const { limitIpReqPerMin } = require('../middles/rate-limit')
 
 router.post('/feedback', feedback)
-router.post('/resetMail', limitIpReqPerMin(1), resetMail)
+router.post('/resetMail', limitIpReqPerMin(5), resetMail)
 
 module.exports = router
