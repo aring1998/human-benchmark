@@ -158,8 +158,8 @@ export const gameList = [
   {
     id: 15,
     icon: iconName.calculateTest,
-    title: '计算测试',
-    intro: '快速且精确的计算。',
+    title: '计算能力测试',
+    intro: '快速且精确地计算。',
     path: '/calculate-test',
     best: -1,
     section: 2,

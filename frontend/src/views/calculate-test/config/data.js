@@ -1,6 +1,7 @@
 export const aboutText = [
   '这是一款寓教于乐的测试，旨在通过一系列数学题目，考验您的逻辑思维及快速反应能力。',
   '在该测试中，您将面对加减乘除四项基础计算，每个题目都需要您尽快完成正确的答题。当您正确回答问题时会得到一分，而错误的回答则会扣除一分。',
+  '随着您的分数提升，题目也将更加具有挑战。',
   '您有60秒的时间作答，尽可能做到最好吧！',
 ]
 
@@ -117,8 +118,8 @@ export function getRandomCalc() {
 
 export function getLevel(score) {
   if (score <= 5) return 1
-  else if (score > 5 && score <= 8) return 2
+  else if (score > 5 && score <= 9) return 2
   else if (score > 9 && score <= 12) return 3
-  else if (score > 13 && score <= 16) return 4
-  else if (score > 16) return 5
+  else if (score > 12 && score <= 15) return 4
+  else if (score > 15) return 5
 }

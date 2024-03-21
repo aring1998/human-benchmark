@@ -3,7 +3,7 @@
     <base-layout :aboutText="aboutText">
       <game-intro 
         slot="wrap"
-        title="计算测试"
+        title="计算能力测试"
         intro="在60秒内快速作答计算题"
         v-show="componentName === ''"
         @start="componentName = 'GameContent'"
