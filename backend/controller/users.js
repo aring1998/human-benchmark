@@ -38,7 +38,8 @@ const login = async (req, res) => {
   if (userInfo.password !== password) return fail(res, '密码错误')
 
   // 更新用户token
-  await usersModel.updateToken(userInfo._id)
+  // TODO 在登录时暂时不更新用户token
+  // await usersModel.updateToken(userInfo._id)
 
   const data = await usersModel.findUser({ _id: userInfo._id })
   suc(res, data, '登录成功')
