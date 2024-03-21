@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="game-table">
-      <p v-if="!timer">按Enter键或点击“答题”按钮开始</p>
+      <p v-if="!timer">按Enter键或点击"答题"按钮开始</p>
       <p v-else>{{ question }} = ?</p>
       <input ref="userAnswer" type="number" v-model="answer" @keydown.enter="submit" @paste="(e) => e.preventDefault()" />
     </div>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { getRandomCalcSymbol } from '../config/data'
+import { getRandomCalc, getLevel } from '../config/data'
 import { getRandomIntNumber } from '@/utils'
 
 export default {
@@ -38,25 +38,20 @@ export default {
   },
   methods: {
     renderCalcQuestion(initSymbol) {
-      let firstNum = getRandomIntNumber(100, 2000)
-      let secondNum = getRandomIntNumber(100, 2000)
+      const calc = getRandomCalc()
+      const symbol = initSymbol || calc.symbol
+
+      const level = getLevel(this.$parent.$parent.score)
+      const range = calc[`range${level}`]
+      const firstNum = getRandomIntNumber(...range.firstNum)
+      const secondNum = getRandomIntNumber(...range.secondNum)
       if (firstNum === secondNum) return this.renderCalcQuestion()
-      const symbol = initSymbol || getRandomCalcSymbol()
-      if (symbol === '-') {
-        const isAnswerPositiveInt = firstNum - secondNum > 0
-        if (!isAnswerPositiveInt) return this.renderCalcQuestion('-')
-      }
-      if (symbol === '*') {
-        firstNum = getRandomIntNumber(10, 100)
-        secondNum = getRandomIntNumber(10, 20)
-        if (firstNum === secondNum) return this.renderCalcQuestion()
-      }
-      if (symbol === '/') {
-        firstNum = getRandomIntNumber(100, 1000)
-        secondNum = getRandomIntNumber(10, 200)
-        const isAnswerInt = firstNum % secondNum === 0
-        if (!isAnswerInt) return this.renderCalcQuestion('/')
-      }
+
+      // 减法时，答案不为负数
+      if (symbol === '-' && firstNum - secondNum < 0) return this.renderCalcQuestion('-')
+      // 除法时，答案需为整数
+      else if (symbol === '/' && firstNum % secondNum !== 0) return this.renderCalcQuestion('/')
+
       this.question = `${firstNum} ${symbol} ${secondNum}`
     },
     firstClick() {
@@ -97,6 +92,7 @@ export default {
     p {
       font-size: 40px;
       font-weight: bold;
+      user-select: none;
     }
     input {
       background: rgba(0, 0, 100, 0.2);

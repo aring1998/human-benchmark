@@ -4,7 +4,7 @@
       <game-intro 
         slot="wrap"
         title="计算测试"
-        intro="在60秒内尽多回答计算题"
+        intro="在60秒内快速作答计算题"
         v-show="componentName === ''"
         @start="componentName = 'GameContent'"
       />

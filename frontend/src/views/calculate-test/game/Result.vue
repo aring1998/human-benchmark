@@ -4,7 +4,7 @@
     tips="本次测试您的得分"
     cursor="unset"
   >
-    <game-btn @saveScore="saveScore" @again="again" :disabledDuration="1500"/>
+    <game-btn @saveScore="saveScore" @again="again" />
   </game-wrap>
 </template>
 
