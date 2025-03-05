@@ -67,3 +67,28 @@ export const createChartOptions = (min, max, section) => {
 }
 
 export const getRandomIntNumber = (min, max) => Math.floor(Math.random() * (max - min) + min)
+
+export function isPc() {
+  return window.innerWidth > 1023
+}
+
+export function renderGoogleAds() {
+  if (location.hostname === 'localhost') return
+  if (!window.adsbygoogle) {
+    window.addEventListener('load', renderFn)
+  } else {
+    renderFn()
+  }
+  function renderFn() {
+    const adsList = document.getElementsByClassName('adsbygoogle')
+    for (const i of adsList) {
+      if (i.dataset.adsbygoogleStatus !== 'done') {
+        try {
+          ;(adsbygoogle = window.adsbygoogle || []).push({})
+        } catch (err) {
+          console.error(err)
+        }
+      }
+    }
+  }
+}

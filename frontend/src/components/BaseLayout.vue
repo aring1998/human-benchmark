@@ -1,6 +1,7 @@
 <template>
   <div class="base-layout">
     <slot name="wrap"></slot>
+    <AdvertWrap commonInsStyle="width: 100%; height: 150px" style="max-width: 1010px" adsId="5675037810" />
     <div class="card">
       <el-row :gutter="10">
         <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
@@ -14,7 +15,7 @@
         <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" v-loading="loading">
           <div class="item">
             <h4>统计数据</h4>
-            <div id="myChart" style="height: 300px; width: 100%;"></div>
+            <div id="myChart" style="height: 300px; width: 100%"></div>
           </div>
         </el-col>
       </el-row>
@@ -25,19 +26,21 @@
 <script>
 import { init as echartsInit } from 'echarts'
 import { autoCreateChartOptions } from '@/utils/game-config'
+import AdvertWrap from './AdvertWrap.vue'
 export default {
   data() {
     return {
       chartOptions: null,
-      loading: false
+      loading: false,
     }
   },
+  components: { AdvertWrap },
   props: {
     // 关于的文本，写作数组以分段
     aboutText: {
       type: Array,
-      default: ''
-    }
+      default: '',
+    },
   },
   mounted() {
     this.getChart()
@@ -56,8 +59,8 @@ export default {
       this.chartOptions = await autoCreateChartOptions()
       this.loading = false
       this.draw()
-    }
-  }
+    },
+  },
 }
 </script>
 
@@ -67,7 +70,7 @@ export default {
     display: flex;
     width: 100%;
     max-width: $max-width;
-    margin: 50px auto 0 auto;
+    margin: 20px auto 0 auto;
     .item {
       height: 460px;
       background-color: #fff;

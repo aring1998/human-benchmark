@@ -3,7 +3,7 @@
     <base-layout :aboutText="aboutText">
       <game-intro 
         slot="wrap"
-        title="反应时间"
+        title="反应测试"
         intro="当背景变为绿色时，立刻点击"
         v-show="componentName === ''"
         @start="componentName = 'Wait'"

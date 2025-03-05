@@ -24,11 +24,11 @@
     </div>
     <div class="card statistical-data" v-loading="loading">
       <h2>{{ title }}统计数据</h2>
-      <div id="allDataChart" style="height: 300px; width: 100%;"></div>
+      <div id="allDataChart" style="height: 300px; width: 100%"></div>
     </div>
     <div class="card statistical-data" v-loading="loading">
       <h2>您的{{ title }}统计数据</h2>
-      <div id="userDataChart" style="height: 300px; width: 100%;"></div>
+      <div id="userDataChart" style="height: 300px; width: 100%"></div>
     </div>
   </div>
 </template>
@@ -47,15 +47,15 @@ export default {
       userDataOptions: null,
       title: '',
       unit: '',
-      startRouter: ''
+      startRouter: '',
     }
   },
   watch: {
     $route: {
       handler() {
         this.init()
-      }
-    }
+      },
+    },
   },
   created() {
     this.init()
@@ -92,7 +92,7 @@ export default {
         gameId,
         gte: gameItem.scoreRange[0],
         lte: gameItem.scoreRange[1],
-        best: gameItem.best
+        best: gameItem.best,
       })
       if (res.code === 0) {
         this.score = res.data.bestScore
@@ -103,8 +103,8 @@ export default {
       this.allDataOptions = await autoCreateChartOptions()
       if (this.$store.state.userInfo._id) this.userDataOptions = await autoCreateChartOptions(this.$store.state.userInfo._id)
       this.draw()
-    }
-  }
+    },
+  },
 }
 </script>
 

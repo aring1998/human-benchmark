@@ -11,8 +11,7 @@
           <div class="notice-content">
             <h4>{{ item.title }}</h4>
             <p v-for="(content, index) of item.content" :key="index">
-              {{ content.text }}
-              <router-link v-if="content.routerName" :to="content.routerPath">{{ content.routerName }}</router-link>
+              <span v-html="content.text"></span>
             </p>
             <div class="img-wrap" v-if="item.mainImg">
               <el-image :src="item.mainImg" :preview-src-list="item.imgList"> </el-image>
@@ -34,7 +33,7 @@ export default {
       stationShow: false,
       noticeShow: false,
       noticeList: [],
-      unreadNotice: 0
+      unreadNotice: 0,
     }
   },
   mounted() {
@@ -47,17 +46,17 @@ export default {
       if (res.code === 0) {
         const data = res.data
         if (data.length) this.stationShow = true
-        this.unreadNotice = data.filter(item => !noticeList.includes(item._id)).length
+        this.unreadNotice = data.filter((item) => !noticeList.includes(item._id)).length
         this.noticeList = data
       }
     },
     closeNotice() {
       this.noticeShow = false
       if (!this.noticeList.length) return
-      localStorage.setItem('noticeList', JSON.stringify(this.noticeList.map(item => item._id) || []))
+      localStorage.setItem('noticeList', JSON.stringify(this.noticeList.map((item) => item._id) || []))
       this.unreadNotice = 0
-    }
-  }
+    },
+  },
 }
 </script>
 

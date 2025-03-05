@@ -4,7 +4,7 @@ export const gameList = [
   {
     id: 1,
     icon: iconName.reactionTime,
-    title: '反应时间',
+    title: '反应测试',
     intro: '测试您的视觉反应。',
     path: '/reaction-time',
     best: 1, // 最佳成绩取最大值/最小值，1 取最小值，-1取最大值
@@ -86,7 +86,7 @@ export const gameList = [
     path: '/stroop',
     best: -1,
     section: 5,
-    scoreRange: [5, 60],
+    scoreRange: [5, 70],
     unit: '分'
   },
   {
@@ -163,7 +163,7 @@ export const gameList = [
     path: '/calculate-test',
     best: -1,
     section: 2,
-    scoreRange: [6, 30],
+    scoreRange: [6, 36],
     unit: '分'
   }
 ]
