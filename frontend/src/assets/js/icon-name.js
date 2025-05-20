@@ -15,4 +15,5 @@ export const iconName = {
   timePerceptionTest: 'el-icon-time',
   handEyeCoordinationTest: 'el-icon-place',
   calculateTest: 'el-icon-set-up',
+  schulteGrid: 'el-icon-crop',
 }

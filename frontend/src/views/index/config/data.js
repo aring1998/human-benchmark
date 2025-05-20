@@ -165,5 +165,16 @@ export const gameList = [
     section: 2,
     scoreRange: [6, 36],
     unit: '分'
+  },
+  {
+    id: 16,
+    icon: iconName.schulteGrid,
+    title: '苏格尔特方格',
+    intro: '训练您的专注力。',
+    path: '/schulte-grid',
+    best: 1,
+    section: 0.5,
+    scoreRange: [6, 40],
+    unit: '秒'
   }
 ]
