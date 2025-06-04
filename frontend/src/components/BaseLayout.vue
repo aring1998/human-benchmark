@@ -1,7 +1,12 @@
 <template>
   <div class="base-layout">
     <slot name="wrap"></slot>
-    <AdvertWrap commonInsStyle="width: 100%; height: 150px" style="max-width: 1010px" adsId="5675037810" />
+    <AdvertWrap
+      pcInsStyle="width: 100%; height: 150px"
+      :mobAttrs="{ 'data-full-width-responsive': 'true', 'data-ad-format': 'auto' }"
+      style="max-width: 1010px"
+      adsId="5675037810"
+    />
     <div class="card">
       <el-row :gutter="10">
         <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
