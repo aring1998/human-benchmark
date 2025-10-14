@@ -67,8 +67,10 @@ const getBestScoreByGameId = async (userId, gameId, gte, lte, best) => {
   // 获取该用户分数的百分位
   const bestScoreItem = await scoresModel.findBestScoreIndex(gameId, gte, lte, best, bestScore)
   const scoreCount = await scoresModel.findScoreCount(gameId, gte, lte)
-  if (bestScoreItem[0]) {
-    const percentile = (1 - (bestScoreItem[0].index - 1) / scoreCount[0].total) * 100
+  if (bestScoreItem.score) {
+    const total = scoreCount[0].total
+    const index = bestScoreItem.index
+    const percentile = ((total - index) / total) * 100
     scores[0].percentile = Number(percentile.toFixed(1))
   }
   return scores[0]

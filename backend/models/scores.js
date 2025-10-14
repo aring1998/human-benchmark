@@ -7,16 +7,22 @@ const addScore = async (data) => {
   })
   return score.save()
 }
-
 const findScoreGroup = async (gameId, userId, gte, lte, section) => {
-  return Scores.aggregate([
-    {
-      $match: {
-        gameId,
-        userId: userId ? userId : /^/,
-        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 },
-      },
+  const match = {
+    gameId: gameId,
+    score: {
+      $gte: gte !== undefined ? Number(gte) : 0,
+      $lte: lte !== undefined ? Number(lte) : 999,
     },
+  }
+
+  // 只有传了 userId 才匹配，否则不限制
+  if (userId) {
+    match.userId = userId
+  }
+
+  return Scores.aggregate([
+    { $match: match },
     {
       $group: {
         _id: {
@@ -27,7 +33,8 @@ const findScoreGroup = async (gameId, userId, gte, lte, section) => {
         count: { $sum: 1 },
       },
     },
-  ]).sort({ _id: 1 })
+    { $sort: { _id: 1 } }, // 在 group 后排序
+  ])
 }
 
 const findBestScore = async (userId, gameId, gte, lte) => {
@@ -48,47 +55,51 @@ const findBestScore = async (userId, gameId, gte, lte) => {
     },
   ])
 }
+const findBestScoreIndex = async (gameId, gte, lte, best, targetScore) => {
+  // 校验参数
+  // if (typeof targetScore !== 'number' && isNaN(Number(targetScore))) {
+  //   throw new Error('targetScore must be a valid number')
+  // }
+  targetScore = Number(targetScore)
 
-const findBestScoreIndex = (gameId, gte, lte, best, score) => {
-  return Scores.aggregate([
-    {
-      $match: {
-        gameId,
-        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 },
-      },
-    },
-    {
-      $sort: {
-        score: best,
-      },
-    },
-    {
-      $group: {
-        _id: null,
-        table: {
-          $push: '$$ROOT',
-        },
-      },
-    },
-    {
-      $unwind: {
-        path: '$table',
-        includeArrayIndex: 'index',
-      },
-    },
-    {
-      $project: {
-        _id: 0,
-        score: '$table.score',
-        index: {
-          $add: ['$index', 1],
-        },
-      },
-    },
-    {
-      $match: { score },
-    },
-  ])
+  // 构建基础 match 条件
+  const matchBase = {
+    gameId: gameId,
+    score: {},
+  }
+
+  // 添加分数区间
+  if (gte !== undefined && gte !== null) {
+    matchBase.score.$gte = Number(gte)
+  }
+  if (lte !== undefined && lte !== null) {
+    matchBase.score.$lte = Number(lte)
+  } else {
+    matchBase.score.$lte = 999 // 默认上限
+  }
+
+  // 升序：越小越好；降序：越大越好
+  const isAsc = best === 1
+
+  // 构建“比目标分数更优”的查询条件
+  let betterMatch = { ...matchBase }
+  if (isAsc) {
+    // 升序：比 targetScore 小的记录数
+    betterMatch.score.$lt = targetScore
+  } else {
+    // 降序：比 targetScore 大的记录数
+    betterMatch.score.$gt = targetScore
+  }
+
+  // 查询：比目标分数更优的数量
+  const [result] = await Scores.aggregate([{ $match: betterMatch }, { $count: 'betterCount' }])
+
+  const betterCount = result?.betterCount || 0
+
+  // 排名 = 更优的数量 + 1
+  const rank = betterCount + 1
+
+  return { score: targetScore, index: rank }
 }
 
 const findScoreCount = (gameId, gte, lte) => {
