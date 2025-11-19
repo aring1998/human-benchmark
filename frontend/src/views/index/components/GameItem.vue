@@ -12,7 +12,7 @@ export default {
     icon: String,
     title: String,
     intro: {
-      type:String,
+      type: String,
       default: ''
     },
     path: {
@@ -38,7 +38,7 @@ export default {
   margin: 20px auto 0 auto;
   cursor: pointer;
   top: 0;
-  transition: transform .5s;
+  transition: transform 0.5s;
   &:hover {
     transform: translate(0, -10px);
     i {
@@ -54,6 +54,7 @@ export default {
   }
   span {
     font-size: 18px;
+    text-align: center;
   }
 }
 @media screen and (max-width: 480px) {

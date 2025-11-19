@@ -16,4 +16,5 @@ export const iconName = {
   handEyeCoordinationTest: 'el-icon-place',
   calculateTest: 'el-icon-set-up',
   schulteGrid: 'el-icon-crop',
+  dynamicVisualAcuityTest: 'el-icon-camera'
 }

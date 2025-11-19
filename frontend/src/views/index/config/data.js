@@ -176,5 +176,16 @@ export const gameList = [
     section: 0.5,
     scoreRange: [6, 40],
     unit: '秒'
+  },
+  {
+    id: 17,
+    icon: iconName.dynamicVisualAcuityTest,
+    title: '动态视力测试',
+    intro: '测试您对移动物体的视觉敏感度。',
+    path: '/dynamic-visual-acuity-test',
+    best: -1,
+    section: 1,
+    scoreRange: [5, 30],
+    unit: '级'
   }
 ]
