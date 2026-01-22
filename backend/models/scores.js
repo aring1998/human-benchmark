@@ -3,17 +3,22 @@ const { Scores } = require('../db/index')
 const addScore = async (data) => {
   const score = new Scores({
     ...data,
-    created: Date.now(),
+    created: Date.now()
   })
   return score.save()
+}
+const updateScoreUserId = async (data) => {
+  const { tempUserId, userId } = data
+  if (tempUserId.length !== 16) return
+  return Scores.updateMany({ userId: tempUserId }, { userId: userId })
 }
 const findScoreGroup = async (gameId, userId, gte, lte, section) => {
   const match = {
     gameId: gameId,
     score: {
       $gte: gte !== undefined ? Number(gte) : 0,
-      $lte: lte !== undefined ? Number(lte) : 999,
-    },
+      $lte: lte !== undefined ? Number(lte) : 999
+    }
   }
 
   // 只有传了 userId 才匹配，否则不限制
@@ -27,13 +32,13 @@ const findScoreGroup = async (gameId, userId, gte, lte, section) => {
       $group: {
         _id: {
           $floor: {
-            $divide: ['$score', section ? Number(section) : 1],
-          },
+            $divide: ['$score', section ? Number(section) : 1]
+          }
         },
-        count: { $sum: 1 },
-      },
+        count: { $sum: 1 }
+      }
     },
-    { $sort: { _id: 1 } }, // 在 group 后排序
+    { $sort: { _id: 1 } } // 在 group 后排序
   ])
 }
 
@@ -43,16 +48,16 @@ const findBestScore = async (userId, gameId, gte, lte) => {
       $match: {
         gameId,
         userId: userId,
-        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 },
-      },
+        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 }
+      }
     },
     {
       $group: {
         _id: null,
         minScore: { $min: '$score' },
-        maxScore: { $max: '$score' },
-      },
-    },
+        maxScore: { $max: '$score' }
+      }
+    }
   ])
 }
 const findBestScoreIndex = async (gameId, gte, lte, best, targetScore) => {
@@ -65,7 +70,7 @@ const findBestScoreIndex = async (gameId, gte, lte, best, targetScore) => {
   // 构建基础 match 条件
   const matchBase = {
     gameId: gameId,
-    score: {},
+    score: {}
   }
 
   // 添加分数区间
@@ -107,19 +112,20 @@ const findScoreCount = (gameId, gte, lte) => {
     {
       $match: {
         gameId,
-        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 },
-      },
+        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 }
+      }
     },
     {
-      $count: 'total',
-    },
+      $count: 'total'
+    }
   ])
 }
 
 module.exports = {
   addScore,
+  updateScoreUserId,
   findScoreGroup,
   findBestScore,
   findBestScoreIndex,
-  findScoreCount,
+  findScoreCount
 }

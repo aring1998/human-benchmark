@@ -1,11 +1,12 @@
 const usersModel = require('../models/users')
+const scoresModel = require('../models/scores')
 const { suc, fail } = require('../utils/render')
 
 /**
  * 注册
  */
 const register = async (req, res) => {
-  const { email, username, password } = req.body
+  const { email, username, password, tempUserId } = req.body
 
   // 判断是否存在同用户名
   const userInfo = await usersModel.findUser({ username })
@@ -19,9 +20,14 @@ const register = async (req, res) => {
   const data = await usersModel.addUser({
     email,
     username,
-    password,
+    password
   })
   delete data.password
+
+  // 为临时用户修改分数记录的用户ID
+  if (tempUserId) {
+    await scoresModel.updateScoreUserId({ tempUserId, userId: data._id })
+  }
 
   suc(res, data, '注册成功，已为您自动登录')
 }
@@ -91,5 +97,5 @@ module.exports = {
   login,
   getInfoByToken,
   changePassword,
-  resetPassword,
+  resetPassword
 }

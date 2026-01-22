@@ -6,14 +6,14 @@ const { suc, fail } = require('../utils/render')
  * 保存分数
  */
 const saveScore = async (req, res) => {
-  const { gameId, score } = req.body
+  const { gameId, score, tempUserId } = req.body
   const token = req.headers.authorization
   const userInfo = await usersModel.findUser({ token })
 
   const data = await scoresModel.addScore({
-    userId: userInfo ? userInfo._id : 0,
+    userId: tempUserId || (userInfo ? userInfo._id : 0),
     gameId,
-    score,
+    score
   })
 
   suc(res, data, '保存成功')
@@ -27,7 +27,7 @@ const getChartData = async (req, res) => {
   const groupData = await scoresModel.findScoreGroup(Number(gameId), userId, gte, lte, section)
   const data = groupData.map((item) => ({
     ...item,
-    _id: item._id * (section ? Number(section) : 1),
+    _id: item._id * (section ? Number(section) : 1)
   }))
   suc(res, data, '')
 }
@@ -37,21 +37,21 @@ const getChartData = async (req, res) => {
  */
 const getBestScore = async (req, res) => {
   const token = req.headers.authorization
-  const userInfo = await usersModel.findUser({ token })
-  if (!userInfo) return fail(res, '您需要先登录')
+  const { gameList, gameId, gte, lte, best, tempUserId } = req.body
 
-  const { gameList, gameId, gte, lte, best } = req.body
+  const userInfo = await usersModel.findUser({ token })
+  if (!userInfo && !tempUserId) return fail(res, '您需要先登录')
+
+  const userId = tempUserId || userInfo._id.toString()
 
   // 如果是仪表盘详情页
   if (gameId) {
-    const scores = await getBestScoreByGameId(userInfo._id.toString(), +gameId, gte, lte, best)
+    const scores = await getBestScoreByGameId(userId, +gameId, gte, lte, best)
     return suc(res, scores, '')
   }
 
   // 查询所有游戏最优成绩
-  const data = await Promise.all(
-    gameList.map((item) => getBestScoreByGameId(userInfo._id.toString(), item.id, item.scoreRange[0], item.scoreRange[1], item.best))
-  )
+  const data = await Promise.all(gameList.map((item) => getBestScoreByGameId(userId, item.id, item.scoreRange[0], item.scoreRange[1], item.best)))
   suc(res, data, '')
 }
 
@@ -79,5 +79,5 @@ const getBestScoreByGameId = async (userId, gameId, gte, lte, best) => {
 module.exports = {
   saveScore,
   getChartData,
-  getBestScore,
+  getBestScore
 }
