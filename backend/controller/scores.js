@@ -59,11 +59,16 @@ const getBestScore = async (req, res) => {
  * 获取用户对应游戏最优分数
  */
 const getBestScoreByGameId = async (userId, gameId, gte, lte, best) => {
-  const scores = await scoresModel.findBestScore(userId, gameId, gte, lte)
+  const scores = await scoresModel.findBestScore(userId, gameId, gte)
   scores.length > 0 ? (scores[0].gameId = gameId) : scores.push({ gameId }) // 补充其游戏id
   // 获取最佳分数
   const bestScore = best === 1 ? scores[0].minScore : scores[0].maxScore
   if (bestScore) scores[0].bestScore = bestScore
+  const lteNumber = lte !== undefined && lte !== null ? Number(lte) : null
+  if (lteNumber !== null && bestScore !== undefined && bestScore !== null && bestScore > lteNumber) {
+    scores[0].percentile = 100
+    return scores[0]
+  }
   // 获取该用户分数的百分位
   const bestScoreItem = await scoresModel.findBestScoreIndex(gameId, gte, lte, best, bestScore)
   const scoreCount = await scoresModel.findScoreCount(gameId, gte, lte)

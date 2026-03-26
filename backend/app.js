@@ -13,8 +13,12 @@ const { limitIpReqPerMin } = require('./middles/rate-limit')
 
 const app = express()
 
+const allowedOrigins = ['https://aring.cc', 'http://localhost:52099']
 app.all('*', function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
+  const origin = req.get('Origin')
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin)
+  }
   res.header('Access-Control-Allow-Headers', '*')
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS')
   next()

@@ -43,12 +43,20 @@ const findScoreGroup = async (gameId, userId, gte, lte, section) => {
 }
 
 const findBestScore = async (userId, gameId, gte, lte) => {
+  const scoreMatch = {
+    $gte: gte !== undefined && gte !== null ? Number(gte) : 0
+  }
+
+  if (lte !== undefined && lte !== null) {
+    scoreMatch.$lte = Number(lte)
+  }
+
   return Scores.aggregate([
     {
       $match: {
         gameId,
         userId: userId,
-        score: { $gte: gte ? Number(gte) : 0, $lte: lte ? Number(lte) : 999 }
+        score: scoreMatch
       }
     },
     {
