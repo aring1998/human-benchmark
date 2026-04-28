@@ -2,14 +2,13 @@ const uuid = require('uuid')
 const { Users } = require('../db/index')
 
 const findUser = async (data) => {
-  const res = await Users.findOne({ ...data })
-  delete res?._doc?.password
-  return res?._doc
+  return Users.findOne({ ...data })
+    .select('-password')
+    .lean()
 }
 
 const findUserAllInfo = async (data) => {
-  const res = await Users.findOne({ ...data })
-  return res?._doc
+  return Users.findOne({ ...data }).lean()
 }
 
 const addUser = (data) => {
@@ -35,5 +34,5 @@ module.exports = {
   findUserAllInfo,
   addUser,
   updateUser,
-  updateToken,
+  updateToken
 }

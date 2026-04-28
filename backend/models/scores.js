@@ -1,5 +1,41 @@
 const { Scores } = require('../db/index')
 
+const getMinScore = (gte) => (gte !== undefined && gte !== null ? Number(gte) : 0)
+
+const getMaxScore = (lte) => (lte !== undefined && lte !== null ? Number(lte) : 999)
+
+const buildBestScoreMatch = (gameId, gte) => ({
+  gameId: Number(gameId),
+  score: {
+    $gte: getMinScore(gte)
+  }
+})
+
+const buildPercentileMatch = (gameId, gte, lte) => ({
+  gameId: Number(gameId),
+  score: {
+    $gte: getMinScore(gte),
+    $lte: getMaxScore(lte)
+  }
+})
+
+const buildBetterScoreMatch = (gameId, gte, lte, best, bestScore) => {
+  const scoreMatch = {
+    ...buildPercentileMatch(gameId, gte, lte).score
+  }
+
+  if (best === 1) {
+    scoreMatch.$lt = Number(bestScore)
+  } else {
+    scoreMatch.$gt = Number(bestScore)
+  }
+
+  return {
+    gameId: Number(gameId),
+    score: scoreMatch
+  }
+}
+
 const addScore = async (data) => {
   const score = new Scores({
     ...data,
@@ -68,6 +104,27 @@ const findBestScore = async (userId, gameId, gte, lte) => {
     }
   ])
 }
+
+const findBestScoresByGames = async (userId, gameList) => {
+  if (!gameList.length) return []
+
+  return Scores.aggregate([
+    {
+      $match: {
+        userId,
+        $or: gameList.map((item) => buildBestScoreMatch(item.gameId, item.gte))
+      }
+    },
+    {
+      $group: {
+        _id: '$gameId',
+        minScore: { $min: '$score' },
+        maxScore: { $max: '$score' }
+      }
+    }
+  ])
+}
+
 const findBestScoreIndex = async (gameId, gte, lte, best, targetScore) => {
   // 校验参数
   // if (typeof targetScore !== 'number' && isNaN(Number(targetScore))) {
@@ -129,11 +186,30 @@ const findScoreCount = (gameId, gte, lte) => {
   ])
 }
 
+const findPercentileStatsByGames = async (gameList) => {
+  if (!gameList.length) return new Map()
+
+  const statsList = await Promise.all(
+    gameList.map(async (item) => {
+      const totalMatch = buildPercentileMatch(item.gameId, item.gte, item.lte)
+      const betterMatch = buildBetterScoreMatch(item.gameId, item.gte, item.lte, item.best, item.bestScore)
+
+      const [total, betterCount] = await Promise.all([Scores.countDocuments(totalMatch), Scores.countDocuments(betterMatch)])
+
+      return [item.gameId, { total, betterCount }]
+    })
+  )
+
+  return new Map(statsList)
+}
+
 module.exports = {
   addScore,
   updateScoreUserId,
   findScoreGroup,
   findBestScore,
+  findBestScoresByGames,
   findBestScoreIndex,
-  findScoreCount
+  findScoreCount,
+  findPercentileStatsByGames
 }

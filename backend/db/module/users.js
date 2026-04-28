@@ -8,7 +8,10 @@ const usersSchema = mongoose.Schema({
   },
   password: String,
   email: String,
-  token: String,
+  token: {
+    type: String,
+    index: true
+  },
   created: Number,
   updated: {
     type: Number,
