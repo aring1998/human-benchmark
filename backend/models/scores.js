@@ -4,11 +4,8 @@ const getMinScore = (gte) => (gte !== undefined && gte !== null ? Number(gte) : 
 
 const getMaxScore = (lte) => (lte !== undefined && lte !== null ? Number(lte) : 999)
 
-const buildBestScoreMatch = (gameId, gte) => ({
-  gameId: Number(gameId),
-  score: {
-    $gte: getMinScore(gte)
-  }
+const buildBestScoreMatch = (gameId) => ({
+  gameId: Number(gameId)
 })
 
 const buildPercentileMatch = (gameId, gte, lte) => ({
@@ -78,21 +75,12 @@ const findScoreGroup = async (gameId, userId, gte, lte, section) => {
   ])
 }
 
-const findBestScore = async (userId, gameId, gte, lte) => {
-  const scoreMatch = {
-    $gte: gte !== undefined && gte !== null ? Number(gte) : 0
-  }
-
-  if (lte !== undefined && lte !== null) {
-    scoreMatch.$lte = Number(lte)
-  }
-
+const findBestScore = async (userId, gameId) => {
   return Scores.aggregate([
     {
       $match: {
         gameId,
-        userId: userId,
-        score: scoreMatch
+        userId: userId
       }
     },
     {
@@ -112,7 +100,7 @@ const findBestScoresByGames = async (userId, gameList) => {
     {
       $match: {
         userId,
-        $or: gameList.map((item) => buildBestScoreMatch(item.gameId, item.gte))
+        $or: gameList.map((item) => buildBestScoreMatch(item.gameId))
       }
     },
     {
