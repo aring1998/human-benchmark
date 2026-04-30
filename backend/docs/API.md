@@ -5,34 +5,33 @@
 ## 用户
 
 - **注册** `post` `/api/users/register`
-  - **data** `username` *用户名
-  - **data** `password` *密码
+  - **data** `username` \*用户名
+  - **data** `password` \*密码
   - **data** `email` 邮箱
 
 - **登录** `post` `/api/users/login`
-  - **data** `username` *用户名
-  - **data** `password` *密码
+  - **data** `username` \*用户名
+  - **data** `password` \*密码
 
 - **token** `post` `/api/users/token`
-  - **Header** `Authorization` *令牌
+  - **Header** `Authorization` \*令牌
 
 - **修改密码** `post` `api/users/changePassword`
-  - **oldPassword** *旧密码
-  - **newPassword** *新密码
+  - **oldPassword** \*旧密码
+  - **newPassword** \*新密码
 
 - **重置密码** `post` `api/users/resetPassword`
-  - **vCode** *验证码
-  - **newPassword** *新密码
-
+  - **vCode** \*验证码
+  - **newPassword** \*新密码
 
 ## 游戏分数
 
 - **保存分数** `post` `/api/scores/saveScore`
-  - **data** `gameId` *游戏id
-  - **data** `score` *分数
+  - **data** `gameId` \*游戏id
+  - **data** `score` \*分数
 
 - **获取游戏统计数据** `get` `/api/scores/getChartData`
-  - **query** `gameId` *游戏id
+  - **query** `gameId` \*游戏id
   - **query** `gte` 获取区间的最小值
   - **query** `lte` 获取区间的最大值
 
@@ -42,11 +41,18 @@
   - **data** `gte` 获取区间的最小值
   - **data** `lte` 获取区间的最大值
 
+- **通过分数获取排名百分位** `get/post` `/api/scores/getScorePercentile`
+  - **query/data** `gameId` \*游戏id
+  - **query/data** `score` \*待计算分数
+  - **query/data** `best` \*最佳方向，`1` 为越小越好，`-1` 为越大越好
+  - **query/data** `gte` 获取区间的最小值
+  - **query/data** `lte` 获取区间的最大值
+
 ## 邮件
 
 - **发送意见反馈** `post` `api/mailer/feedback`
   - **data** `qq` QQ号
-  - **data** `opnion` *意见反馈
+  - **data** `opnion` \*意见反馈
 
 - **发送重置密码验证码** `post` `api/mailer/resetMail`
-  - **data** `email` *邮箱
+  - **data** `email` \*邮箱

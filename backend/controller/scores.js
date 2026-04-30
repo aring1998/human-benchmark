@@ -9,11 +9,35 @@ const normalizeGameConfig = (item) => ({
   best: Number(item.best)
 })
 
+const calculatePercentile = (total, betterCount, includeCurrent) => {
+  if (!total) return 0
+
+  const offset = includeCurrent ? 1 : 0
+  const percentile = ((total - betterCount - offset) / total) * 100
+
+  return Number(Math.min(100, Math.max(0, percentile)).toFixed(1))
+}
+
+const resolveBoundaryPercentile = ({ score, gte, lte, best }) => {
+  const scoreNumber = Number(score)
+  const gteNumber = gte !== undefined && gte !== null && gte !== '' ? Number(gte) : null
+  const lteNumber = lte !== undefined && lte !== null && lte !== '' ? Number(lte) : null
+
+  if (best === 1) {
+    if (gteNumber !== null && scoreNumber < gteNumber) return 100
+    if (lteNumber !== null && scoreNumber > lteNumber) return 0
+  } else {
+    if (gteNumber !== null && scoreNumber < gteNumber) return 0
+    if (lteNumber !== null && scoreNumber > lteNumber) return 100
+  }
+
+  return null
+}
+
 const attachPercentile = (scoreItem, percentileStats) => {
   if (!percentileStats || !percentileStats.total) return scoreItem
 
-  const percentile = ((percentileStats.total - percentileStats.betterCount - 1) / percentileStats.total) * 100
-  scoreItem.percentile = Number(percentile.toFixed(1))
+  scoreItem.percentile = calculatePercentile(percentileStats.total, percentileStats.betterCount, true)
   return scoreItem
 }
 
@@ -46,11 +70,18 @@ const getBestScores = async (userId, gameList) => {
     .filter((item) => item.bestScore !== undefined && item.bestScore !== null)
 
   const needPercentileList = percentileGameList.filter((item) => {
-    const lteNumber = item.lte !== undefined && item.lte !== null ? Number(item.lte) : null
-    if (lteNumber !== null && item.bestScore > lteNumber) {
-      item.result.percentile = 100
+    const boundaryPercentile = resolveBoundaryPercentile({
+      score: item.bestScore,
+      gte: item.gte,
+      lte: item.lte,
+      best: item.best
+    })
+
+    if (boundaryPercentile !== null) {
+      item.result.percentile = boundaryPercentile
       return false
     }
+
     return true
   })
 
@@ -127,8 +158,48 @@ const getBestScore = async (req, res) => {
   suc(res, data, '')
 }
 
+/**
+ * 通过分数获取排名百分位
+ */
+const getScorePercentile = async (req, res) => {
+  const { gameId, gte, lte, best, score } = req.query
+
+  if (gameId === undefined || best === undefined || score === undefined || score === '') {
+    return fail(res, '缺少必要参数')
+  }
+
+  const scoreNumber = Number(score)
+  const gameConfig = normalizeGameConfig({ gameId, gte, lte, best })
+
+  if (Number.isNaN(gameConfig.gameId) || Number.isNaN(gameConfig.best) || Number.isNaN(scoreNumber)) {
+    return fail(res, '参数格式错误')
+  }
+
+  const boundaryPercentile = resolveBoundaryPercentile({
+    score: scoreNumber,
+    gte: gameConfig.gte,
+    lte: gameConfig.lte,
+    best: gameConfig.best
+  })
+
+  if (boundaryPercentile !== null) {
+    return suc(res, { percentile: boundaryPercentile }, '')
+  }
+
+  const [[countResult], rankInfo] = await Promise.all([
+    scoresModel.findScoreCount(gameConfig.gameId, gameConfig.gte, gameConfig.lte),
+    scoresModel.findBestScoreIndex(gameConfig.gameId, gameConfig.gte, gameConfig.lte, gameConfig.best, scoreNumber)
+  ])
+
+  const total = countResult ? countResult.total : 0
+  const betterCount = rankInfo.index - 1
+
+  suc(res, { percentile: calculatePercentile(total, betterCount, false) }, '')
+}
+
 module.exports = {
   saveScore,
   getChartData,
-  getBestScore
+  getBestScore,
+  getScorePercentile
 }
